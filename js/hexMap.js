@@ -215,32 +215,26 @@ export class hexMap
 
     desenharConexoes(tipo)
     {
-        const desenhadas = new Set();
+        const arestas = this.obterArestasPossiveis(tipo);
+        const pais = new Map();
 
         for (const hex of this.hexes.values())
         {
-            if (!hex.temFeature(tipo))
+            pais.set(hex.id, hex.id);
+        }
+
+        for (const aresta of arestas)
+        {
+            const raizA = this.encontrarRaiz(pais, aresta.hexA.id);
+            const raizB = this.encontrarRaiz(pais, aresta.hexB.id);
+            
+            if (raizA === raizB)
             {
                 continue;
             }
 
-            for (const vizinho of hex.vizinhos)
-            {
-                if (!vizinho.temFeature(tipo))
-                {
-                    continue;
-                }
-
-                const chave = [hex.id, vizinho.id].sort().join("-");
-
-                if (desenhadas.has(chave))
-                {
-                    continue;
-                }
-
-                this.desenharLinhaEntre(hex, vizinho, tipo);
-                desenhadas.add(chave);
-            }
+            pais.set(raizB, raizA);
+            this.desenharLinhaEntre(aresta.hexA, aresta.hexB, tipo);
         }
     }
 
@@ -264,5 +258,129 @@ export class hexMap
         }
 
         this.connectionLayer.appendChild(linha);
+    }
+
+    obterArestasPossiveis(tipo)
+    {
+        const chaves = new Set();
+        const arestas = [];
+
+        for (const hex of this.hexes.values())
+        {
+            if (!hex.temFeature(tipo))
+            {
+                continue;
+            }
+
+            for (const vizinho of hex.vizinhos ?? [])
+            {
+                if (!vizinho.temFeature(tipo))
+                {
+                    continue;
+                }
+
+                const chave = [hex.id, vizinho.id].sort().join("-");
+
+                if (chaves.has(chave))
+                {
+                    continue;
+                }
+
+                chaves.add(chave);
+
+                const ordenados = this.ordenarHexesPorPrioridade(hex, vizinho);
+
+                arestas.push({
+                    hexA: ordenados[0],
+                    hexB: ordenados[1],
+                    chave: chave
+                });
+            }
+        }
+
+        arestas.sort((a, b) =>
+        {
+            const comparaA = this.compararIdsHex(a.hexA.id, b.hexA.id);
+
+            if (comparaA !== 0)
+            {
+                return comparaA;
+            }
+
+            return this.compararIdsHex(a.hexB.id, b.hexB.id);
+        });
+
+        return arestas;
+    }
+
+    ordenarHexesPorPrioridade(hexA, hexB)
+    {
+        if (this.compararIdsHex(hexA.id, hexB.id) <= 0)
+        {
+            return [hexA, hexB];
+        }
+
+        return [hexB, hexA];
+    }
+
+    compararIdsHex(idA, idB)
+    {
+        const a = this.obterOrdemHex(idA);
+        const b = this.obterOrdemHex(idB);
+
+        // Prioriza menor número primeiro: B3 vem antes de B4.
+        if (a.linha !== b.linha)
+        {
+            return a.linha - b.linha;
+        }
+
+        // Em empate, prioriza letra anterior: B3 vem antes de C3.
+        return a.coluna - b.coluna;
+    }
+
+    obterOrdemHex(id)
+    {
+        const partes = id.match(/^([A-Z]+)(\d+)$/);
+
+        if (partes == null)
+        {
+            return {
+                coluna: 9999,
+                linha: 9999
+            };
+        }
+
+        return {
+            coluna: this.converterLetrasParaNumero(partes[1]),
+            linha: Number(partes[2])
+        };
+    }
+
+    converterLetrasParaNumero(letras)
+    {
+        let numero = 0;
+
+        for (let i = 0; i < letras.length; i++)
+        {
+            numero *= 26;
+            numero += letras.charCodeAt(i) - 64;
+        }
+
+        return numero - 1;
+    }
+
+    encontrarRaiz(pais, id)
+    {
+        const pai = pais.get(id);
+
+        if (pai === id)
+        {
+            return id;
+        }
+
+        const raiz = this.encontrarRaiz(pais, pai);
+        pais.set(id, raiz);
+
+        return raiz;
     }
 }

@@ -251,7 +251,7 @@
       ],
       "features": {
         "estrada": true,
-        "rio": false
+        "rio": true
       },
       "ponto_interesse": null,
       "ponto_interesse_visivel": false,
