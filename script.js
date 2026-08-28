@@ -11,7 +11,7 @@ async function iniciar()
 
     console.log(hexData);
     
-    const hexTemp = new hexMap(5,5,"A",1,100,86,hexData.hexes);
+    const hexTemp = new hexMap(hexData.mapa.largura,hexData.mapa.altura,"A",1,100,86,hexData.hexes);
     document.getElementById("mapa").appendChild(hexTemp.element);
 }
 
