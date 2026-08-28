@@ -6,18 +6,27 @@ export class hex
         this.largura = largura;
         this.altura = altura;
     }
-    
-    receberData(data,x,y,onClick)
+
+    receberData(data, x, y, onClick)
     {
         this.corPerigo = "#777777";
         this.data = data;
+
         this.element = this.criarElemento();
+        this.iconElement = this.criarIconElement();
+
         this.configurarClique(onClick);
-        this.posicionar(x,y)
+        this.posicionar(x, y);
+
         this.verificarTerreno();
         this.verificarPerigo();
-        
+
         this.desselecionar();
+    }
+    
+    receberVizinhos(vizinhos)
+    {
+        this.vizinhos = vizinhos;
     }
     
     configurarClique(onClick)
@@ -51,10 +60,19 @@ export class hex
 
     criarElemento()
     {
-        const group = document.createElementNS("http://www.w3.org/2000/svg","g");
+        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
         const polygon = this.criarVisual();
 
         group.appendChild(polygon);
+
+        this.polygon = polygon;
+
+        return group;
+    }
+    
+    criarIconElement()
+    {
+        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
         if (this.data.ponto_interesse)
         {
@@ -64,7 +82,6 @@ export class hex
             group.appendChild(icone);
         }
 
-        this.polygon = polygon;
         return group;
     }
     
@@ -87,10 +104,21 @@ export class hex
 
         return polygon;
     }
-    
+
     posicionar(x, y)
     {
-        this.element.setAttribute("transform",`translate(${x}, ${y})`);
+        this.x = x;
+        this.y = y;
+
+        this.centroX = x + this.largura / 2;
+        this.centroY = y + this.altura / 2;
+
+        this.element.setAttribute("transform", `translate(${x}, ${y})`);
+
+        if (this.iconElement != null)
+        {
+            this.iconElement.setAttribute("transform", `translate(${x}, ${y})`);
+        }
     }
 
     pintarHex(cor)
@@ -101,15 +129,15 @@ export class hex
     {
         this.polygon.setAttribute("stroke", cor);
     }
-    
+
     selecionar()
     {
         this.pintarBorda("black");
         this.element.setAttribute("stroke-width", "5");
-        this.element.parentNode.appendChild(this.element);
         this.mostrarInfo();
-        console.log("HEX: "+this.id)
+        console.log("HEX: " + this.id);
     }
+    
     desselecionar()
     {
         this.pintarBorda(this.corPerigo);
@@ -234,7 +262,27 @@ export class hex
             caveira.setAttribute("x",inicioX + i * (tamanho + espacamento));
             caveira.setAttribute("y", y);
 
-            this.element.appendChild(caveira);
+            this.iconElement.appendChild(caveira);
         }
+    }
+
+    temFeature(tipo)
+    {
+        if (this.data == null)
+        {
+            return false;
+        }
+
+        if (this.data.features?.[tipo] === true)
+        {
+            return true;
+        }
+        
+        if (tipo === "rio" && this.data.terreno === "rio")
+        {
+            return true;
+        }
+
+        return false;
     }
 }

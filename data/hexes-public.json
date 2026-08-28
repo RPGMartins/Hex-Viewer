@@ -118,6 +118,10 @@
         "visivel_jogadores": true,
         "nome_assentamento": "Última Vigília"
       },
+      "features": {
+        "estrada": true,
+        "rio": false
+      },
       "ponto_interesse_visivel": true,
       "publico": "Uma pequena vila parcialmente reconstruída sobre ruínas antigas. É o ponto seguro da expedição.",
       "estado_atual": [
@@ -245,6 +249,10 @@
         "visto",
         "trilha"
       ],
+      "features": {
+        "estrada": true,
+        "rio": false
+      },
       "ponto_interesse": null,
       "ponto_interesse_visivel": false,
       "publico": "A velha estrada corta a pradaria, quase apagada pela grama alta.",
@@ -270,6 +278,10 @@
       "status": [
         "desconhecido"
       ],
+      "features": {
+        "estrada": false,
+        "rio": true
+      },
       "ponto_interesse": {
         "id": "vilarejo_agua_negra",
         "nome": "Água Negra",
@@ -383,6 +395,10 @@
       "status": [
         "visto"
       ],
+      "features": {
+        "estrada": true,
+        "rio": false
+      },
       "ponto_interesse": {
         "id": "cidade_pequena_ivan",
         "nome": "Fortaleza de Ivan",
@@ -415,6 +431,10 @@
       "status": [
         "desconhecido"
       ],
+      "features": {
+        "estrada": false,
+        "rio": true
+      },
       "ponto_interesse": null,
       "ponto_interesse_visivel": false,
       "publico": "",
@@ -558,6 +578,10 @@
         "desconhecido",
         "estrada"
       ],
+      "features": {
+        "estrada": true,
+        "rio": true
+      },
       "ponto_interesse": {
         "id": "cidade_pequena_ponte_de_ferro",
         "nome": "Ponte de Ferro",
@@ -589,6 +613,10 @@
         "desconhecido",
         "ameacado"
       ],
+      "features": {
+        "estrada": false,
+        "rio": true
+      },
       "ponto_interesse": {
         "id": "metropole_rahgbat",
         "nome": "Rahgbat",
