@@ -54,7 +54,7 @@ export class hex
 
         if (this.data.ponto_interesse)
         {
-            const imgName = "./images/" + this.data.ponto_interesse.local + ".png";
+            const imgName = "./images/" + this.data.ponto_interesse.local + ".svg";
             const icone = this.criarIcone(imgName);
 
             group.appendChild(icone);
@@ -120,6 +120,7 @@ export class hex
         document.getElementById("nomeLugar").textContent = tempData.nome;
         document.getElementById("terreno").textContent = tempData.terreno;
         document.getElementById("perigo").textContent = tempData.perigo;
+        document.getElementById("local").textContent = tempData.ponto_interesse?.local;
     }
 
     limparInfo()

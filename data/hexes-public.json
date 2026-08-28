@@ -273,7 +273,7 @@
       "ponto_interesse": {
         "id": "vilarejo_agua_negra",
         "nome": "Água Negra",
-        "local": "Vilarejo",
+        "local": "Ninho de um monstro",
         "desenvolvimento": "Abandonado e em ruínas",
         "visivel_jogadores": true,
         "nome_assentamento": "Água Negra"
@@ -561,7 +561,7 @@
       "ponto_interesse": {
         "id": "cidade_pequena_ponte_de_ferro",
         "nome": "Ponte de Ferro",
-        "local": "Cidade pequena",
+        "local": "Refúgio de um eremita",
         "desenvolvimento": "Protegido por seus moradores atuais",
         "visivel_jogadores": true,
         "nome_assentamento": "Ponte de Ferro"
@@ -592,7 +592,7 @@
       "ponto_interesse": {
         "id": "metropole_rahgbat",
         "nome": "Rahgbat",
-        "local": "Cidade grande/metrópole",
+        "local": "Cidade grandeMetrópole",
         "desenvolvimento": "Sob o cerco de um grupo de guerreiros",
         "visivel_jogadores": false,
         "nome_assentamento": "Rahgbat"
