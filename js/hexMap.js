@@ -2,7 +2,7 @@ import { hex } from "./hex.js";
 
 export class hexMap
 {
-    constructor(quantidadeLinhas,quantidadeColunas,colunaInicial,linhaInicial,larguraHex,alturaHex)
+    constructor(quantidadeLinhas,quantidadeColunas,colunaInicial,linhaInicial,larguraHex,alturaHex,hexData)
     {
         this.quantidadeLinhas = quantidadeLinhas;
         this.quantidadeColunas = quantidadeColunas;
@@ -19,9 +19,54 @@ export class hexMap
         // SVG que vai conter todos os hexes
         this.element = this.criarElemento();
 
-        this.criarHexes();
+        this.hexSelecionado;
+        
+        this.criarHexes((id) => this.selecionarHex(id),hexData);
     }
 
+    selecionarHex(id)
+    {
+        const hex = this.obterHex(id);
+
+        if (hex == null) 
+        {
+            return;
+        }
+        
+        this.pintarHexSelecionado(hex)
+    }
+    
+    pintarHexSelecionado(hex)
+    {
+        if(this.hexSelecionado == null)
+        {
+            this.selecionarNovoHex(hex);
+            return;
+        }
+        
+        if(hex != this.hexSelecionado)
+        {
+            this.desselecionarHex();
+            this.selecionarNovoHex(hex);
+            return;
+        }
+
+        this.desselecionarHex();
+
+    }
+
+    selecionarNovoHex(hex)
+    {
+        this.hexSelecionado = hex;
+        this.hexSelecionado.selecionar();
+    }
+
+    desselecionarHex()
+    {
+        this.hexSelecionado.desselecionar();
+        this.hexSelecionado = null;
+    }
+    
     criarElemento()
     {
         return document.createElementNS(
@@ -30,7 +75,7 @@ export class hexMap
         );
     }
 
-    criarHexes()
+    criarHexes(onClick,hexData)
     {
         const espacamentoX = this.larguraHex * 0.75;
         const espacamentoY = this.alturaHex;
@@ -44,11 +89,21 @@ export class hexMap
                 const id = `${letraColuna}${numeroLinha}`;
                 const tempHex = new hex(id,this.larguraHex,this.alturaHex);
                 const x = coluna * espacamentoX;
-                const y =linha * espacamentoY + (coluna % 2) * (this.alturaHex * 0.5);
+                const y = linha * espacamentoY + (coluna % 2) * (this.alturaHex * 0.5);
 
-                tempHex.posicionar(x, y);
                 this.hexes.set(id, tempHex);
-                this.element.appendChild(tempHex.element);
+                const dadosHex = hexData.find(hex => hex.hex === id);
+
+                if (dadosHex == false)
+                {
+                    console.warn(`Hex ${id} não encontrado no JSON`);
+                    continue;
+                }
+                else 
+                {
+                    tempHex.receberData(dadosHex,x,y,onClick);
+                    this.element.appendChild(tempHex.element);
+                }
             }
         }
 
