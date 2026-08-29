@@ -1,37 +1,56 @@
-# Termux - servir o Hex Viewer localmente
+# Termux - Hex Viewer
 
-Instale o básico:
-
-```bash
-pkg update
-pkg install python git
-```
-
-Dentro da pasta do repo:
+## Rodar
 
 ```bash
-bash termux/servir_site.sh 8080
+cd ~/Hex-Viewer
+bash termux/servir_site.sh
 ```
 
-Para jogadores, use um perfil exportado para uma pasta separada, por exemplo:
+O script mostra:
 
 ```text
-data-jogadores/
-data-mestre/
+Seu link de mestre:
+http://IP-DO-CELULAR:PORTA/?data=data-mestre
+
+Link para passar aos jogadores:
+http://IP-DO-CELULAR:PORTA/?data=data-jogadores
 ```
 
-O `script.js` deste pacote aceita escolher a pasta de dados pela URL:
+## Porta ocupada
+
+Se aparecer erro parecido com:
 
 ```text
-http://IP-DO-CELULAR:8080/?data=data-jogadores
-http://IP-DO-CELULAR:8080/?data=data-mestre
+OSError: [Errno 98] Address already in use
 ```
 
-No exportador Python, escolha como destino a pasta correspondente:
+significa que a porta já estava ocupada.
 
-```text
-.../Hex-Viewer/data-jogadores
-.../Hex-Viewer/data-mestre
+Nesta versão, o script tenta resolver sozinho: se `8080` estiver ocupada, ele usa `8081`, depois `8082`, e assim por diante.
+
+## Forçar porta
+
+```bash
+HEX_PORT=8081 bash termux/servir_site.sh
 ```
 
-Ele grava automaticamente os caminhos no `campaigns.json` como `./data-jogadores/...` ou `./data-mestre/...`.
+## Forçar só o IP impresso
+
+Isso não muda o IP real do celular. Só muda o texto mostrado pelo script.
+
+```bash
+HEX_HOST_IP=192.168.0.50 bash termux/servir_site.sh
+```
+
+## Parar servidor antigo manualmente
+
+```bash
+pkill -f "python.*http.server"
+```
+
+Depois rode de novo:
+
+```bash
+bash termux/servir_site.sh
+```
