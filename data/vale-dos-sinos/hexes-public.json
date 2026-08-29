@@ -10,7 +10,10 @@
     "altura_hex": 136,
     "nome": "Vale dos Sinos",
     "descricao": "Mapa inicial da campanha, agora usando catálogos do Obsidian.",
-    "escala_hex": "6 milhas / aproximadamente 10 km"
+    "sistema": "Shadowdark",
+    "escala_hex": "6 milhas / aproximadamente 10 km",
+    "hex_inicial": "A3",
+    "rumor_principal": "Há rumores de que algo antigo desperta a leste da vila."
   },
   "hexes": [
     {

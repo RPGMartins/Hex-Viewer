@@ -17,7 +17,6 @@ build/
 dist/
 
 # IDE/editor
-.idea/
 .vscode/
 
 # Sistema operacional
