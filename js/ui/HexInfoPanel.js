@@ -6,46 +6,6 @@ export class HexInfoPanel
         this.element = options.element ?? document.getElementById("mapaInfo");
         this.backdrop = options.backdrop ?? null;
 
-        this.exploracaoLabels = {
-            desconhecido: "Desconhecido",
-            rumor: "Rumor / informação indireta",
-            visto: "Visto à distância",
-            visitado: "Visitado",
-            explorado: "Explorado"
-        };
-
-        this.controleLabels = {
-            controla: "Controla",
-            influencia: "Influência",
-            disputa: "Em disputa",
-            presente: "Presente",
-            nenhum: "Nenhum"
-        };
-
-        this.relacaoLabels = {
-            aliada: "Aliada",
-            amistosa: "Amistosa",
-            neutra: "Neutra",
-            suspeita: "Suspeita",
-            hostil: "Hostil",
-            desconhecida: "Desconhecida"
-        };
-
-        this.estadoPoiLabels = {
-            ativo: "Ativo",
-            abandonado: "Abandonado",
-            arruinado: "Arruinado",
-            ocupado: "Ocupado",
-            ameacado: "Ameaçado",
-            protegido: "Protegido",
-            resolvido: "Resolvido",
-            limpo: "Limpo",
-            oculto: "Oculto",
-            cataclismo: "Cataclismo",
-            cercado: "Cercado",
-            guardado: "Guardado"
-        };
-
         this.limpar();
         this.fechar();
     }
@@ -91,6 +51,7 @@ export class HexInfoPanel
         this.element.appendChild(header);
 
         const resumo = this.obterTexto(hexData.resumo);
+
         if (resumo !== "")
         {
             const resumoEl = document.createElement("p");
@@ -206,8 +167,8 @@ export class HexInfoPanel
         }
 
         this.adicionarLinha(bloco, "Nome", faccao.nome ?? faccao.id);
-        this.adicionarLinha(bloco, "Controle", this.obterLabelComFallback(faccao.controle, this.controleLabels));
-        this.adicionarLinha(bloco, "Relação", this.obterLabelComFallback(faccao.relacao, this.relacaoLabels));
+        this.adicionarLinha(bloco, "Controle", this.obterLabelControleFaccao(faccao.controle));
+        this.adicionarLinha(bloco, "Relação", this.obterLabelRelacaoFaccao(faccao.relacao));
         this.adicionarParagrafo(bloco, "Descrição", faccao.descricao);
 
         this.adicionarBlocoSeTemConteudo(bloco);
@@ -381,57 +342,56 @@ export class HexInfoPanel
 
     obterLabelTerreno(terreno)
     {
-        if (!this.temConteudo(terreno))
-        {
-            return "";
-        }
-
-        return this.config.terrenos?.[terreno]?.label ?? this.formatarChave(terreno);
+        return this.obterLabelPorConfig(this.config.terrenos, terreno);
     }
 
     obterLabelPerigo(perigo)
     {
-        if (!this.temConteudo(perigo))
-        {
-            return "";
-        }
-
-        return this.config.perigos?.[perigo]?.label ?? this.formatarChave(perigo);
+        return this.obterLabelPorConfig(this.config.perigos, perigo);
     }
 
     obterLabelPontoInteresse(tipo)
     {
-        if (!this.temConteudo(tipo))
-        {
-            return "";
-        }
-
-        return this.config.pontos_interesse?.[tipo]?.label ?? this.formatarChave(tipo);
+        return this.obterLabelPorConfig(this.config.pontos_interesse, tipo);
     }
 
     obterLabelExploracao(exploracao)
     {
-        return this.obterLabelComFallback(exploracao, this.exploracaoLabels);
+        return this.obterLabelPorConfig(this.config.exploracoes, exploracao);
     }
 
     obterLabelEstadoPoi(estado)
     {
-        return this.obterLabelComFallback(estado, this.estadoPoiLabels);
+        return this.obterLabelPorConfig(this.config.estados_ponto_interesse, estado);
     }
 
-    obterLabelComFallback(valor, labels)
+    obterLabelControleFaccao(controle)
     {
-        if (!this.temConteudo(valor))
+        return this.obterLabelPorConfig(this.config.faccoes?.controles, controle);
+    }
+
+    obterLabelRelacaoFaccao(relacao)
+    {
+        return this.obterLabelPorConfig(this.config.faccoes?.relacoes, relacao);
+    }
+
+    obterLabelPorConfig(config, chave)
+    {
+        if (!this.temConteudo(chave))
         {
             return "";
         }
 
-        return labels?.[valor] ?? this.formatarChave(valor);
+        return config?.[chave]?.label ?? this.formatarChave(chave);
     }
 
     obterTipoPontoInteresse(pontoInteresse)
     {
-        const direto = pontoInteresse?.tipo ?? pontoInteresse?.icone ?? pontoInteresse?.local ?? null;
+        const direto =
+            pontoInteresse?.tipo ??
+            pontoInteresse?.icone ??
+            pontoInteresse?.local ??
+            null;
 
         if (direto == null)
         {

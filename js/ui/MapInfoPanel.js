@@ -56,13 +56,29 @@ export class MapInfoPanel
         this.adicionarLinha(bloco, "Versão", this.mapaData.versao);
         this.adicionarLinha(bloco, "Largura", this.mapaData.largura);
         this.adicionarLinha(bloco, "Altura", this.mapaData.altura);
-        this.adicionarLinha(bloco, "Escala do hex", this.mapaData.escala_hex ?? this.mapaData.escala);
+        this.adicionarLinha(bloco, "Coluna inicial", this.mapaData.coluna_inicial);
+        this.adicionarLinha(bloco, "Linha inicial", this.mapaData.linha_inicial);
         this.adicionarLinha(bloco, "Hex inicial", this.mapaData.hex_inicial);
+        this.adicionarLinha(bloco, "Escala do hex", this.mapaData.escala_hex ?? this.mapaData.escala);
+        this.adicionarLinha(bloco, "Tamanho visual do hex", this.obterTamanhoHex());
         this.adicionarParagrafo(bloco, "Rumor principal", this.mapaData.rumor_principal);
 
         this.element.appendChild(bloco);
 
         this.fechar();
+    }
+
+    obterTamanhoHex()
+    {
+        const largura = this.mapaData.largura_hex;
+        const altura = this.mapaData.altura_hex;
+
+        if (!this.temConteudo(largura) && !this.temConteudo(altura))
+        {
+            return "";
+        }
+
+        return `${largura ?? "?"} × ${altura ?? "?"}`;
     }
 
     adicionarLinha(bloco, label, valor)

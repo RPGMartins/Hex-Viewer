@@ -33,6 +33,7 @@ export class hex
 
         this.verificarTerreno();
         this.verificarPerigo();
+        this.verificarExploracao();
         this.desselecionar();
     }
 
@@ -52,11 +53,18 @@ export class hex
     criarElemento()
     {
         const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+        group.classList.add("hex-tile");
+        group.dataset.hexId = this.id;
+
         const polygon = this.criarVisual();
+        const selectionPolygon = this.criarVisualSelecao();
 
         group.appendChild(polygon);
+        group.appendChild(selectionPolygon);
 
         this.polygon = polygon;
+        this.selectionPolygon = selectionPolygon;
 
         return group;
     }
@@ -65,29 +73,37 @@ export class hex
     {
         const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
 
-        const pontos = [
-            [this.largura * 0.25, 0],
-            [this.largura * 0.75, 0],
-            [this.largura, this.altura * 0.5],
-            [this.largura * 0.75, this.altura],
-            [this.largura * 0.25, this.altura],
-            [0, this.altura * 0.5]
-        ];
-
-        polygon.setAttribute("points", pontos.map(p => p.join(",")).join(" "));
+        polygon.setAttribute("points", this.obterPontosHex().map(p => p.join(",")).join(" "));
         polygon.setAttribute("fill", "gray");
-        polygon.setAttribute("stroke", "black");
+        polygon.setAttribute("stroke", this.config?.fallback?.cor_borda_hex ?? "#222222");
         polygon.setAttribute("stroke-width", "2");
+        polygon.setAttribute("stroke-dasharray", "none");
+
+        polygon.classList.add("hex-fill");
 
         return polygon;
     }
 
+    criarVisualSelecao()
+    {
+        const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+
+        polygon.setAttribute("points", this.obterPontosHex().map(p => p.join(",")).join(" "));
+        polygon.setAttribute("fill", "none");
+        polygon.setAttribute("pointer-events", "none");
+
+        polygon.classList.add("hex-selection-ring");
+
+        return polygon;
+    }
+    
     criarIconElement()
     {
         const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
         this.poiIconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
         this.dangerIconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        this.explorationIconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
         const tipoPonto = this.obterTipoPontoInteresse();
         this.poiIconGroup.dataset.iconType = tipoPonto ?? "";
@@ -110,6 +126,7 @@ export class hex
 
         group.appendChild(this.poiIconGroup);
         group.appendChild(this.dangerIconGroup);
+        group.appendChild(this.explorationIconGroup);
 
         return group;
     }
@@ -203,14 +220,34 @@ export class hex
     selecionar()
     {
         this.selecionado = true;
+
+        this.trazerParaFrente();
+
+        if (this.element != null)
+        {
+            this.element.classList.add("is-selected");
+        }
+
         console.log("HEX: " + this.id);
     }
 
     desselecionar()
     {
         this.selecionado = false;
+
+        if (this.element != null)
+        {
+            this.element.classList.remove("is-selected");
+        }
     }
 
+    aplicarBordaBase()
+    {
+        this.pintarBorda(this.config?.fallback?.cor_borda_hex ?? "#222222");
+        this.polygon.setAttribute("stroke-width", "2");
+        this.polygon.setAttribute("stroke-dasharray", "none");
+    }
+    
     verificarTerreno()
     {
         const terreno = this.data?.terreno;
@@ -243,7 +280,63 @@ export class hex
             this.criarCaveiras(caveiras);
         }
 
-        this.pintarBorda(this.corPerigo);
+        this.aplicarBordaBase();
+    }
+
+    verificarExploracao()
+    {
+        if (this.explorationIconGroup == null)
+        {
+            return;
+        }
+
+        this.explorationIconGroup.innerHTML = "";
+
+        const exploracao = this.data?.exploracao;
+        const configExploracao = this.config?.exploracoes?.[exploracao];
+
+        if (exploracao == null || configExploracao == null)
+        {
+            return;
+        }
+
+        const icone = this.criarIconeExploracao(configExploracao);
+        this.explorationIconGroup.appendChild(icone);
+    }
+
+    criarIconeExploracao(configExploracao)
+    {
+        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+        const tamanhoBase = Math.min(this.largura, this.altura);
+        const raio = tamanhoBase * 0.12;
+        const cx = this.largura / 2;
+        const cy = this.altura * 0.80;
+
+        const circulo = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circulo.setAttribute("cx", cx);
+        circulo.setAttribute("cy", cy);
+        circulo.setAttribute("r", raio);
+        circulo.setAttribute("fill", configExploracao.cor ?? "#666666");
+        circulo.setAttribute("stroke", configExploracao.cor_borda ?? "#111111");
+        circulo.setAttribute("stroke-width", Math.max(2, raio * 0.14));
+        circulo.setAttribute("opacity", configExploracao.opacidade ?? "0.92");
+
+        const texto = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        texto.textContent = configExploracao.simbolo ?? "?";
+        texto.setAttribute("x", cx);
+        texto.setAttribute("y", cy + raio * 0.35);
+        texto.setAttribute("text-anchor", "middle");
+        texto.setAttribute("font-size", raio * 1.28);
+        texto.setAttribute("font-weight", "700");
+        texto.setAttribute("font-family", "Arial, sans-serif");
+        texto.setAttribute("fill", configExploracao.cor_texto ?? "#ffffff");
+        texto.setAttribute("pointer-events", "none");
+
+        group.appendChild(circulo);
+        group.appendChild(texto);
+
+        return group;
     }
 
     criarCaveiras(quantidade)
@@ -295,6 +388,7 @@ export class hex
         this.aplicarVisualizacaoTerreno(visualizacao);
         this.aplicarVisualizacaoPerigo(visualizacao);
         this.aplicarVisualizacaoIcone(visualizacao);
+        this.aplicarVisualizacaoExploracao(visualizacao);
     }
 
     aplicarVisualizacaoTerreno(visualizacao)
@@ -314,39 +408,27 @@ export class hex
         this.pintarHex(this.config?.fallback?.cor_terreno_oculto ?? "#B8B8B8");
     }
 
+    obterPontosHex()
+    {
+        return [
+            [this.largura * 0.25, 0],
+            [this.largura * 0.75, 0],
+            [this.largura, this.altura * 0.5],
+            [this.largura * 0.75, this.altura],
+            [this.largura * 0.25, this.altura],
+            [0, this.altura * 0.5]
+        ];
+    }
+
     aplicarVisualizacaoPerigo(visualizacao)
     {
         const perigo = this.data?.perigo;
-        const configPerigo = this.config?.perigos?.[perigo];
 
         const mostrarPerigo =
             visualizacao.perigo?.ativo === true &&
             visualizacao.perigo?.tipos?.[perigo] !== false;
 
-        if (this.selecionado)
-        {
-            this.pintarBorda("black");
-            this.polygon.setAttribute("stroke-width", "5");
-        }
-        else if (mostrarPerigo)
-        {
-            this.pintarBorda(this.corPerigo);
-            this.polygon.setAttribute("stroke-width", "3");
-        }
-        else
-        {
-            this.pintarBorda(this.config?.fallback?.cor_borda ?? "#555555");
-            this.polygon.setAttribute("stroke-width", "2");
-        }
-
-        if (mostrarPerigo && configPerigo?.tracejado === true)
-        {
-            this.polygon.setAttribute("stroke-dasharray", configPerigo.tracejado_valor ?? "6 3");
-        }
-        else
-        {
-            this.polygon.setAttribute("stroke-dasharray", "none");
-        }
+        this.aplicarBordaBase();
 
         if (this.dangerIconGroup != null)
         {
@@ -354,6 +436,19 @@ export class hex
         }
     }
 
+    trazerParaFrente()
+    {
+        if (this.element?.parentNode != null)
+        {
+            this.element.parentNode.appendChild(this.element);
+        }
+
+        if (this.iconElement?.parentNode != null)
+        {
+            this.iconElement.parentNode.appendChild(this.iconElement);
+        }
+    }
+    
     aplicarVisualizacaoIcone(visualizacao)
     {
         if (this.poiIconGroup == null)
@@ -374,5 +469,27 @@ export class hex
             visualizacao.icones?.tipos?.[tipoIcone] !== false;
 
         this.poiIconGroup.style.display = mostrarIcone ? "" : "none";
+    }
+
+    aplicarVisualizacaoExploracao(visualizacao)
+    {
+        if (this.explorationIconGroup == null)
+        {
+            return;
+        }
+
+        const exploracao = this.data?.exploracao;
+
+        if (exploracao == null)
+        {
+            this.explorationIconGroup.style.display = "none";
+            return;
+        }
+
+        const mostrarExploracao =
+            visualizacao.exploracao?.ativo === true &&
+            visualizacao.exploracao?.tipos?.[exploracao] !== false;
+
+        this.explorationIconGroup.style.display = mostrarExploracao ? "" : "none";
     }
 }

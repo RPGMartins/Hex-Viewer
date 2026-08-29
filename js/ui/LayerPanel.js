@@ -25,6 +25,10 @@ export class LayerPanel
                 ativo: true,
                 tipos: this.criarMapaBooleanoPorConfig(this.config.perigos)
             },
+            exploracao: {
+                ativo: true,
+                tipos: this.criarMapaBooleanoPorConfig(this.config.exploracoes)
+            },
             icones: {
                 ativo: true,
                 tipos: this.criarMapaBooleanoPorConfig(this.config.pontos_interesse)
@@ -85,41 +89,40 @@ export class LayerPanel
         this.element.appendChild(this.criarSecaoComAtivo(
             "Terreno",
             this.visualizacao.terreno,
-            this.criarLabelsPorConfig(this.config.terrenos)
+            this.config.terrenos,
+            "terreno"
         ));
 
         this.element.appendChild(this.criarSecaoComAtivo(
             "Perigo",
             this.visualizacao.perigo,
-            this.criarLabelsPorConfig(this.config.perigos)
+            this.config.perigos,
+            "perigo"
+        ));
+
+        this.element.appendChild(this.criarSecaoComAtivo(
+            "Exploração",
+            this.visualizacao.exploracao,
+            this.config.exploracoes,
+            "exploracao"
         ));
 
         this.element.appendChild(this.criarSecaoComAtivo(
             "Ícones",
             this.visualizacao.icones,
-            this.criarLabelsPorConfig(this.config.pontos_interesse)
+            this.config.pontos_interesse,
+            "icone"
         ));
 
         this.element.appendChild(this.criarSecaoSimples(
             "Conexões",
             this.visualizacao.conexoes,
-            this.criarLabelsPorConfig(this.config.conexoes)
+            this.config.conexoes,
+            "conexao"
         ));
     }
 
-    criarLabelsPorConfig(config)
-    {
-        const labels = {};
-
-        for (const chave of Object.keys(config ?? {}))
-        {
-            labels[chave] = config[chave].label ?? chave;
-        }
-
-        return labels;
-    }
-
-    criarSecaoComAtivo(titulo, grupo, labels)
+    criarSecaoComAtivo(titulo, grupo, configGrupo, tipoVisual)
     {
         const details = document.createElement("details");
         details.open = true;
@@ -135,7 +138,9 @@ export class LayerPanel
             {
                 grupo.ativo = valor;
                 this.dispararMudanca();
-            }
+            },
+            null,
+            "geral"
         );
 
         geral.classList.add("layer-main-toggle");
@@ -146,7 +151,8 @@ export class LayerPanel
 
         for (const chave of Object.keys(grupo.tipos))
         {
-            const label = labels[chave] ?? chave;
+            const configItem = configGrupo?.[chave] ?? {};
+            const label = configItem.label ?? chave;
 
             lista.appendChild(this.criarCheckbox(
                 label,
@@ -155,7 +161,9 @@ export class LayerPanel
                 {
                     grupo.tipos[chave] = valor;
                     this.dispararMudanca();
-                }
+                },
+                configItem,
+                tipoVisual
             ));
         }
 
@@ -164,7 +172,7 @@ export class LayerPanel
         return details;
     }
 
-    criarSecaoSimples(titulo, grupo, labels)
+    criarSecaoSimples(titulo, grupo, configGrupo, tipoVisual)
     {
         const details = document.createElement("details");
         details.open = true;
@@ -178,7 +186,8 @@ export class LayerPanel
 
         for (const chave of Object.keys(grupo))
         {
-            const label = labels[chave] ?? chave;
+            const configItem = configGrupo?.[chave] ?? {};
+            const label = configItem.label ?? chave;
 
             lista.appendChild(this.criarCheckbox(
                 label,
@@ -187,7 +196,9 @@ export class LayerPanel
                 {
                     grupo[chave] = valor;
                     this.dispararMudanca();
-                }
+                },
+                configItem,
+                tipoVisual
             ));
         }
 
@@ -196,7 +207,7 @@ export class LayerPanel
         return details;
     }
 
-    criarCheckbox(texto, marcado, onChange)
+    criarCheckbox(texto, marcado, onChange, configItem = null, tipoVisual = null)
     {
         const label = document.createElement("label");
         label.classList.add("layer-checkbox");
@@ -210,13 +221,140 @@ export class LayerPanel
             onChange(input.checked);
         });
 
+        const preview = this.criarPreview(configItem, tipoVisual);
+
         const span = document.createElement("span");
         span.textContent = texto;
 
         label.appendChild(input);
+
+        if (preview != null)
+        {
+            label.appendChild(preview);
+        }
+
         label.appendChild(span);
 
         return label;
+    }
+
+    criarPreview(configItem, tipoVisual)
+    {
+        if (tipoVisual == null || tipoVisual === "geral" || configItem == null)
+        {
+            return null;
+        }
+
+        if (tipoVisual === "terreno")
+        {
+            return this.criarPreviewTerreno(configItem);
+        }
+
+        if (tipoVisual === "perigo")
+        {
+            return this.criarPreviewPerigo(configItem);
+        }
+
+        if (tipoVisual === "icone")
+        {
+            return this.criarPreviewIcone(configItem);
+        }
+
+        if (tipoVisual === "conexao")
+        {
+            return this.criarPreviewConexao(configItem);
+        }
+
+        if (tipoVisual === "exploracao")
+        {
+            return this.criarPreviewExploracao(configItem);
+        }
+
+        return null;
+    }
+
+    criarPreviewTerreno(configItem)
+    {
+        const preview = document.createElement("span");
+        preview.classList.add("layer-preview", "layer-preview-terrain");
+        preview.style.backgroundColor = configItem.cor ?? "#999999";
+
+        return preview;
+    }
+
+    criarPreviewPerigo(configItem)
+    {
+        const preview = document.createElement("span");
+        preview.classList.add("layer-preview", "layer-preview-danger");
+
+        const caveiras = configItem.caveiras ?? 0;
+
+        if (caveiras <= 0)
+        {
+            const seguro = document.createElement("span");
+            seguro.classList.add("layer-preview-danger-safe");
+            seguro.style.borderColor = configItem.cor ?? "#4CAF50";
+            preview.appendChild(seguro);
+            return preview;
+        }
+
+        for (let i = 0; i < caveiras; i++)
+        {
+            const img = document.createElement("img");
+            img.src = "./images/caveira.svg";
+            img.alt = "";
+            preview.appendChild(img);
+        }
+
+        return preview;
+    }
+
+    criarPreviewIcone(configItem)
+    {
+        const preview = document.createElement("span");
+        preview.classList.add("layer-preview", "layer-preview-icon");
+
+        if (configItem.icone != null)
+        {
+            const img = document.createElement("img");
+            img.src = configItem.icone;
+            img.alt = "";
+            preview.appendChild(img);
+        }
+
+        return preview;
+    }
+
+    criarPreviewConexao(configItem)
+    {
+        const preview = document.createElement("span");
+        preview.classList.add("layer-preview", "layer-preview-connection");
+
+        const line = document.createElement("span");
+        line.classList.add("layer-preview-connection-line");
+        line.style.borderTopColor = configItem.cor ?? "#ffffff";
+        line.style.borderTopWidth = `${Math.max(2, Math.min(configItem.espessura ?? 4, 6))}px`;
+
+        if (configItem.tracejado === true)
+        {
+            line.style.borderTopStyle = "dashed";
+        }
+
+        preview.appendChild(line);
+
+        return preview;
+    }
+
+    criarPreviewExploracao(configItem)
+    {
+        const preview = document.createElement("span");
+        preview.classList.add("layer-preview", "layer-preview-exploration");
+        preview.textContent = configItem.simbolo ?? "?";
+        preview.style.backgroundColor = configItem.cor ?? "#666666";
+        preview.style.color = configItem.cor_texto ?? "#ffffff";
+        preview.style.borderColor = configItem.cor_borda ?? "#111111";
+
+        return preview;
     }
 
     dispararMudanca()

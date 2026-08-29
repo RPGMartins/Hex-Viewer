@@ -36,9 +36,7 @@ export class hexMap
         this.criarHexes((id) => this.selecionarHex(id), this.hexData);
 
         this.definirVizinhos();
-
-        this.desenharConexoes("rio");
-        this.desenharConexoes("estrada");
+        this.desenharTodasConexoes();
     }
 
     criarElemento()
@@ -67,6 +65,12 @@ export class hexMap
         const espacamentoX = this.larguraHex * 0.75;
         const espacamentoY = this.alturaHex;
 
+        const hexDataPorId = new Map(
+            (hexData ?? [])
+                .filter(item => item?.hex != null)
+                .map(item => [item.hex, item])
+        );
+
         for (let linha = 0; linha < this.quantidadeLinhas; linha++)
         {
             for (let coluna = 0; coluna < this.quantidadeColunas; coluna++)
@@ -82,13 +86,7 @@ export class hexMap
 
                 this.hexes.set(id, tempHex);
 
-                const dadosHex = hexData.find(hexDataItem => hexDataItem.hex === id);
-
-                if (!dadosHex)
-                {
-                    console.warn(`Hex ${id} não encontrado no JSON`);
-                    continue;
-                }
+                const dadosHex = hexDataPorId.get(id) ?? this.criarDadosHexDesconhecido(id);
 
                 tempHex.receberData(dadosHex, x, y, onClick, this.config);
 
@@ -111,8 +109,17 @@ export class hexMap
         this.element.setAttribute("height", alturaMapa);
         this.element.setAttribute("viewBox", `0 0 ${larguraMapa} ${alturaMapa}`);
         this.element.setAttribute("preserveAspectRatio", "xMidYMid meet");
-
         this.element.classList.add("hex-map-svg");
+    }
+
+    criarDadosHexDesconhecido(id)
+    {
+        return {
+            hex: id,
+            nome: "",
+            exploracao: "desconhecido",
+            features: {}
+        };
     }
 
     selecionarHex(id)
@@ -233,6 +240,21 @@ export class hexMap
             `${letraProxima}${numero}`,
             `${letraProxima}${numero + 1}`
         ];
+    }
+
+    desenharTodasConexoes()
+    {
+        const tiposConexao = Object.keys(this.config?.conexoes ?? {});
+
+        if (tiposConexao.length === 0)
+        {
+            return;
+        }
+
+        for (const tipo of tiposConexao)
+        {
+            this.desenharConexoes(tipo);
+        }
     }
 
     desenharConexoes(tipo)

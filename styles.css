@@ -291,3 +291,142 @@ button {
         gap: 2px;
     }
 }
+
+/* Camadas: previews visuais */
+.layer-checkbox {
+    min-height: 24px;
+}
+
+.layer-preview {
+    flex: 0 0 auto;
+    width: 30px;
+    min-width: 30px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.layer-preview-terrain {
+    width: 22px;
+    min-width: 22px;
+    height: 18px;
+    border: 1px solid #111111;
+    border-radius: 4px;
+}
+
+.layer-preview-danger {
+    gap: 1px;
+}
+
+.layer-preview-danger img {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+}
+
+.layer-preview-danger-safe {
+    width: 17px;
+    height: 17px;
+    border: 3px solid #4CAF50;
+    border-radius: 50%;
+}
+
+.layer-preview-icon {
+    width: 28px;
+    min-width: 28px;
+    height: 24px;
+
+    background: #eeeeee;
+    border: 1px solid #777777;
+    border-radius: 6px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.layer-preview-icon img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+
+    filter: drop-shadow(0 0 1px #000000);
+}
+
+.layer-preview-connection {
+    width: 32px;
+    min-width: 32px;
+}
+
+.layer-preview-connection-line {
+    width: 26px;
+    display: block;
+    border-top-style: solid;
+    border-radius: 999px;
+}
+
+.layer-preview-exploration {
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    border: 2px solid #111111;
+    border-radius: 50%;
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 700;
+}
+.hex-tile {
+    cursor: pointer;
+}
+
+.hex-fill {
+    stroke: #222222;
+    stroke-width: 2;
+    stroke-linejoin: round;
+    transition:
+            filter 120ms ease,
+            stroke 120ms ease,
+            stroke-width 120ms ease;
+    vector-effect: non-scaling-stroke;
+}
+
+.hex-tile:hover .hex-fill {
+    filter: brightness(1.08);
+    stroke: #d8d8d8;
+}
+
+.hex-selection-ring {
+    fill: none;
+    stroke: #ff00ff;
+    stroke-width: 7;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    stroke-dasharray: 12 7;
+    opacity: 0;
+    pointer-events: none;
+    vector-effect: non-scaling-stroke;
+
+    filter:
+            drop-shadow(0 0 2px #000000)
+            drop-shadow(0 0 7px rgba(255, 0, 255, 0.9));
+
+    transition: opacity 120ms ease;
+}
+
+.hex-tile.is-selected .hex-selection-ring {
+    opacity: 1;
+    animation: selectedHexDash 900ms linear infinite;
+}
+
+.hex-tile.is-selected .hex-fill {
+    filter:
+            brightness(1.12)
+            drop-shadow(0 0 3px rgba(255, 0, 255, 0.55));
+}
+
+@keyframes selectedHexDash {
+    to {
+        stroke-dashoffset: -19;
+    }
+}

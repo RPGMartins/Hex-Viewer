@@ -51,7 +51,6 @@
       "visivel_padrao": true
     }
   },
-
   "perigos": {
     "seguro": {
       "label": "Seguro",
@@ -82,7 +81,48 @@
       "visivel_padrao": true
     }
   },
-
+  "exploracoes": {
+    "desconhecido": {
+      "label": "Desconhecido",
+      "simbolo": "?",
+      "cor": "#5D6570",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    },
+    "rumor": {
+      "label": "Rumor / informação indireta",
+      "simbolo": "!",
+      "cor": "#8A6D2F",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    },
+    "visto": {
+      "label": "Visto à distância",
+      "simbolo": "○",
+      "cor": "#3F6F8F",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    },
+    "visitado": {
+      "label": "Visitado",
+      "simbolo": "•",
+      "cor": "#5E7D3A",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    },
+    "explorado": {
+      "label": "Explorado",
+      "simbolo": "✓",
+      "cor": "#2E7D50",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    }
+  },
   "pontos_interesse": {
     "torre_pequena": {
       "label": "Torre pequena",
@@ -94,7 +134,6 @@
       "icone": "./images/fortificacao.svg",
       "visivel_padrao": true
     },
-    
     "marco_natural": {
       "label": "Marco natural",
       "icone": "./images/marco_natural.svg",
@@ -161,7 +200,6 @@
       "visivel_padrao": true
     }
   },
-
   "conexoes": {
     "rio": {
       "label": "Rio",
@@ -179,10 +217,88 @@
       "visivel_padrao": true
     }
   },
-
+  "estados_ponto_interesse": {
+    "ativo": {
+      "label": "Ativo"
+    },
+    "abandonado": {
+      "label": "Abandonado"
+    },
+    "arruinado": {
+      "label": "Arruinado"
+    },
+    "ocupado": {
+      "label": "Ocupado"
+    },
+    "ameacado": {
+      "label": "Ameaçado"
+    },
+    "protegido": {
+      "label": "Protegido"
+    },
+    "resolvido": {
+      "label": "Resolvido"
+    },
+    "limpo": {
+      "label": "Limpo"
+    },
+    "oculto": {
+      "label": "Oculto"
+    },
+    "cataclismo": {
+      "label": "Cataclismo"
+    },
+    "cercado": {
+      "label": "Cercado"
+    },
+    "guardado": {
+      "label": "Guardado"
+    }
+  },
+  "faccoes": {
+    "controles": {
+      "controla": {
+        "label": "Controla"
+      },
+      "influencia": {
+        "label": "Influência"
+      },
+      "disputa": {
+        "label": "Em disputa"
+      },
+      "presente": {
+        "label": "Presente"
+      },
+      "nenhum": {
+        "label": "Nenhum"
+      }
+    },
+    "relacoes": {
+      "aliada": {
+        "label": "Aliada"
+      },
+      "amistosa": {
+        "label": "Amistosa"
+      },
+      "neutra": {
+        "label": "Neutra"
+      },
+      "suspeita": {
+        "label": "Suspeita"
+      },
+      "hostil": {
+        "label": "Hostil"
+      },
+      "desconhecida": {
+        "label": "Desconhecida"
+      }
+    }
+  },
   "fallback": {
     "cor_terreno": "#B8B8B8",
+    "cor_terreno_oculto": "#767676",
     "cor_borda": "#555555",
+    "cor_borda_hex": "#222222",
     "icone_ponto_interesse": "./images/default.svg"
   }
 }

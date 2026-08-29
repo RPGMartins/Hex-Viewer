@@ -15,6 +15,7 @@ async function iniciar()
         carregarJson(hexConfigPath)
     ]);
 
+    const mapaData = hexData.mapa ?? {};
     const backdrop = document.getElementById("panelBackdrop");
 
     const infoPanel = new HexInfoPanel(hexConfig, {
@@ -22,7 +23,15 @@ async function iniciar()
         backdrop: backdrop
     });
 
-    const mapa = new hexMap(hexData.mapa.altura,hexData.mapa.largura,"A",1,150,136,hexData.hexes,hexConfig,
+    const mapa = new hexMap(
+        mapaData.altura ?? 5,
+        mapaData.largura ?? 5,
+        mapaData.coluna_inicial ?? "A",
+        mapaData.linha_inicial ?? 1,
+        mapaData.largura_hex ?? 150,
+        mapaData.altura_hex ?? 136,
+        hexData.hexes ?? [],
+        hexConfig,
         (hexDataSelecionado, hexSelecionado) =>
         {
             infoPanel.mostrar(hexDataSelecionado, hexSelecionado);
@@ -31,8 +40,10 @@ async function iniciar()
 
     document.getElementById("mapa").appendChild(mapa.element);
     prepararMapaResponsivo(mapa, document.getElementById("mapa"));
-    
-    const layerPanel = new LayerPanel(document.getElementById("layerPanel"), hexConfig,
+
+    const layerPanel = new LayerPanel(
+        document.getElementById("layerPanel"),
+        hexConfig,
         () =>
         {
             mapa.aplicarVisualizacao(layerPanel.visualizacao);
@@ -46,7 +57,7 @@ async function iniciar()
     layerPanel.renderizar();
     mapa.aplicarVisualizacao(layerPanel.visualizacao);
 
-    criarMapInfoPanelSeExistir(hexData.mapa, backdrop);
+    criarMapInfoPanelSeExistir(mapaData, backdrop);
 }
 
 function criarMapInfoPanelSeExistir(mapaData, backdrop)
@@ -116,7 +127,6 @@ function ajustarTamanhoMapa(mapa, container)
     }
 
     const margem = 32;
-
     const larguraDisponivel = Math.max(container.clientWidth - margem, 1);
     const alturaDisponivel = Math.max(container.clientHeight - margem, 1);
 
@@ -124,7 +134,10 @@ function ajustarTamanhoMapa(mapa, container)
     const escalaMaxima = 1.35;
     const escalaMinima = 0.35;
 
-    let escala = Math.min((larguraDisponivel * ocupacaoDaTela) / larguraMapa,(alturaDisponivel * ocupacaoDaTela) / alturaMapa);
+    let escala = Math.min(
+        (larguraDisponivel * ocupacaoDaTela) / larguraMapa,
+        (alturaDisponivel * ocupacaoDaTela) / alturaMapa
+    );
 
     escala = Math.min(escala, escalaMaxima);
     escala = Math.max(escala, escalaMinima);

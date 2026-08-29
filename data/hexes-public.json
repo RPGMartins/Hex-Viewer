@@ -2,9 +2,13 @@
   "mapa": {
     "id": "hexmap-5x5-novos-campos",
     "nome": "Hexmap 5x5 — Novos Campos",
-    "versao": 3,
+    "versao": 4,
     "largura": 5,
     "altura": 5,
+    "coluna_inicial": "A",
+    "linha_inicial": 1,
+    "largura_hex": 150,
+    "altura_hex": 136,
     "sistema": "Shadowdark",
     "escala_hex": "6 milhas / aproximadamente 10 km",
     "hex_inicial": "A3",
@@ -105,7 +109,7 @@
         "tipo": "marco_natural",
         "nome": "Arco de Pedra Partido",
         "descricao": "Um arco de pedra natural, rachado no topo e cercado por marcas antigas.",
-        "estado": "ameaçado"
+        "estado": "ameacado"
       },
       "faccao": {
         "id": "saqueadores_do_arco",
@@ -289,7 +293,7 @@
         "tipo": "colinas_tumulares",
         "nome": "Colinas Tumulares do Dragão",
         "descricao": "Túmulos antigos cobrem a encosta; alguns dizem que há algo enorme dormindo sob eles.",
-        "estado": "ameaçado"
+        "estado": "ameacado"
       }
     },
     {
@@ -441,6 +445,7 @@
     {
       "hex": "E5",
       "nome": "Hex Parcial de Teste",
+      "exploracao": "desconhecido",
       "features": {
         "estrada": false,
         "rio": false
