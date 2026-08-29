@@ -430,3 +430,18 @@ button {
         stroke-dashoffset: -19;
     }
 }
+#mapa.mapa-scroll-y {
+    align-items: flex-start;
+}
+
+#mapa.mapa-scroll-x {
+    justify-content: flex-start;
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+    #mapa {
+        padding: 8px 12px 18px 12px;
+        align-items: flex-start;
+        justify-content: center;
+    }
+}

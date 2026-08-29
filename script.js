@@ -127,24 +127,44 @@ function ajustarTamanhoMapa(mapa, container)
     }
 
     const margem = 32;
+
     const larguraDisponivel = Math.max(container.clientWidth - margem, 1);
     const alturaDisponivel = Math.max(container.clientHeight - margem, 1);
 
-    const ocupacaoDaTela = 0.86;
-    const escalaMaxima = 1.35;
-    const escalaMinima = 0.35;
+    const mobileHorizontal = window.matchMedia(
+        "(orientation: landscape) and (max-height: 520px)"
+    ).matches;
 
-    let escala = Math.min(
-        (larguraDisponivel * ocupacaoDaTela) / larguraMapa,
-        (alturaDisponivel * ocupacaoDaTela) / alturaMapa
-    );
+    let escala;
 
-    escala = Math.min(escala, escalaMaxima);
-    escala = Math.max(escala, escalaMinima);
+    if (mobileHorizontal)
+    {
+        const ocupacaoHorizontal = 0.92;
+
+        escala = (larguraDisponivel * ocupacaoHorizontal) / larguraMapa;
+
+        escala = Math.min(escala, 0.95);
+        escala = Math.max(escala, 0.50);
+    }
+    else
+    {
+        const ocupacaoDaTela = 0.86;
+
+        escala = Math.min(
+            (larguraDisponivel * ocupacaoDaTela) / larguraMapa,
+            (alturaDisponivel * ocupacaoDaTela) / alturaMapa
+        );
+
+        escala = Math.min(escala, 1.35);
+        escala = Math.max(escala, 0.35);
+    }
 
     const larguraFinal = Math.round(larguraMapa * escala);
     const alturaFinal = Math.round(alturaMapa * escala);
 
     mapa.element.style.width = `${larguraFinal}px`;
     mapa.element.style.height = `${alturaFinal}px`;
+
+    container.classList.toggle("mapa-scroll-x", larguraFinal > container.clientWidth);
+    container.classList.toggle("mapa-scroll-y", alturaFinal > container.clientHeight);
 }
