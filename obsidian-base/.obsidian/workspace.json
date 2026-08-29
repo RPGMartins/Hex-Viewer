@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Campanhas/Vale dos Sinos/Hexes/B3.md",
+                "file": "Campanhas/Vale dos Sinos/Hexes/A3.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "B3"
+              "title": "A3"
             }
           }
         ]
@@ -43,7 +43,7 @@
                 "sortOrder": "alphabetical",
                 "autoReveal": false,
                 "showSearch": true,
-                "searchQuery": "pr"
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Explorador de arquivos"
@@ -191,8 +191,20 @@
   },
   "active": "cdae0488b8b8902a",
   "lastOpenFiles": [
-    "Campanhas/Vale dos Sinos/Hexes/A3.md",
+    "Exportado/data/vale-dos-sinos/hex-config.json",
+    "Exportado/data/vale-dos-sinos/hexes-public.json",
+    "Exportado/data/vale-dos-sinos",
+    "Exportado/data/campaigns.json",
+    "Exportado/data",
+    "Exportado",
+    "Campanhas/Vale dos Sinos/Exportacoes/mestre.json",
+    "Campanhas/Vale dos Sinos/Exportacoes",
+    "Exportacoes/_tool_settings.json",
+    "Exportacoes/mestre.json",
+    "Exportacoes",
     "Campanhas/Vale dos Sinos/Hexes/B3.md",
+    "Campanhas/Vale dos Sinos/Hexes/A3.md",
+    "Catalogos/Terrenos/Pradaria.md",
     "Catalogos/Terrenos/Pantano.md",
     "README-CATALOGOS.md"
   ]
