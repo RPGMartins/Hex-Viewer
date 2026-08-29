@@ -2,7 +2,7 @@ import { hex } from "./hex.js";
 
 export class hexMap
 {
-    constructor(quantidadeLinhas, quantidadeColunas, colunaInicial, linhaInicial, larguraHex, alturaHex, hexData, config)
+    constructor(quantidadeLinhas,quantidadeColunas,colunaInicial,linhaInicial,larguraHex,alturaHex,hexData,config = {})
     {
         this.quantidadeLinhas = quantidadeLinhas;
         this.quantidadeColunas = quantidadeColunas;
@@ -13,19 +13,17 @@ export class hexMap
         this.larguraHex = larguraHex;
         this.alturaHex = alturaHex;
 
-        this.hexData = hexData;
         this.config = config;
 
         this.hexes = new Map();
         this.element = this.criarElemento();
 
-        this.hexSelecionado;
+        this.hexSelecionado = null;
         this.visualizacaoAtual = null;
 
         this.criarHexes((id) => this.selecionarHex(id), hexData);
 
         this.definirVizinhos();
-
         this.desenharConexoes("rio");
         this.desenharConexoes("estrada");
     }
@@ -151,7 +149,7 @@ export class hexMap
                 }
                 else 
                 {
-                    tempHex.receberData(dadosHex, posX, posY, onClick, this.config);
+                    tempHex.receberData(dadosHex, x, y, onClick, this.config);
                     this.hexLayer.appendChild(tempHex.element);
 
                     if (tempHex.iconElement != null)
