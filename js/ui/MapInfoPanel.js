@@ -7,15 +7,14 @@ export class MapInfoPanel
         this.openButton = options.openButton ?? null;
         this.backdrop = options.backdrop ?? null;
         this.campanha = options.campanha ?? null;
+        this.links = options.links ?? {};
         this.onTrocarCampanha = options.onTrocarCampanha ?? null;
         this.configurarEventos();
     }
-
     configurarEventos()
     {
         if (this.openButton != null) this.openButton.addEventListener("click", () => this.alternar());
     }
-
     renderizar()
     {
         if (this.element == null) return;
@@ -49,10 +48,93 @@ export class MapInfoPanel
         this.adicionarLinha(bloco, "Tamanho visual do hex", this.obterTamanhoHex());
         this.adicionarParagrafo(bloco, "Rumor principal", this.mapaData.rumor_principal);
         this.element.appendChild(bloco);
+        this.adicionarLinksJogadores();
         this.adicionarAcoes();
         this.fechar();
     }
+    adicionarLinksJogadores()
+    {
+        if (!this.temConteudo(this.links?.jogadoresUrl)) return;
 
+        const bloco = document.createElement("section");
+        bloco.classList.add("hex-info-section");
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = "Links de mesa";
+        bloco.appendChild(titulo);
+
+        this.adicionarLinha(bloco, "Dados atuais", this.links.dataAtual);
+
+        const row = document.createElement("div");
+        row.classList.add("hex-info-row");
+
+        const labelEl = document.createElement("span");
+        labelEl.classList.add("hex-info-label");
+        labelEl.textContent = "Jogadores:";
+
+        const linkEl = document.createElement("a");
+        linkEl.classList.add("hex-info-value");
+        linkEl.href = this.links.jogadoresUrl;
+        linkEl.target = "_blank";
+        linkEl.rel = "noopener noreferrer";
+        linkEl.textContent = this.links.jogadoresUrl;
+
+        row.appendChild(labelEl);
+        row.appendChild(linkEl);
+        bloco.appendChild(row);
+
+        const actions = document.createElement("div");
+        actions.classList.add("map-info-actions");
+
+        const abrir = document.createElement("button");
+        abrir.type = "button";
+        abrir.classList.add("map-info-action-button");
+        abrir.textContent = "Abrir jogadores";
+        abrir.addEventListener("click", () => window.open(this.links.jogadoresUrl, "_blank"));
+
+        const copiar = document.createElement("button");
+        copiar.type = "button";
+        copiar.classList.add("map-info-action-button");
+        copiar.textContent = "Copiar link";
+        copiar.addEventListener("click", () => this.copiarLinkJogadores(copiar));
+
+        actions.appendChild(abrir);
+        actions.appendChild(copiar);
+        bloco.appendChild(actions);
+
+        this.element.appendChild(bloco);
+    }
+    async copiarLinkJogadores(botao)
+    {
+        const url = this.links?.jogadoresUrl;
+        if (!this.temConteudo(url)) return;
+
+        try
+        {
+            if (navigator.clipboard?.writeText != null)
+            {
+                await navigator.clipboard.writeText(url);
+                this.mostrarFeedbackBotao(botao, "Copiado");
+                return;
+            }
+        }
+        catch (_erro)
+        {
+            // Em HTTP por IP, alguns navegadores bloqueiam clipboard. Cai no prompt abaixo.
+        }
+
+        window.prompt("Copie o link dos jogadores:", url);
+    }
+    mostrarFeedbackBotao(botao, texto)
+    {
+        if (botao == null) return;
+        const original = botao.textContent;
+        botao.textContent = texto;
+        setTimeout(() =>
+        {
+            botao.textContent = original;
+        }, 1400);
+    }
     adicionarAcoes()
     {
         if (this.onTrocarCampanha == null) return;
@@ -66,7 +148,6 @@ export class MapInfoPanel
         actions.appendChild(botao);
         this.element.appendChild(actions);
     }
-
     obterTamanhoHex()
     {
         const largura = this.mapaData.largura_hex;
@@ -74,7 +155,6 @@ export class MapInfoPanel
         if (!this.temConteudo(largura) && !this.temConteudo(altura)) return "";
         return `${largura ?? "?"} × ${altura ?? "?"}`;
     }
-
     adicionarLinha(bloco, label, valor)
     {
         if (!this.temConteudo(valor)) return;
@@ -90,7 +170,6 @@ export class MapInfoPanel
         row.appendChild(valueEl);
         bloco.appendChild(row);
     }
-
     adicionarParagrafo(bloco, label, valor)
     {
         if (!this.temConteudo(valor)) return;
@@ -103,7 +182,6 @@ export class MapInfoPanel
         bloco.appendChild(labelEl);
         bloco.appendChild(p);
     }
-
     temConteudo(valor)
     {
         if (valor == null) return false;
@@ -124,7 +202,6 @@ export class MapInfoPanel
         this.element.setAttribute("aria-hidden", "false");
         this.ativarBackdrop();
     }
-
     fechar()
     {
         if (this.element == null) return;
@@ -137,7 +214,6 @@ export class MapInfoPanel
     {
         return this.element?.classList.contains("is-open") === true;
     }
-
     ativarBackdrop()
     {
         if (this.backdrop == null) return;

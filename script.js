@@ -8,7 +8,6 @@ import { CampaignSelector } from "./js/ui/CampaignSelector.js";
 const campaignsManifestPath = obterCampaignsManifestPath();
 const campaignLoader = new CampaignLoader(campaignsManifestPath);
 const campaignSelector = new CampaignSelector();
-
 iniciar();
 
 async function iniciar()
@@ -32,7 +31,6 @@ async function iniciar()
         mostrarErroInicial(erro);
     }
 }
-
 function obterCampaignsManifestPath()
 {
     const params = new URLSearchParams(window.location.search);
@@ -45,7 +43,6 @@ function obterCampaignsManifestPath()
     }
 
     const dataPath = params.get("data");
-
     if (dataPath != null && dataPath.trim() !== "")
     {
         const caminhoData = normalizarCaminhoLocal(dataPath.trim()).replace(/\/$/, "");
@@ -61,13 +58,50 @@ function normalizarCaminhoLocal(caminho)
     {
         return caminho;
     }
-
     if (caminho.startsWith("./") || caminho.startsWith("../") || caminho.startsWith("/"))
     {
         return caminho;
     }
 
     return `./${caminho}`;
+}
+
+function obterDataAtual()
+{
+    const params = new URLSearchParams(window.location.search);
+    const dataPath = params.get("data");
+
+    if (dataPath != null && dataPath.trim() !== "")
+    {
+        return dataPath.trim().replace(/^\.\//, "").replace(/\/$/, "");
+    }
+
+    return "data";
+}
+
+function criarUrlComData(dataPath)
+{
+    const url = new URL(window.location.href);
+    url.searchParams.delete("manifest");
+    url.searchParams.set("data", dataPath);
+    return url.toString();
+}
+
+function criarLinksDoSite()
+{
+    const params = new URLSearchParams(window.location.search);
+
+    const dataAtual = obterDataAtual();
+    const dataJogadores = params.get("dataJogadores")?.trim() || "data-jogadores";
+    const dataMestre = params.get("dataMestre")?.trim() || "data-mestre";
+
+    return {
+        dataAtual,
+        dataJogadores,
+        dataMestre,
+        jogadoresUrl: criarUrlComData(dataJogadores),
+        mestreUrl: criarUrlComData(dataMestre)
+    };
 }
 
 async function obterCampanhaInicial(manifesto)
@@ -78,7 +112,6 @@ async function obterCampanhaInicial(manifesto)
     {
         return campanhaSalva;
     }
-
     const campanhaEscolhida = await campaignSelector.escolher(manifesto.campanhas, {
         titulo: "Escolha uma campanha",
         descricao: "Selecione qual mapa deve ser carregado.",
@@ -92,7 +125,6 @@ async function obterCampanhaInicial(manifesto)
 
     return campanhaEscolhida;
 }
-
 async function carregarCampanha(manifesto, campanha)
 {
     const { hexData, hexConfig } = await campaignLoader.carregarDadosCampanha(campanha);
@@ -103,7 +135,6 @@ async function carregarCampanha(manifesto, campanha)
         element: document.getElementById("mapaInfo"),
         backdrop: backdrop
     });
-
     const mapa = new hexMap(
         mapaData.altura ?? 5,
         mapaData.largura ?? 5,
@@ -118,13 +149,11 @@ async function carregarCampanha(manifesto, campanha)
             infoPanel.mostrar(hexDataSelecionado, hexSelecionado);
         }
     );
-
     const mapaElement = document.getElementById("mapa");
     mapaElement.innerHTML = "";
     mapaElement.appendChild(mapa.element);
 
     prepararMapaResponsivo(mapa, mapaElement);
-
     const layerPanel = new LayerPanel(
         document.getElementById("layerPanel"),
         hexConfig,
@@ -143,7 +172,6 @@ async function carregarCampanha(manifesto, campanha)
 
     criarMapInfoPanelSeExistir(mapaData, campanha, manifesto, backdrop);
 }
-
 function criarMapInfoPanelSeExistir(mapaData, campanhaAtual, manifesto, backdrop)
 {
     const element = document.getElementById("mapInfoPanel");
@@ -153,12 +181,12 @@ function criarMapInfoPanelSeExistir(mapaData, campanhaAtual, manifesto, backdrop
     {
         return;
     }
-
     const mapInfoPanel = new MapInfoPanel(mapaData, {
         element: element,
         openButton: openButton,
         backdrop: backdrop,
         campanha: campanhaAtual,
+        links: criarLinksDoSite(),
         onTrocarCampanha: async () =>
         {
             const novaCampanha = await campaignSelector.escolher(manifesto.campanhas, {
@@ -167,7 +195,6 @@ function criarMapInfoPanelSeExistir(mapaData, campanhaAtual, manifesto, backdrop
                 selectedId: campanhaAtual.id,
                 allowCancel: true
             });
-
             if (novaCampanha == null)
             {
                 return;
@@ -191,7 +218,6 @@ function mostrarErroInicial(erro)
     }
 
     mapaElement.innerHTML = "";
-
     const erroEl = document.createElement("div");
     erroEl.classList.add("initial-error");
 
@@ -210,7 +236,6 @@ function mostrarErroInicial(erro)
 function prepararMapaResponsivo(mapa, container)
 {
     ajustarTamanhoMapa(mapa, container);
-
     const resizeObserver = new ResizeObserver(() =>
     {
         ajustarTamanhoMapa(mapa, container);
@@ -233,7 +258,6 @@ function ajustarTamanhoMapa(mapa, container)
     {
         return;
     }
-
     const larguraMapa = mapa.larguraMapa ?? Number(mapa.element.getAttribute("width"));
     const alturaMapa = mapa.alturaMapa ?? Number(mapa.element.getAttribute("height"));
 
@@ -246,7 +270,6 @@ function ajustarTamanhoMapa(mapa, container)
 
     const larguraDisponivel = Math.max(container.clientWidth - margem, 1);
     const alturaDisponivel = Math.max(container.clientHeight - margem, 1);
-
     const mobileHorizontal = window.matchMedia(
         "(orientation: landscape) and (max-height: 520px)"
     ).matches;
@@ -265,7 +288,6 @@ function ajustarTamanhoMapa(mapa, container)
             (larguraDisponivel * 0.86) / larguraMapa,
             (alturaDisponivel * 0.86) / alturaMapa
         );
-
         escala = Math.min(escala, 1.35);
         escala = Math.max(escala, 0.35);
     }
