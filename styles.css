@@ -82,13 +82,19 @@ button {
     overflow: auto;
     background: #111111;
     padding: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     touch-action: pan-x pan-y;
 }
-
+.hex-map-svg {
+    display: block;
+    flex: 0 0 auto;
+}
 #mapa svg {
     display: block;
-    min-width: max-content;
-    min-height: max-content;
 }
 
 .side-panel {

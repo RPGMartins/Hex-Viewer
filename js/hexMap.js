@@ -104,8 +104,15 @@ export class hexMap
         const larguraMapa = this.larguraHex + (this.quantidadeColunas - 1) * espacamentoX;
         const alturaMapa = this.alturaHex * this.quantidadeLinhas + this.alturaHex * 0.5;
 
+        this.larguraMapa = larguraMapa;
+        this.alturaMapa = alturaMapa;
+
         this.element.setAttribute("width", larguraMapa);
         this.element.setAttribute("height", alturaMapa);
+        this.element.setAttribute("viewBox", `0 0 ${larguraMapa} ${alturaMapa}`);
+        this.element.setAttribute("preserveAspectRatio", "xMidYMid meet");
+
+        this.element.classList.add("hex-map-svg");
     }
 
     selecionarHex(id)

@@ -22,15 +22,7 @@ async function iniciar()
         backdrop: backdrop
     });
 
-    const mapa = new hexMap(
-        hexData.mapa.altura,
-        hexData.mapa.largura,
-        "A",
-        1,
-        100,
-        86,
-        hexData.hexes,
-        hexConfig,
+    const mapa = new hexMap(hexData.mapa.altura,hexData.mapa.largura,"A",1,100,86,hexData.hexes,hexConfig,
         (hexDataSelecionado, hexSelecionado) =>
         {
             infoPanel.mostrar(hexDataSelecionado, hexSelecionado);
@@ -38,10 +30,9 @@ async function iniciar()
     );
 
     document.getElementById("mapa").appendChild(mapa.element);
-
-    const layerPanel = new LayerPanel(
-        document.getElementById("layerPanel"),
-        hexConfig,
+    prepararMapaResponsivo(mapa, document.getElementById("mapa"));
+    
+    const layerPanel = new LayerPanel(document.getElementById("layerPanel"), hexConfig,
         () =>
         {
             mapa.aplicarVisualizacao(layerPanel.visualizacao);
@@ -87,4 +78,60 @@ async function carregarJson(caminho)
     }
 
     return await resposta.json();
+}
+
+function prepararMapaResponsivo(mapa, container)
+{
+    ajustarTamanhoMapa(mapa, container);
+
+    const resizeObserver = new ResizeObserver(() =>
+    {
+        ajustarTamanhoMapa(mapa, container);
+    });
+
+    resizeObserver.observe(container);
+
+    window.addEventListener("orientationchange", () =>
+    {
+        setTimeout(() =>
+        {
+            ajustarTamanhoMapa(mapa, container);
+        }, 150);
+    });
+}
+
+function ajustarTamanhoMapa(mapa, container)
+{
+    if (mapa == null || mapa.element == null || container == null)
+    {
+        return;
+    }
+
+    const larguraMapa = mapa.larguraMapa ?? Number(mapa.element.getAttribute("width"));
+    const alturaMapa = mapa.alturaMapa ?? Number(mapa.element.getAttribute("height"));
+
+    if (!larguraMapa || !alturaMapa)
+    {
+        return;
+    }
+
+    const margem = 32;
+
+    const larguraDisponivel = Math.max(container.clientWidth - margem, 1);
+    const alturaDisponivel = Math.max(container.clientHeight - margem, 1);
+
+    const ocupacaoDaTela = 0.86;
+    const escalaMaxima = 1.35;
+    const escalaMinima = 0.35;
+
+    let escala = Math.min((larguraDisponivel * ocupacaoDaTela) / larguraMapa,(alturaDisponivel * ocupacaoDaTela) / alturaMapa);
+
+    escala = Math.min(escala, escalaMaxima);
+    escala = Math.max(escala, escalaMinima);
+
+    const larguraFinal = Math.round(larguraMapa * escala);
+    const alturaFinal = Math.round(alturaMapa * escala);
+
+    mapa.element.style.width = `${larguraFinal}px`;
+    mapa.element.style.height = `${alturaFinal}px`;
 }
