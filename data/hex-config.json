@@ -94,6 +94,7 @@
       "icone": "./images/fortificacao.svg",
       "visivel_padrao": true
     },
+    
     "marco_natural": {
       "label": "Marco natural",
       "icone": "./images/marco_natural.svg",
