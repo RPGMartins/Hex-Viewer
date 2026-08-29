@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "profile_id": "mestre",
+  "profile_name": "Mestre",
+  "updated_at": "2026-08-29T18:28:01",
+  "selected_campaign_ids": [
+    "vale-dos-sinos",
+    "vale-dos-sinos_copia"
+  ],
+  "campaigns": [
+    {
+      "campaign_id": "vale-dos-sinos",
+      "campaign_name": "Vale dos Sinos",
+      "campaign_folder": "Campanhas/Vale dos Sinos",
+      "profile_path": "Campanhas/Vale dos Sinos/Exportacoes/mestre.json",
+      "export_enabled": true
+    },
+    {
+      "campaign_id": "vale-dos-sinos_copia",
+      "campaign_name": "Vale dos Sinos",
+      "campaign_folder": "Campanhas/Vale dos Sinos - Copia",
+      "profile_path": "Campanhas/Vale dos Sinos - Copia/Exportacoes/mestre.json",
+      "export_enabled": true
+    }
+  ]
+}

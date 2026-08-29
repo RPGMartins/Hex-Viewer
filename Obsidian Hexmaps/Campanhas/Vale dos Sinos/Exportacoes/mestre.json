@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "profile_id": "mestre",
+  "profile_name": "Mestre",
+  "updated_at": "2026-08-29T18:28:01",
+  "campaign_id": "vale-dos-sinos",
+  "campaign_name": "Vale dos Sinos",
+  "campaign_folder": "Campanhas/Vale dos Sinos",
+  "export_enabled": true,
+  "campaign_fields": {
+    "nome": true,
+    "descricao": true,
+    "sistema": true,
+    "escala_hex": true,
+    "hex_inicial": true,
+    "rumor_principal": true
+  },
+  "defaults": {
+    "include_hex": true,
+    "nome": true,
+    "terreno": true,
+    "perigo": true,
+    "exploracao": true,
+    "features": true,
+    "ponto_interesse": true,
+    "faccao": true,
+    "resumo": true
+  },
+  "hexes": {
+    "A1": {
+      "include_hex": false,
+      "nome": false,
+      "terreno": false,
+      "perigo": false,
+      "exploracao": true,
+      "features": false,
+      "ponto_interesse": false,
+      "faccao": false,
+      "resumo": false
+    },
+    "A3": {
+      "include_hex": false,
+      "nome": false,
+      "terreno": false,
+      "perigo": false,
+      "exploracao": true,
+      "features": false,
+      "ponto_interesse": false,
+      "faccao": false,
+      "resumo": false
+    },
+    "B3": {
+      "include_hex": false,
+      "nome": false,
+      "terreno": false,
+      "perigo": false,
+      "exploracao": true,
+      "features": false,
+      "ponto_interesse": false,
+      "faccao": false,
+      "resumo": false
+    }
+  }
+}

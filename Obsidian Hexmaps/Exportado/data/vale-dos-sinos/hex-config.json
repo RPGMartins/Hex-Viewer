@@ -1,0 +1,28 @@
+{
+  "terrenos": {},
+  "perigos": {},
+  "exploracoes": {
+    "desconhecido": {
+      "label": "Desconhecido",
+      "simbolo": "?",
+      "cor": "#5D6570",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    }
+  },
+  "pontos_interesse": {},
+  "conexoes": {},
+  "estados_ponto_interesse": {},
+  "faccoes": {
+    "controles": {},
+    "relacoes": {}
+  },
+  "fallback": {
+    "cor_terreno": "#B8B8B8",
+    "cor_terreno_oculto": "#767676",
+    "cor_borda": "#555555",
+    "cor_borda_hex": "#222222",
+    "icone_ponto_interesse": "./images/default.svg"
+  }
+}
