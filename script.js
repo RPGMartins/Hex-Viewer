@@ -22,7 +22,7 @@ async function iniciar()
         backdrop: backdrop
     });
 
-    const mapa = new hexMap(hexData.mapa.altura,hexData.mapa.largura,"A",1,100,86,hexData.hexes,hexConfig,
+    const mapa = new hexMap(hexData.mapa.altura,hexData.mapa.largura,"A",1,150,136,hexData.hexes,hexConfig,
         (hexDataSelecionado, hexSelecionado) =>
         {
             infoPanel.mostrar(hexDataSelecionado, hexSelecionado);
