@@ -1,22 +1,21 @@
 import { hexMap } from "./js/hexMap.js";
 
 const publicHexesPath = "./data/hexes-public.json";
+const hexConfigPath = "./data/hex-config.json";
 
 iniciar();
 
 async function iniciar()
 {
-    const hexData = await carregarJson(publicHexesPath);
+    const [hexData, hexConfig] = await Promise.all([carregarJson(publicHexesPath),carregarJson(hexConfigPath)]);
 
-    console.log(hexData);
-
-    const hexTemp = new hexMap(hexData.mapa.altura,hexData.mapa.largura,"A",1,100,86,hexData.hexes);
+    const hexTemp = new hexMap(hexData.mapa.altura,hexData.mapa.largura,"A",1,100,86,hexData.hexes,hexConfig);
 
     document.getElementById("mapa").appendChild(hexTemp.element);
 
-    const visualizacao = criarEstadoVisualizacao(hexData);
+    const visualizacao = criarEstadoVisualizacao(hexData, hexConfig);
 
-    criarPainelCamadas(hexData, visualizacao, () =>
+    criarPainelCamadas(hexData, hexConfig, visualizacao, () =>
     {
         hexTemp.aplicarVisualizacao(visualizacao);
     });
@@ -36,30 +35,35 @@ async function carregarJson(caminho)
     return await resposta.json();
 }
 
-function criarEstadoVisualizacao(hexData)
+function criarEstadoVisualizacao(hexData, hexConfig)
 {
-    const terrenos = obterTiposPorLegendaOuHexes(hexData, "terrenos", "terreno");
-    const perigos = obterTiposPorLegendaOuHexes(hexData, "perigos", "perigo");
-    const icones = obterTiposDeIcones(hexData);
-
     return {
         terreno: {
             ativo: true,
-            tipos: criarMapaBooleano(terrenos, true)
+            tipos: criarMapaBooleanoPorConfig(hexConfig.terrenos)
         },
         perigo: {
             ativo: true,
-            tipos: criarMapaBooleano(perigos, true)
+            tipos: criarMapaBooleanoPorConfig(hexConfig.perigos)
         },
         icones: {
             ativo: true,
-            tipos: criarMapaBooleano(icones, true)
+            tipos: criarMapaBooleanoPorConfig(hexConfig.pontos_interesse)
         },
-        conexoes: {
-            rio: true,
-            estrada: true
-        }
+        conexoes: criarMapaBooleanoPorConfig(hexConfig.conexoes)
     };
+}
+
+function criarMapaBooleanoPorConfig(config)
+{
+    const mapa = {};
+
+    for (const chave of Object.keys(config ?? {}))
+    {
+        mapa[chave] = config[chave].visivel_padrao !== false;
+    }
+
+    return mapa;
 }
 
 function obterTiposPorLegendaOuHexes(hexData, chaveLegenda, chaveHex)
@@ -99,7 +103,7 @@ function criarMapaBooleano(valores, valorInicial)
     return mapa;
 }
 
-function criarPainelCamadas(hexData, visualizacao, onChange)
+function criarPainelCamadas(hexData, hexConfig, visualizacao, onChange)
 {
     const painel = document.getElementById("layerPanel");
     painel.innerHTML = "";
@@ -111,33 +115,42 @@ function criarPainelCamadas(hexData, visualizacao, onChange)
     painel.appendChild(criarSecaoComAtivo(
         "Terreno",
         visualizacao.terreno,
-        hexData.legenda?.terrenos ?? {},
+        criarLabelsPorConfig(hexConfig.terrenos),
         onChange
     ));
 
     painel.appendChild(criarSecaoComAtivo(
         "Perigo",
         visualizacao.perigo,
-        hexData.legenda?.perigos ?? {},
+        criarLabelsPorConfig(hexConfig.perigos),
         onChange
     ));
 
     painel.appendChild(criarSecaoComAtivo(
         "Ícones",
         visualizacao.icones,
-        {},
+        criarLabelsPorConfig(hexConfig.pontos_interesse),
         onChange
     ));
 
     painel.appendChild(criarSecaoSimples(
         "Conexões",
         visualizacao.conexoes,
-        {
-            rio: "Rio",
-            estrada: "Estrada"
-        },
+        criarLabelsPorConfig(hexConfig.conexoes),
         onChange
     ));
+}
+
+function criarLabelsPorConfig(config)
+{
+    const labels = {};
+
+    for (const chave of Object.keys(config ?? {}))
+    {
+        labels[chave] = config[chave].label ?? chave;
+    }
+
+    return labels;
 }
 
 function criarSecaoComAtivo(titulo, grupo, labels, onChange)

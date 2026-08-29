@@ -2,7 +2,7 @@ import { hex } from "./hex.js";
 
 export class hexMap
 {
-    constructor(quantidadeLinhas,quantidadeColunas,colunaInicial,linhaInicial,larguraHex,alturaHex,hexData)
+    constructor(quantidadeLinhas, quantidadeColunas, colunaInicial, linhaInicial, larguraHex, alturaHex, hexData, config)
     {
         this.quantidadeLinhas = quantidadeLinhas;
         this.quantidadeColunas = quantidadeColunas;
@@ -13,13 +13,19 @@ export class hexMap
         this.larguraHex = larguraHex;
         this.alturaHex = alturaHex;
 
+        this.hexData = hexData;
+        this.config = config;
+
         this.hexes = new Map();
         this.element = this.criarElemento();
+
         this.hexSelecionado;
-        
-        this.criarHexes((id) => this.selecionarHex(id),hexData);
+        this.visualizacaoAtual = null;
+
+        this.criarHexes((id) => this.selecionarHex(id), hexData);
 
         this.definirVizinhos();
+
         this.desenharConexoes("rio");
         this.desenharConexoes("estrada");
     }
@@ -145,7 +151,7 @@ export class hexMap
                 }
                 else 
                 {
-                    tempHex.receberData(dadosHex,x,y,onClick);
+                    tempHex.receberData(dadosHex, posX, posY, onClick, this.config);
                     this.hexLayer.appendChild(tempHex.element);
 
                     if (tempHex.iconElement != null)
@@ -256,24 +262,27 @@ export class hexMap
 
     desenharLinhaEntre(hexA, hexB, tipo)
     {
+        const configConexao = this.config?.conexoes?.[tipo];
+
         const linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
 
         linha.setAttribute("x1", hexA.centroX);
         linha.setAttribute("y1", hexA.centroY);
         linha.setAttribute("x2", hexB.centroX);
         linha.setAttribute("y2", hexB.centroY);
-        linha.setAttribute("stroke", tipo === "rio" ? "#22B8F0" : "#F5D742");
-        linha.setAttribute("stroke-width", tipo === "rio" ? "6" : "5");
+
+        linha.setAttribute("stroke", configConexao?.cor ?? "#ffffff");
+        linha.setAttribute("stroke-width", configConexao?.espessura ?? 4);
         linha.setAttribute("stroke-linecap", "round");
         linha.setAttribute("pointer-events", "none");
 
         linha.dataset.feature = tipo;
         linha.classList.add("connection-line");
         linha.classList.add(`connection-${tipo}`);
-        
-        if (tipo === "estrada")
+
+        if (configConexao?.tracejado === true)
         {
-            linha.setAttribute("stroke-dasharray", "10 6");
+            linha.setAttribute("stroke-dasharray", configConexao.tracejado_valor ?? "10 6");
         }
 
         this.connectionLayer.appendChild(linha);

@@ -7,13 +7,14 @@ export class hex
         this.altura = altura;
     }
 
-    receberData(data, x, y, onClick)
+    receberData(data, x, y, onClick, config)
     {
+        this.config = config;
         this.corPerigo = "#777777";
-        this.corTerreno = "gray";
+        this.corTerreno = this.config?.fallback?.cor_terreno ?? "gray";
         this.selecionado = false;
         this.visualizacaoAtual = null;
-        
+
         this.data = data;
 
         this.element = this.criarElemento();
@@ -24,7 +25,6 @@ export class hex
 
         this.verificarTerreno();
         this.verificarPerigo();
-
         this.desselecionar();
     }
     
@@ -81,14 +81,20 @@ export class hex
         this.poiIconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
         this.dangerIconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
-        this.poiIconGroup.dataset.iconType = this.data.ponto_interesse?.local ?? "";
+        const tipoPonto = this.data.ponto_interesse?.tipo ?? this.data.ponto_interesse?.local;
+        this.poiIconGroup.dataset.iconType = tipoPonto ?? "";
 
-        if (this.data.ponto_interesse)
+        if (tipoPonto != null)
         {
-            const imgName = "./images/" + this.data.ponto_interesse.local + ".svg";
-            const icone = this.criarIcone(imgName);
+            const configIcone = this.config?.pontos_interesse?.[tipoPonto];
 
-            this.poiIconGroup.appendChild(icone);
+            const imgName = configIcone?.icone ?? this.config?.fallback?.icone_ponto_interesse ??  null;
+
+            if (imgName != null)
+            {
+                const icone = this.criarIcone(imgName);
+                this.poiIconGroup.appendChild(icone);
+            }
         }
 
         group.appendChild(this.poiIconGroup);
@@ -173,87 +179,27 @@ export class hex
 
     verificarTerreno()
     {
-        this.corTerreno = "gray";
-        this.pintarHex(this.corTerreno);
-
-        switch (this.data.terreno)
-        {
-            case "deserto":
-                this.corTerreno = "#D9C27A";
-                break;
-
-            case "artico":
-                this.corTerreno = "#DDEBF2";
-                break;
-
-            case "pantano":
-                this.corTerreno = "#65734B";
-                break;
-
-            case "pradaria":
-                this.corTerreno = "#A8C66C";
-                break;
-
-            case "floresta":
-                this.corTerreno = "#4F7942";
-                break;
-
-            case "selva":
-                this.corTerreno = "#236B3A";
-                break;
-
-            case "rio":
-                this.corTerreno = "#4A90C2";
-                break;
-
-            case "costa":
-                this.corTerreno = "#D6C58A";
-                break;
-
-            case "oceano":
-                this.corTerreno = "#286090";
-                break;
-
-            case "montanha":
-                this.corTerreno = "#954535";
-                break;
-        }
-
+        const terreno = this.data.terreno;
+        const configTerreno = this.config?.terrenos?.[terreno];
+        this.corTerreno =configTerreno?.cor??this.config?.fallback?.cor_terreno ??"gray";
         this.pintarHex(this.corTerreno);
     }
 
     verificarPerigo()
     {
-        switch (this.data.perigo)
+        const perigo = this.data.perigo;
+        const configPerigo = this.config?.perigos?.[perigo];
+
+        this.corPerigo = configPerigo?.cor ?? this.config?.fallback?.cor_borda ?? "#777777";
+
+        const caveiras = configPerigo?.caveiras ?? 0;
+
+        if (caveiras > 0)
         {
-            case "seguro":
-                this.corPerigo = "green";
-                this.polygon.setAttribute("stroke-dasharray", "none");
-                break;
-
-            case "inseguro":
-                this.corPerigo = "#E0B52F";
-                this.criarCaveiras(1);
-                break;
-
-            case "arriscado":
-                this.corPerigo = "#E87518";
-                this.criarCaveiras(2);
-                break;
-
-            case "mortal":
-                this.corPerigo = "#D9362B";
-                this.criarCaveiras(3);
-                break;
+            this.criarCaveiras(caveiras);
         }
 
-        
         this.pintarBorda(this.corPerigo);
-
-        if (this.data.perigo !== "seguro")
-        {
-            this.polygon.setAttribute("stroke-dasharray","6 3");
-        }
     }
 
     criarCaveiras(quantidade)
