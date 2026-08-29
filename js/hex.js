@@ -10,6 +10,10 @@ export class hex
     receberData(data, x, y, onClick)
     {
         this.corPerigo = "#777777";
+        this.corTerreno = "gray";
+        this.selecionado = false;
+        this.visualizacaoAtual = null;
+        
         this.data = data;
 
         this.element = this.criarElemento();
@@ -69,18 +73,26 @@ export class hex
 
         return group;
     }
-    
+
     criarIconElement()
     {
         const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+        this.poiIconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        this.dangerIconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+        this.poiIconGroup.dataset.iconType = this.data.ponto_interesse?.local ?? "";
 
         if (this.data.ponto_interesse)
         {
             const imgName = "./images/" + this.data.ponto_interesse.local + ".svg";
             const icone = this.criarIcone(imgName);
 
-            group.appendChild(icone);
+            this.poiIconGroup.appendChild(icone);
         }
+
+        group.appendChild(this.poiIconGroup);
+        group.appendChild(this.dangerIconGroup);
 
         return group;
     }
@@ -123,8 +135,9 @@ export class hex
 
     pintarHex(cor)
     {
-        this.polygon.setAttribute("fill", cor);   
+        this.polygon.setAttribute("fill", cor);
     }
+    
     pintarBorda(cor)
     {
         this.polygon.setAttribute("stroke", cor);
@@ -132,18 +145,14 @@ export class hex
 
     selecionar()
     {
-        this.pintarBorda("black");
-        this.element.setAttribute("stroke-width", "5");
+        this.selecionado = true;
         this.mostrarInfo();
         console.log("HEX: " + this.id);
     }
-    
+
     desselecionar()
     {
-        this.pintarBorda(this.corPerigo);
-        this.element.setAttribute("stroke-width", "5");
-
-        this.limparInfo();
+        this.selecionado = false;
     }
 
     mostrarInfo()
@@ -164,50 +173,53 @@ export class hex
 
     verificarTerreno()
     {
-        this.pintarHex("gray");
+        this.corTerreno = "gray";
+        this.pintarHex(this.corTerreno);
 
         switch (this.data.terreno)
         {
             case "deserto":
-                this.pintarHex("#D9C27A");
+                this.corTerreno = "#D9C27A";
                 break;
 
             case "artico":
-                this.pintarHex("#DDEBF2");
+                this.corTerreno = "#DDEBF2";
                 break;
 
             case "pantano":
-                this.pintarHex("#65734B");
+                this.corTerreno = "#65734B";
                 break;
 
             case "pradaria":
-                this.pintarHex("#A8C66C");
+                this.corTerreno = "#A8C66C";
                 break;
 
             case "floresta":
-                this.pintarHex("#4F7942");
+                this.corTerreno = "#4F7942";
                 break;
 
             case "selva":
-                this.pintarHex("#236B3A");
+                this.corTerreno = "#236B3A";
                 break;
 
             case "rio":
-                this.pintarHex("#4A90C2");
+                this.corTerreno = "#4A90C2";
                 break;
 
             case "costa":
-                this.pintarHex("#D6C58A");
+                this.corTerreno = "#D6C58A";
                 break;
 
             case "oceano":
-                this.pintarHex("#286090");
+                this.corTerreno = "#286090";
                 break;
 
             case "montanha":
-                this.pintarHex("#954535");
+                this.corTerreno = "#954535";
                 break;
         }
+
+        this.pintarHex(this.corTerreno);
     }
 
     verificarPerigo()
@@ -262,7 +274,7 @@ export class hex
             caveira.setAttribute("x",inicioX + i * (tamanho + espacamento));
             caveira.setAttribute("y", y);
 
-            this.iconElement.appendChild(caveira);
+            this.dangerIconGroup.appendChild(caveira);
         }
     }
 
@@ -284,5 +296,92 @@ export class hex
         }
 
         return false;
+    }
+
+    aplicarVisualizacao(visualizacao)
+    {
+        this.visualizacaoAtual = visualizacao;
+
+        this.aplicarVisualizacaoTerreno(visualizacao);
+        this.aplicarVisualizacaoPerigo(visualizacao);
+        this.aplicarVisualizacaoIcone(visualizacao);
+    }
+
+    aplicarVisualizacaoTerreno(visualizacao)
+    {
+        const terreno = this.data.terreno;
+
+        const mostrarTerreno =
+            visualizacao.terreno?.ativo === true &&
+            visualizacao.terreno?.tipos?.[terreno] !== false;
+
+        if (mostrarTerreno)
+        {
+            this.pintarHex(this.corTerreno);
+            return;
+        }
+
+        this.pintarHex("#B8B8B8");
+    }
+
+    aplicarVisualizacaoPerigo(visualizacao)
+    {
+        const perigo = this.data.perigo;
+
+        const mostrarPerigo =
+            visualizacao.perigo?.ativo === true &&
+            visualizacao.perigo?.tipos?.[perigo] !== false;
+
+        if (this.selecionado)
+        {
+            this.pintarBorda("black");
+            this.polygon.setAttribute("stroke-width", "5");
+        }
+        else if (mostrarPerigo)
+        {
+            this.pintarBorda(this.corPerigo);
+            this.polygon.setAttribute("stroke-width", "3");
+        }
+        else
+        {
+            this.pintarBorda("#555555");
+            this.polygon.setAttribute("stroke-width", "2");
+        }
+
+        if (mostrarPerigo && perigo !== "seguro")
+        {
+            this.polygon.setAttribute("stroke-dasharray", "6 3");
+        }
+        else
+        {
+            this.polygon.setAttribute("stroke-dasharray", "none");
+        }
+
+        if (this.dangerIconGroup != null)
+        {
+            this.dangerIconGroup.style.display = mostrarPerigo ? "" : "none";
+        }
+    }
+
+    aplicarVisualizacaoIcone(visualizacao)
+    {
+        if (this.poiIconGroup == null)
+        {
+            return;
+        }
+
+        const tipoIcone = this.data.ponto_interesse?.local;
+
+        if (tipoIcone == null)
+        {
+            this.poiIconGroup.style.display = "none";
+            return;
+        }
+
+        const mostrarIcone =
+            visualizacao.icones?.ativo === true &&
+            visualizacao.icones?.tipos?.[tipoIcone] !== false;
+
+        this.poiIconGroup.style.display = mostrarIcone ? "" : "none";
     }
 }

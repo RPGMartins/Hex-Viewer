@@ -26,14 +26,30 @@ export class hexMap
 
     selecionarHex(id)
     {
-        const hex = this.obterHex(id);
+        const novoHex = this.hexes.get(id);
 
-        if (hex == null) 
+        if (novoHex == null)
         {
             return;
         }
-        
-        this.pintarHexSelecionado(hex)
+
+        if (this.hexSelecionado != null)
+        {
+            this.hexSelecionado.desselecionar();
+
+            if (this.visualizacaoAtual != null)
+            {
+                this.hexSelecionado.aplicarVisualizacao(this.visualizacaoAtual);
+            }
+        }
+
+        this.hexSelecionado = novoHex;
+        this.hexSelecionado.selecionar();
+
+        if (this.visualizacaoAtual != null)
+        {
+            this.hexSelecionado.aplicarVisualizacao(this.visualizacaoAtual);
+        }
     }
     
     pintarHexSelecionado(hex)
@@ -246,12 +262,15 @@ export class hexMap
         linha.setAttribute("y1", hexA.centroY);
         linha.setAttribute("x2", hexB.centroX);
         linha.setAttribute("y2", hexB.centroY);
-
         linha.setAttribute("stroke", tipo === "rio" ? "#22B8F0" : "#F5D742");
         linha.setAttribute("stroke-width", tipo === "rio" ? "6" : "5");
         linha.setAttribute("stroke-linecap", "round");
         linha.setAttribute("pointer-events", "none");
 
+        linha.dataset.feature = tipo;
+        linha.classList.add("connection-line");
+        linha.classList.add(`connection-${tipo}`);
+        
         if (tipo === "estrada")
         {
             linha.setAttribute("stroke-dasharray", "10 6");
@@ -382,5 +401,28 @@ export class hexMap
         pais.set(id, raiz);
 
         return raiz;
+    }
+
+    aplicarVisualizacao(visualizacao)
+    {
+        this.visualizacaoAtual = visualizacao;
+
+        for (const hex of this.hexes.values())
+        {
+            if (hex.data == null)
+            {
+                continue;
+            }
+
+            hex.aplicarVisualizacao(visualizacao);
+        }
+
+        for (const linha of this.connectionLayer.querySelectorAll("[data-feature]"))
+        {
+            const tipo = linha.dataset.feature;
+            const visivel = visualizacao.conexoes?.[tipo] === true;
+
+            linha.style.display = visivel ? "" : "none";
+        }
     }
 }
