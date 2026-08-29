@@ -1,0 +1,54 @@
+
+/* HexInfoPanel — opcional: pode colar no final do styles.css */
+.hex-info-summary {
+    margin: 0 0 12px 0;
+    color: #d7d7d7;
+    line-height: 1.35;
+}
+
+.hex-info-section {
+    border-top: 1px solid #444444;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.hex-info-section h3 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    color: #f0d78c;
+}
+
+.hex-info-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 8px;
+    margin: 4px 0;
+}
+
+.hex-info-label {
+    font-weight: bold;
+    color: #bbbbbb;
+}
+
+.hex-info-value {
+    color: #eeeeee;
+}
+
+.hex-info-text {
+    margin: 4px 0 8px 0;
+    line-height: 1.35;
+}
+
+.hex-info-list {
+    margin: 4px 0 0 18px;
+    padding: 0;
+}
+
+.hex-info-list li {
+    margin: 3px 0;
+}
+
+.hex-info-empty {
+    color: #aaaaaa;
+    font-style: italic;
+}
