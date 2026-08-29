@@ -1,0 +1,65 @@
+{
+  "mapa": {
+    "id": "vale-dos-sinos",
+    "versao": 1,
+    "largura": 5,
+    "altura": 5,
+    "coluna_inicial": "A",
+    "linha_inicial": 1,
+    "largura_hex": 150,
+    "altura_hex": 136,
+    "nome": "Vale dos Sinos",
+    "descricao": "Mapa inicial da campanha, agora usando catálogos do Obsidian.",
+    "escala_hex": "6 milhas / aproximadamente 10 km"
+  },
+  "hexes": [
+    {
+      "hex": "A1",
+      "terreno": "pantano",
+      "features": {
+        "trilha": true
+      },
+      "ponto_interesse": {
+        "tipo": "templo",
+        "estado": "ocupado"
+      }
+    },
+    {
+      "hex": "A3",
+      "nome": "Última Vigília",
+      "resumo": "Base segura da expedição e último assentamento confiável antes das terras selvagens.",
+      "terreno": "geada",
+      "perigo": "arriscado",
+      "exploracao": "explorado",
+      "features": {
+        "estrada": true,
+        "trilha": true
+      },
+      "ponto_interesse": {
+        "tipo": "vilarejo",
+        "nome": "Última Vigília",
+        "estado": "ativo",
+        "descricao": "Um vilarejo parcialmente reconstruído sobre ruínas antigas."
+      },
+      "faccao": {
+        "id": "moradores_ultima_vigilia",
+        "nome": "Moradores de Última Vigília",
+        "controle": "controla",
+        "relacao": "amistosa"
+      }
+    },
+    {
+      "hex": "B3",
+      "nome": "Estrada dos Corvos",
+      "resumo": "A estrada velha corta a pradaria e ajuda a manter a direção para leste.",
+      "terreno": "pradaria",
+      "perigo": "inseguro",
+      "exploracao": "visitado",
+      "features": {
+        "estrada": true,
+        "rio": true,
+        "trilha": true
+      }
+    }
+  ]
+}

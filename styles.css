@@ -547,3 +547,80 @@ button {
         margin: 6px 0;
     }
 }
+
+/* Campaign selector */
+.campaign-selector-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.72);
+    padding: 18px;
+}
+.campaign-selector-modal {
+    width: min(560px, 96vw);
+    max-height: 88vh;
+    overflow-y: auto;
+    background: #252525;
+    border: 1px solid #555555;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.65);
+}
+.campaign-selector-modal h2 { margin: 0 0 8px 0; }
+.campaign-selector-description { margin: 0 0 14px 0; color: #d0d0d0; line-height: 1.35; }
+.campaign-selector-list { display: grid; gap: 10px; }
+.campaign-selector-item {
+    width: 100%;
+    text-align: left;
+    display: grid;
+    gap: 4px;
+    border: 1px solid #555555;
+    background: #303030;
+    color: #eeeeee;
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+}
+.campaign-selector-item:hover { background: #383838; }
+.campaign-selector-item.is-selected {
+    border-color: #ff00ff;
+    box-shadow: 0 0 0 1px #ff00ff inset, 0 0 12px rgba(255, 0, 255, 0.45);
+}
+.campaign-selector-item-name { font-weight: 700; font-size: 16px; }
+.campaign-selector-item-description { color: #d3d3d3; line-height: 1.35; }
+.campaign-selector-item-meta { color: #aaaaaa; font-size: 12px; }
+.campaign-selector-actions, .map-info-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+.campaign-selector-button, .map-info-action-button {
+    border: 1px solid #666666;
+    background: #333333;
+    color: #f2f2f2;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+.campaign-selector-button:hover, .map-info-action-button:hover { background: #3d3d3d; }
+.campaign-selector-button-primary { background: #5d2c5d; border-color: #ff00ff; }
+.campaign-selector-button:disabled { opacity: 0.5; cursor: not-allowed; }
+.campaign-selector-empty { color: #ffb0b0; }
+.initial-error {
+    max-width: 520px;
+    padding: 18px;
+    background: #2a2020;
+    border: 1px solid #8b4444;
+    border-radius: 12px;
+    color: #ffe5e5;
+}
+@media (orientation: portrait) and (max-width: 700px) {
+    .campaign-selector-modal { padding: 16px; }
+    .campaign-selector-item-name { font-size: 17px; }
+    .campaign-selector-item-description { font-size: 15px; }
+    .campaign-selector-button, .map-info-action-button { font-size: 16px; padding: 10px 13px; }
+}

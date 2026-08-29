@@ -1,0 +1,135 @@
+{
+  "terrenos": {
+    "geada": {
+      "label": "geada",
+      "cor": "#B7A85C",
+      "visivel_padrao": true
+    },
+    "pantano": {
+      "label": "Pântano",
+      "cor": "#65734B",
+      "visivel_padrao": true
+    },
+    "pradaria": {
+      "label": "Pradaria",
+      "cor": "#A8C66C",
+      "visivel_padrao": true,
+      "terreno": "[[Cerrado]]",
+      "perigo": "[[Seguro]]",
+      "exploracao": "[[Explorado]]",
+      "poi_tipo": "[[Cidade Pequena]]",
+      "poi_estado": "[[Ameaçado]]",
+      "faccao_controle": "[[Disputa]]",
+      "faccao_relacao": "[[Amistosa]]",
+      "feature_estrada": true,
+      "feature_rio": true,
+      "feature_trilha": true
+    }
+  },
+  "perigos": {
+    "arriscado": {
+      "label": "Arriscado",
+      "cor": "#D87939",
+      "caveiras": 2,
+      "tracejado": true,
+      "visivel_padrao": true
+    },
+    "inseguro": {
+      "label": "Inseguro",
+      "cor": "#D8B339",
+      "caveiras": 1,
+      "tracejado": true,
+      "visivel_padrao": true
+    }
+  },
+  "exploracoes": {
+    "desconhecido": {
+      "label": "Desconhecido",
+      "simbolo": "?",
+      "cor": "#5D6570",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    },
+    "explorado": {
+      "label": "Explorado",
+      "simbolo": "✓",
+      "cor": "#2E7D50",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    },
+    "visitado": {
+      "label": "Visitado",
+      "simbolo": "•",
+      "cor": "#5E7D3A",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    }
+  },
+  "pontos_interesse": {
+    "templo": {
+      "label": "Templo",
+      "icone": "./images/templo.svg",
+      "visivel_padrao": true
+    },
+    "vilarejo": {
+      "label": "Vilarejo",
+      "icone": "./images/vilarejo.svg",
+      "visivel_padrao": true
+    }
+  },
+  "conexoes": {
+    "estrada": {
+      "label": "Estrada",
+      "cor": "#F5D742",
+      "espessura": 5,
+      "tracejado": true,
+      "tracejado_valor": "10 6",
+      "visivel_padrao": true
+    },
+    "rio": {
+      "label": "Rio",
+      "cor": "#22B8F0",
+      "espessura": 6,
+      "tracejado": false,
+      "visivel_padrao": true
+    },
+    "trilha": {
+      "label": "Trilha",
+      "cor": "#B98B5A",
+      "espessura": 4,
+      "tracejado": true,
+      "tracejado_valor": "4 6",
+      "visivel_padrao": true
+    }
+  },
+  "estados_ponto_interesse": {
+    "ativo": {
+      "label": "Ativo"
+    },
+    "ocupado": {
+      "label": "Ocupado"
+    }
+  },
+  "faccoes": {
+    "controles": {
+      "controla": {
+        "label": "Controla"
+      }
+    },
+    "relacoes": {
+      "amistosa": {
+        "label": "Amistosa"
+      }
+    }
+  },
+  "fallback": {
+    "cor_terreno": "#B8B8B8",
+    "cor_terreno_oculto": "#767676",
+    "cor_borda": "#555555",
+    "cor_borda_hex": "#222222",
+    "icone_ponto_interesse": "./images/default.svg"
+  }
+}
