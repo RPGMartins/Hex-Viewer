@@ -5,17 +5,25 @@ export class hex
         this.id = id;
         this.largura = largura;
         this.altura = altura;
+
+        this.data = null;
+        this.config = {};
+        this.vizinhos = [];
+
+        this.selecionado = false;
+        this.visualizacaoAtual = null;
     }
 
     receberData(data, x, y, onClick, config)
     {
-        this.config = config;
-        this.corPerigo = "#777777";
+        this.config = config ?? {};
+        this.data = data;
+
+        this.corPerigo = this.config?.fallback?.cor_borda ?? "#777777";
         this.corTerreno = this.config?.fallback?.cor_terreno ?? "gray";
+
         this.selecionado = false;
         this.visualizacaoAtual = null;
-
-        this.data = data;
 
         this.element = this.criarElemento();
         this.iconElement = this.criarIconElement();
@@ -27,39 +35,18 @@ export class hex
         this.verificarPerigo();
         this.desselecionar();
     }
-    
+
     receberVizinhos(vizinhos)
     {
-        this.vizinhos = vizinhos;
+        this.vizinhos = vizinhos ?? [];
     }
-    
+
     configurarClique(onClick)
     {
         this.element.addEventListener("click", () =>
         {
             onClick(this.id);
         });
-    }
-    criarIcone(caminho)
-    {
-        const image = document.createElementNS("http://www.w3.org/2000/svg","image");
-        const tamanho = Math.min(this.largura, this.altura) * 0.4;
-
-        image.setAttribute("href", caminho);
-        image.setAttribute("width", tamanho);
-        image.setAttribute("height", tamanho);
-
-        // Centraliza o ícone
-        image.setAttribute("x",(this.largura - tamanho) / 2);
-        image.setAttribute("y",(this.altura - tamanho) / 2);
-
-        image.addEventListener("error", () =>
-        {
-            console.warn("Imagem faltando: "+caminho);
-            image.remove();
-        });
-        
-        return image;
     }
 
     criarElemento()
@@ -74,38 +61,9 @@ export class hex
         return group;
     }
 
-    criarIconElement()
-    {
-        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
-
-        this.poiIconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
-        this.dangerIconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
-
-        const tipoPonto = this.data.ponto_interesse?.tipo ?? this.data.ponto_interesse?.local;
-        this.poiIconGroup.dataset.iconType = tipoPonto ?? "";
-
-        if (tipoPonto != null)
-        {
-            const configIcone = this.config?.pontos_interesse?.[tipoPonto];
-
-            const imgName = configIcone?.icone ?? this.config?.fallback?.icone_ponto_interesse ??  null;
-
-            if (imgName != null)
-            {
-                const icone = this.criarIcone(imgName);
-                this.poiIconGroup.appendChild(icone);
-            }
-        }
-
-        group.appendChild(this.poiIconGroup);
-        group.appendChild(this.dangerIconGroup);
-
-        return group;
-    }
-    
     criarVisual()
     {
-        const polygon = document.createElementNS("http://www.w3.org/2000/svg","polygon");
+        const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
 
         const pontos = [
             [this.largura * 0.25, 0],
@@ -116,11 +74,69 @@ export class hex
             [0, this.altura * 0.5]
         ];
 
-        polygon.setAttribute("points",pontos.map(p => p.join(",")).join(" "));
+        polygon.setAttribute("points", pontos.map(p => p.join(",")).join(" "));
         polygon.setAttribute("fill", "gray");
         polygon.setAttribute("stroke", "black");
+        polygon.setAttribute("stroke-width", "2");
 
         return polygon;
+    }
+
+    criarIconElement()
+    {
+        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+        this.poiIconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        this.dangerIconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+        const tipoPonto = this.obterTipoPontoInteresse();
+        this.poiIconGroup.dataset.iconType = tipoPonto ?? "";
+
+        if (tipoPonto != null)
+        {
+            const configIcone = this.config?.pontos_interesse?.[tipoPonto];
+
+            const caminhoIcone =
+                configIcone?.icone ??
+                this.config?.fallback?.icone_ponto_interesse ??
+                null;
+
+            if (caminhoIcone != null)
+            {
+                const icone = this.criarIcone(caminhoIcone);
+                this.poiIconGroup.appendChild(icone);
+            }
+        }
+
+        group.appendChild(this.poiIconGroup);
+        group.appendChild(this.dangerIconGroup);
+
+        return group;
+    }
+
+    obterTipoPontoInteresse()
+    {
+        return this.data?.ponto_interesse?.tipo ?? this.data?.ponto_interesse?.local ?? null;
+    }
+
+    criarIcone(caminho)
+    {
+        const image = document.createElementNS("http://www.w3.org/2000/svg", "image");
+        const tamanho = Math.min(this.largura, this.altura) * 0.4;
+
+        image.setAttribute("href", caminho);
+        image.setAttribute("width", tamanho);
+        image.setAttribute("height", tamanho);
+        image.setAttribute("x", (this.largura - tamanho) / 2);
+        image.setAttribute("y", (this.altura - tamanho) / 2);
+
+        image.addEventListener("error", () =>
+        {
+            console.warn("Imagem faltando: " + caminho);
+            image.remove();
+        });
+
+        return image;
     }
 
     posicionar(x, y)
@@ -143,7 +159,7 @@ export class hex
     {
         this.polygon.setAttribute("fill", cor);
     }
-    
+
     pintarBorda(cor)
     {
         this.polygon.setAttribute("stroke", cor);
@@ -152,7 +168,6 @@ export class hex
     selecionar()
     {
         this.selecionado = true;
-        this.mostrarInfo();
         console.log("HEX: " + this.id);
     }
 
@@ -161,36 +176,30 @@ export class hex
         this.selecionado = false;
     }
 
-    mostrarInfo()
-    {
-        const tempData = this.data;
-        document.getElementById("nomeLugar").textContent = tempData.nome;
-        document.getElementById("terreno").textContent = tempData.terreno;
-        document.getElementById("perigo").textContent = tempData.perigo;
-        document.getElementById("local").textContent = tempData.ponto_interesse?.local;
-    }
-
-    limparInfo()
-    {
-        document.getElementById("nomeLugar").textContent = "";
-        document.getElementById("terreno").textContent = "";
-        document.getElementById("perigo").textContent = "";
-    }
-
     verificarTerreno()
     {
-        const terreno = this.data.terreno;
+        const terreno = this.data?.terreno;
         const configTerreno = this.config?.terrenos?.[terreno];
-        this.corTerreno =configTerreno?.cor??this.config?.fallback?.cor_terreno ??"gray";
+
+        this.corTerreno =
+            configTerreno?.cor ??
+            this.config?.fallback?.cor_terreno ??
+            "gray";
+
         this.pintarHex(this.corTerreno);
     }
 
     verificarPerigo()
     {
-        const perigo = this.data.perigo;
+        const perigo = this.data?.perigo;
         const configPerigo = this.config?.perigos?.[perigo];
 
-        this.corPerigo = configPerigo?.cor ?? this.config?.fallback?.cor_borda ?? "#777777";
+        this.corPerigo =
+            configPerigo?.cor ??
+            this.config?.fallback?.cor_borda ??
+            "#777777";
+
+        this.dangerIconGroup.innerHTML = "";
 
         const caveiras = configPerigo?.caveiras ?? 0;
 
@@ -204,7 +213,7 @@ export class hex
 
     criarCaveiras(quantidade)
     {
-        const tamanho = Math.min(this.largura,this.altura) * 0.16;
+        const tamanho = Math.min(this.largura, this.altura) * 0.16;
         const espacamento = tamanho * 0.15;
         const larguraTotal = quantidade * tamanho + (quantidade - 1) * espacamento;
         const inicioX = (this.largura - larguraTotal) / 2;
@@ -212,12 +221,12 @@ export class hex
 
         for (let i = 0; i < quantidade; i++)
         {
-            const caveira = document.createElementNS("http://www.w3.org/2000/svg","image");
+            const caveira = document.createElementNS("http://www.w3.org/2000/svg", "image");
 
             caveira.setAttribute("href", "./images/caveira.svg");
             caveira.setAttribute("width", tamanho);
             caveira.setAttribute("height", tamanho);
-            caveira.setAttribute("x",inicioX + i * (tamanho + espacamento));
+            caveira.setAttribute("x", inicioX + i * (tamanho + espacamento));
             caveira.setAttribute("y", y);
 
             this.dangerIconGroup.appendChild(caveira);
@@ -235,7 +244,7 @@ export class hex
         {
             return true;
         }
-        
+
         if (tipo === "rio" && this.data.terreno === "rio")
         {
             return true;
@@ -255,7 +264,7 @@ export class hex
 
     aplicarVisualizacaoTerreno(visualizacao)
     {
-        const terreno = this.data.terreno;
+        const terreno = this.data?.terreno;
 
         const mostrarTerreno =
             visualizacao.terreno?.ativo === true &&
@@ -267,12 +276,13 @@ export class hex
             return;
         }
 
-        this.pintarHex("#B8B8B8");
+        this.pintarHex(this.config?.fallback?.cor_terreno_oculto ?? "#B8B8B8");
     }
 
     aplicarVisualizacaoPerigo(visualizacao)
     {
-        const perigo = this.data.perigo;
+        const perigo = this.data?.perigo;
+        const configPerigo = this.config?.perigos?.[perigo];
 
         const mostrarPerigo =
             visualizacao.perigo?.ativo === true &&
@@ -290,13 +300,13 @@ export class hex
         }
         else
         {
-            this.pintarBorda("#555555");
+            this.pintarBorda(this.config?.fallback?.cor_borda ?? "#555555");
             this.polygon.setAttribute("stroke-width", "2");
         }
 
-        if (mostrarPerigo && perigo !== "seguro")
+        if (mostrarPerigo && configPerigo?.tracejado === true)
         {
-            this.polygon.setAttribute("stroke-dasharray", "6 3");
+            this.polygon.setAttribute("stroke-dasharray", configPerigo.tracejado_valor ?? "6 3");
         }
         else
         {
@@ -316,7 +326,7 @@ export class hex
             return;
         }
 
-        const tipoIcone = this.data.ponto_interesse?.local;
+        const tipoIcone = this.obterTipoPontoInteresse();
 
         if (tipoIcone == null)
         {
