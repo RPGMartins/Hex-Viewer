@@ -59,7 +59,7 @@ export class HexInfoPanel
             return "";
         }
 
-        const tipo = pontoInteresse.tipo ?? pontoInteresse.local;
+        const tipo = this.obterTipoPontoInteresse(pontoInteresse);
         const labelTipo = this.config.pontos_interesse?.[tipo]?.label ?? tipo ?? "";
 
         if (pontoInteresse.nome != null && pontoInteresse.nome !== "")
@@ -73,5 +73,39 @@ export class HexInfoPanel
         }
 
         return labelTipo;
+    }
+
+    obterTipoPontoInteresse(pontoInteresse)
+    {
+        const direto = pontoInteresse?.tipo ?? pontoInteresse?.icone ?? pontoInteresse?.local ?? null;
+
+        if (direto == null)
+        {
+            return null;
+        }
+
+        if (this.config.pontos_interesse?.[direto] != null)
+        {
+            return direto;
+        }
+
+        const normalizado = this.normalizarChave(direto);
+
+        if (this.config.pontos_interesse?.[normalizado] != null)
+        {
+            return normalizado;
+        }
+
+        return direto;
+    }
+
+    normalizarChave(valor)
+    {
+        return String(valor)
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "_")
+            .replace(/^_+|_+$/g, "");
     }
 }

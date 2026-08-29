@@ -16,7 +16,15 @@ async function iniciar()
 
     const infoPanel = new HexInfoPanel(hexConfig);
 
-    const mapa = new hexMap(hexData.mapa.altura,hexData.mapa.largura,"A",1,100,86,hexData.hexes,hexConfig,
+    const mapa = new hexMap(
+        hexData.mapa.altura,
+        hexData.mapa.largura,
+        "A",
+        1,
+        100,
+        86,
+        hexData.hexes,
+        hexConfig,
         (hexDataSelecionado, hexSelecionado) =>
         {
             infoPanel.mostrar(hexDataSelecionado, hexSelecionado);
@@ -25,7 +33,9 @@ async function iniciar()
 
     document.getElementById("mapa").appendChild(mapa.element);
 
-    const layerPanel = new LayerPanel(document.getElementById("layerPanel"),hexConfig,
+    const layerPanel = new LayerPanel(
+        document.getElementById("layerPanel"),
+        hexConfig,
         () =>
         {
             mapa.aplicarVisualizacao(layerPanel.visualizacao);

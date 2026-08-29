@@ -116,7 +116,42 @@ export class hex
 
     obterTipoPontoInteresse()
     {
-        return this.data?.ponto_interesse?.tipo ?? this.data?.ponto_interesse?.local ?? null;
+        const pontoInteresse = this.data?.ponto_interesse;
+
+        const direto =
+            pontoInteresse?.tipo ??
+            pontoInteresse?.icone ??
+            pontoInteresse?.local ??
+            null;
+
+        if (direto == null)
+        {
+            return null;
+        }
+
+        if (this.config?.pontos_interesse?.[direto] != null)
+        {
+            return direto;
+        }
+
+        const normalizado = this.normalizarChave(direto);
+
+        if (this.config?.pontos_interesse?.[normalizado] != null)
+        {
+            return normalizado;
+        }
+
+        return direto;
+    }
+
+    normalizarChave(valor)
+    {
+        return String(valor)
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "_")
+            .replace(/^_+|_+$/g, "");
     }
 
     criarIcone(caminho)
