@@ -18,6 +18,7 @@ dist/
 
 # IDE/editor
 .vscode/
+.idea/
 
 # Sistema operacional
 .DS_Store
