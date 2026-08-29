@@ -1,12 +1,17 @@
 export class LayerPanel
 {
-    constructor(element, config, onChange)
+    constructor(element, config, onChange, options = {})
     {
         this.element = element;
         this.config = config ?? {};
         this.onChange = onChange;
 
+        this.openButton = options.openButton ?? null;
+        this.backdrop = options.backdrop ?? null;
+
         this.visualizacao = this.criarEstadoVisualizacao();
+
+        this.configurarEventosExternos();
     }
 
     criarEstadoVisualizacao()
@@ -40,13 +45,42 @@ export class LayerPanel
         return mapa;
     }
 
+    configurarEventosExternos()
+    {
+        if (this.openButton != null)
+        {
+            this.openButton.addEventListener("click", () =>
+            {
+                this.alternar();
+            });
+        }
+    }
+
     renderizar()
     {
+        if (this.element == null)
+        {
+            return;
+        }
+
         this.element.innerHTML = "";
+
+        const header = document.createElement("div");
+        header.classList.add("side-panel-header");
 
         const titulo = document.createElement("h2");
         titulo.textContent = "Camadas";
-        this.element.appendChild(titulo);
+
+        const closeButton = document.createElement("button");
+        closeButton.type = "button";
+        closeButton.classList.add("panel-close-button");
+        closeButton.textContent = "×";
+        closeButton.setAttribute("aria-label", "Fechar painel de camadas");
+        closeButton.addEventListener("click", () => this.fechar());
+
+        header.appendChild(titulo);
+        header.appendChild(closeButton);
+        this.element.appendChild(header);
 
         this.element.appendChild(this.criarSecaoComAtivo(
             "Terreno",
@@ -191,5 +225,73 @@ export class LayerPanel
         {
             this.onChange(this.visualizacao);
         }
+    }
+
+    alternar()
+    {
+        if (this.estaAberto())
+        {
+            this.fechar();
+            return;
+        }
+
+        this.abrir();
+    }
+
+    abrir()
+    {
+        if (this.element == null)
+        {
+            return;
+        }
+
+        this.element.classList.add("is-open");
+        this.element.setAttribute("aria-hidden", "false");
+        this.ativarBackdrop();
+    }
+
+    fechar()
+    {
+        if (this.element == null)
+        {
+            return;
+        }
+
+        this.element.classList.remove("is-open");
+        this.element.setAttribute("aria-hidden", "true");
+        this.desativarBackdrop();
+    }
+
+    estaAberto()
+    {
+        return this.element?.classList.contains("is-open") === true;
+    }
+
+    ativarBackdrop()
+    {
+        if (this.backdrop == null)
+        {
+            return;
+        }
+
+        this.backdrop.hidden = false;
+        this.backdrop.classList.add("is-active");
+
+        this.backdrop.onclick = () =>
+        {
+            this.fechar();
+        };
+    }
+
+    desativarBackdrop()
+    {
+        if (this.backdrop == null)
+        {
+            return;
+        }
+
+        this.backdrop.classList.remove("is-active");
+        this.backdrop.hidden = true;
+        this.backdrop.onclick = null;
     }
 }

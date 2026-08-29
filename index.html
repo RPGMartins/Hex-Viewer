@@ -1,42 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
-    <title>Meu Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hex Viewer</title>
 </head>
 
 <body>
+    <div id="app">
+        <header id="topBar">
+            <div class="topbar-title">Hex Viewer</div>
 
-<h1>Hex Viewer</h1>
-
-<div id="app">
-    <aside id="layerPanel"></aside>
-
-    <main id="mainArea">
-        <div id="mapa"></div>
-
-        <div id="mapaInfo">
-            <h2 id="nomeLugar"></h2>
-
-            <div>
-                <span>Terreno:</span>
-                <span id="terreno"></span>
+            <div class="topbar-actions">
+                <button id="openLayerPanelBtn" class="topbar-button" type="button">Camadas</button>
+                <button id="openMapInfoBtn" class="topbar-button" type="button">Mapa</button>
             </div>
+        </header>
 
-            <div>
-                <span>Perigo:</span>
-                <span id="perigo"></span>
-            </div>
+        <main id="mapArea">
+            <div id="mapa"></div>
+        </main>
 
-            <div>
-                <span>Local:</span>
-                <span id="local"></span>
-            </div>
-        </div>
-    </main>
-</div>
+        <aside id="layerPanel" class="side-panel side-panel-left" aria-hidden="true"></aside>
 
-<script type="module" src="script.js"></script>
+        <aside id="mapaInfo" class="side-panel side-panel-right" aria-hidden="true"></aside>
+
+        <!-- Opcional: remova este aside e o botão #openMapInfoBtn na versão dos jogadores -->
+        <aside id="mapInfoPanel" class="side-panel side-panel-right side-panel-map" aria-hidden="true"></aside>
+
+        <div id="panelBackdrop" class="panel-backdrop" hidden></div>
+    </div>
+
+    <script type="module" src="script.js"></script>
 </body>
 </html>

@@ -1,9 +1,10 @@
 export class HexInfoPanel
 {
-    constructor(config)
+    constructor(config, options = {})
     {
         this.config = config ?? {};
-        this.container = document.getElementById("mapaInfo");
+        this.element = options.element ?? document.getElementById("mapaInfo");
+        this.backdrop = options.backdrop ?? null;
 
         this.exploracaoLabels = {
             desconhecido: "Desconhecido",
@@ -46,11 +47,12 @@ export class HexInfoPanel
         };
 
         this.limpar();
+        this.fechar();
     }
 
     mostrar(hexData, hex)
     {
-        if (this.container == null)
+        if (this.element == null)
         {
             return;
         }
@@ -58,15 +60,35 @@ export class HexInfoPanel
         if (hexData == null)
         {
             this.limpar();
+            this.fechar();
             return;
         }
 
-        this.container.innerHTML = "";
+        this.renderizar(hexData, hex);
+        this.abrir();
+    }
+
+    renderizar(hexData, hex)
+    {
+        this.element.innerHTML = "";
+
+        const header = document.createElement("div");
+        header.classList.add("side-panel-header");
 
         const titulo = document.createElement("h2");
         titulo.id = "nomeLugar";
         titulo.textContent = this.obterTitulo(hexData, hex);
-        this.container.appendChild(titulo);
+
+        const closeButton = document.createElement("button");
+        closeButton.type = "button";
+        closeButton.classList.add("panel-close-button");
+        closeButton.textContent = "×";
+        closeButton.setAttribute("aria-label", "Fechar informações do hex");
+        closeButton.addEventListener("click", () => this.fechar());
+
+        header.appendChild(titulo);
+        header.appendChild(closeButton);
+        this.element.appendChild(header);
 
         const resumo = this.obterTexto(hexData.resumo);
         if (resumo !== "")
@@ -74,7 +96,7 @@ export class HexInfoPanel
             const resumoEl = document.createElement("p");
             resumoEl.classList.add("hex-info-summary");
             resumoEl.textContent = resumo;
-            this.container.appendChild(resumoEl);
+            this.element.appendChild(resumoEl);
         }
 
         const blocoBase = this.criarBloco("Base");
@@ -89,39 +111,49 @@ export class HexInfoPanel
         this.adicionarFaccao(hexData.faccao);
         this.adicionarNotas(hexData.notas);
 
-        // Compatibilidade temporária com o JSON antigo.
         this.adicionarTextoLegado("Descrição pública", hexData.publico);
         this.adicionarListaLegada("Estado atual", hexData.estado_atual);
         this.adicionarListaLegada("Histórico", hexData.historico);
 
-        if (this.container.children.length <= 1)
+        if (this.element.children.length <= 1)
         {
             const vazio = document.createElement("p");
             vazio.classList.add("hex-info-empty");
             vazio.textContent = "Sem informações disponíveis para este hex.";
-            this.container.appendChild(vazio);
+            this.element.appendChild(vazio);
         }
     }
 
     limpar()
     {
-        if (this.container == null)
+        if (this.element == null)
         {
             return;
         }
 
-        this.container.innerHTML = "";
+        this.element.innerHTML = "";
+    }
 
-        const titulo = document.createElement("h2");
-        titulo.id = "nomeLugar";
-        titulo.textContent = "Nenhum hex selecionado";
+    abrir()
+    {
+        if (this.element == null)
+        {
+            return;
+        }
 
-        const texto = document.createElement("p");
-        texto.classList.add("hex-info-empty");
-        texto.textContent = "Selecione um hex no mapa para ver suas informações.";
+        this.element.classList.add("is-open");
+        this.element.setAttribute("aria-hidden", "false");
+    }
 
-        this.container.appendChild(titulo);
-        this.container.appendChild(texto);
+    fechar()
+    {
+        if (this.element == null)
+        {
+            return;
+        }
+
+        this.element.classList.remove("is-open");
+        this.element.setAttribute("aria-hidden", "true");
     }
 
     obterTitulo(hexData, hex)
@@ -145,7 +177,7 @@ export class HexInfoPanel
 
         const bloco = this.criarBloco("Ponto de interesse");
 
-        const tipo = pontoInteresse.tipo ?? pontoInteresse.local;
+        const tipo = this.obterTipoPontoInteresse(pontoInteresse);
         const labelTipo = this.obterLabelPontoInteresse(tipo);
 
         this.adicionarLinha(bloco, "Tipo", labelTipo);
@@ -260,7 +292,7 @@ export class HexInfoPanel
     {
         if (bloco.dataset.hasContent === "true")
         {
-            this.container.appendChild(bloco);
+            this.element.appendChild(bloco);
         }
     }
 
@@ -397,6 +429,30 @@ export class HexInfoPanel
         return labels?.[valor] ?? this.formatarChave(valor);
     }
 
+    obterTipoPontoInteresse(pontoInteresse)
+    {
+        const direto = pontoInteresse?.tipo ?? pontoInteresse?.icone ?? pontoInteresse?.local ?? null;
+
+        if (direto == null)
+        {
+            return null;
+        }
+
+        if (this.config.pontos_interesse?.[direto] != null)
+        {
+            return direto;
+        }
+
+        const normalizado = this.normalizarChave(direto);
+
+        if (this.config.pontos_interesse?.[normalizado] != null)
+        {
+            return normalizado;
+        }
+
+        return direto;
+    }
+
     temConteudo(valor)
     {
         if (valor == null)
@@ -447,5 +503,15 @@ export class HexInfoPanel
         return String(chave)
             .replaceAll("_", " ")
             .replace(/\b\w/g, letra => letra.toUpperCase());
+    }
+
+    normalizarChave(valor)
+    {
+        return String(valor)
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "_")
+            .replace(/^_+|_+$/g, "");
     }
 }

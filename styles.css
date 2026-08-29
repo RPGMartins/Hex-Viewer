@@ -1,39 +1,163 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #1f1f1f;
-    color: #eeeeee;
+* {
+    box-sizing: border-box;
 }
 
-h1 {
-    margin: 16px;
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #111111;
+    color: #eeeeee;
+    overflow: hidden;
+}
+
+button {
+    font: inherit;
 }
 
 #app {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+}
+
+#topBar {
+    height: 52px;
     display: flex;
-    gap: 16px;
-    padding: 0 16px 16px 16px;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 12px;
+    background: #202020;
+    border-bottom: 1px solid #3c3c3c;
+    z-index: 10;
 }
 
-#layerPanel {
-    width: 260px;
-    flex: 0 0 260px;
-    background: #2b2b2b;
-    border: 1px solid #444444;
+.topbar-title {
+    font-weight: bold;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+.topbar-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.topbar-button,
+.panel-close-button {
+    border: 1px solid #555555;
+    background: #2f2f2f;
+    color: #f2f2f2;
     border-radius: 8px;
-    padding: 12px;
-    max-height: calc(100vh - 80px);
+    cursor: pointer;
+}
+
+.topbar-button {
+    padding: 7px 10px;
+}
+
+.topbar-button:hover,
+.panel-close-button:hover {
+    background: #3a3a3a;
+}
+
+#mapArea {
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+}
+
+#mapa {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: #111111;
+    padding: 16px;
+    touch-action: pan-x pan-y;
+}
+
+#mapa svg {
+    display: block;
+    min-width: max-content;
+    min-height: max-content;
+}
+
+.side-panel {
+    position: fixed;
+    top: 52px;
+    bottom: 0;
+    width: min(390px, calc(100vw - 28px));
+    background: #252525;
+    border-color: #444444;
+    color: #eeeeee;
+    z-index: 30;
     overflow-y: auto;
+    padding: 14px;
+    transition: transform 180ms ease;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
 }
 
-#layerPanel h2 {
-    margin-top: 0;
+.side-panel-left {
+    left: 0;
+    border-right: 1px solid #444444;
+    transform: translateX(-105%);
 }
 
-#layerPanel details {
+.side-panel-right {
+    right: 0;
+    border-left: 1px solid #444444;
+    transform: translateX(105%);
+}
+
+.side-panel.is-open {
+    transform: translateX(0);
+}
+
+.side-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.side-panel-header h2 {
+    margin: 0;
+    font-size: 19px;
+}
+
+.panel-close-button {
+    width: 34px;
+    height: 34px;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.panel-backdrop {
+    position: fixed;
+    inset: 52px 0 0 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 20;
+}
+
+.panel-backdrop[hidden] {
+    display: none;
+}
+
+#layerPanel details,
+.hex-info-section {
     border-top: 1px solid #444444;
-    padding: 8px 0;
+    padding-top: 10px;
+    margin-top: 10px;
 }
 
 #layerPanel summary {
@@ -46,7 +170,7 @@ h1 {
     display: flex;
     gap: 8px;
     align-items: center;
-    margin: 4px 0;
+    margin: 5px 0;
     cursor: pointer;
     font-size: 14px;
 }
@@ -60,40 +184,10 @@ h1 {
     padding-left: 14px;
 }
 
-#mainArea {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-#mapa {
-    background: #111111;
-    border: 1px solid #444444;
-    border-radius: 8px;
-    padding: 12px;
-    overflow: auto;
-}
-
-#mapaInfo {
-    background: #2b2b2b;
-    border: 1px solid #444444;
-    border-radius: 8px;
-    padding: 12px;
-    min-height: 100px;
-}
-
-
-/* HexInfoPanel — opcional: pode colar no final do styles.css */
 .hex-info-summary {
     margin: 0 0 12px 0;
     color: #d7d7d7;
     line-height: 1.35;
-}
-
-.hex-info-section {
-    border-top: 1px solid #444444;
-    padding-top: 10px;
-    margin-top: 10px;
 }
 
 .hex-info-section h3 {
@@ -104,7 +198,7 @@ h1 {
 
 .hex-info-row {
     display: grid;
-    grid-template-columns: 140px 1fr;
+    grid-template-columns: 132px 1fr;
     gap: 8px;
     margin: 4px 0;
 }
@@ -116,6 +210,7 @@ h1 {
 
 .hex-info-value {
     color: #eeeeee;
+    overflow-wrap: anywhere;
 }
 
 .hex-info-text {
@@ -135,4 +230,58 @@ h1 {
 .hex-info-empty {
     color: #aaaaaa;
     font-style: italic;
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+    #topBar {
+        height: 42px;
+        padding: 5px 8px;
+    }
+
+    .topbar-title {
+        font-size: 15px;
+    }
+
+    .topbar-button {
+        padding: 5px 8px;
+        font-size: 13px;
+    }
+
+    .side-panel {
+        top: 42px;
+        width: min(360px, calc(100vw - 24px));
+        padding: 10px;
+    }
+
+    .panel-backdrop {
+        inset: 42px 0 0 0;
+    }
+
+    #mapa {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 700px) {
+    #topBar {
+        height: 48px;
+    }
+
+    .topbar-title {
+        font-size: 16px;
+    }
+
+    .side-panel {
+        top: 48px;
+        width: min(92vw, 390px);
+    }
+
+    .panel-backdrop {
+        inset: 48px 0 0 0;
+    }
+
+    .hex-info-row {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
 }
