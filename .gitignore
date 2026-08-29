@@ -1,0 +1,24 @@
+# Backups/exportador
+**/_backups/
+**/__pycache__/
+*.pyc
+
+# Build do executável Python
+build/
+dist/
+*.spec
+
+# Obsidian local/cache
+.obsidian/workspace*.json
+obsidian-base/.obsidian/workspace*.json
+obsidian-base/.obsidian/cache/
+obsidian-base/.trash/
+
+# Sistema/IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs temporários
+*.log
