@@ -8,30 +8,25 @@
 </head>
 
 <body>
-    <div id="app">
-        <header id="topBar">
-            <div class="topbar-title">Hex Viewer</div>
+<div id="app">
+    <main id="mapArea">
+        <div id="mapa"></div>
+    </main>
 
-            <div class="topbar-actions">
-                <button id="openLayerPanelBtn" class="topbar-button" type="button">Camadas</button>
-                <button id="openMapInfoBtn" class="topbar-button" type="button">Mapa</button>
-            </div>
-        </header>
-
-        <main id="mapArea">
-            <div id="mapa"></div>
-        </main>
-
-        <aside id="layerPanel" class="side-panel side-panel-left" aria-hidden="true"></aside>
-
-        <aside id="mapaInfo" class="side-panel side-panel-right" aria-hidden="true"></aside>
-
-        <!-- Opcional: remova este aside e o botão #openMapInfoBtn na versão dos jogadores -->
-        <aside id="mapInfoPanel" class="side-panel side-panel-right side-panel-map" aria-hidden="true"></aside>
-
-        <div id="panelBackdrop" class="panel-backdrop" hidden></div>
+    <div id="floatingControls">
+        <button id="openLayerPanelBtn" class="floating-button" type="button">Camadas</button>
+        <button id="openMapInfoBtn" class="floating-button" type="button">Mapa</button>
     </div>
 
-    <script type="module" src="script.js"></script>
+    <aside id="layerPanel" class="side-panel side-panel-left" aria-hidden="true"></aside>
+
+    <aside id="mapaInfo" class="side-panel side-panel-right" aria-hidden="true"></aside>
+
+    <aside id="mapInfoPanel" class="side-panel side-panel-right side-panel-map" aria-hidden="true"></aside>
+
+    <div id="panelBackdrop" class="panel-backdrop" hidden></div>
+</div>
+
+<script type="module" src="script.js"></script>
 </body>
 </html>
