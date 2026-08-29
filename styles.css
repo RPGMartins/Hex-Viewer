@@ -445,3 +445,90 @@ button {
         justify-content: center;
     }
 }
+
+@media (orientation: portrait) and (max-width: 700px) {
+    body {
+        font-size: 16px;
+    }
+
+    #topBar {
+        height: 54px;
+        padding: 8px 10px;
+    }
+
+    .topbar-title {
+        font-size: 18px;
+    }
+
+    .topbar-button {
+        font-size: 15px;
+        padding: 8px 11px;
+    }
+
+    .side-panel {
+        top: 54px;
+        width: min(94vw, 420px);
+        padding: 16px;
+        font-size: 16px;
+    }
+
+    .panel-backdrop {
+        inset: 54px 0 0 0;
+    }
+
+    .side-panel-header h2 {
+        font-size: 21px;
+    }
+
+    .panel-close-button {
+        width: 38px;
+        height: 38px;
+        font-size: 26px;
+    }
+
+    #layerPanel summary {
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+
+    .layer-checkbox {
+        font-size: 16px;
+        min-height: 32px;
+        gap: 10px;
+    }
+
+    .layer-checkbox input {
+        width: 18px;
+        height: 18px;
+    }
+
+    .hex-info-summary {
+        font-size: 16px;
+        line-height: 1.45;
+    }
+
+    .hex-info-section h3 {
+        font-size: 17px;
+    }
+
+    .hex-info-row {
+        grid-template-columns: 1fr;
+        gap: 3px;
+        margin: 8px 0;
+    }
+
+    .hex-info-label {
+        font-size: 15px;
+    }
+
+    .hex-info-value,
+    .hex-info-text,
+    .hex-info-list {
+        font-size: 16px;
+        line-height: 1.45;
+    }
+
+    .hex-info-list li {
+        margin: 6px 0;
+    }
+}
