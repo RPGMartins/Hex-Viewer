@@ -1,4 +1,4 @@
 @echo off
-cd /d "%~dp0"
-python hex_export_tool.py
+cd /d "%~dp0\.."
+python tools\hex_export_obsidian_launcher.py
 pause

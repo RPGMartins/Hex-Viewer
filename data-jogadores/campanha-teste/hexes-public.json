@@ -35,7 +35,7 @@
       "resumo": "Cidade principal",
       "terreno": "costa",
       "perigo": "seguro",
-      "exploracao": "desconhecido",
+      "exploracao": "explorado",
       "features": {
         "estrada": true
       },
