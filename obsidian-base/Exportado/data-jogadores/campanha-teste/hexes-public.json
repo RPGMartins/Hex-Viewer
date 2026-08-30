@@ -37,7 +37,10 @@
       "perigo": "seguro",
       "exploracao": "desconhecido",
       "features": {
-        "rio": true
+        "estrada": true
+      },
+      "ponto_interesse": {
+        "tipo": "cidade_pequena"
       }
     }
   ]

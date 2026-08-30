@@ -34,6 +34,11 @@
     }
   },
   "pontos_interesse": {
+    "cidade_pequena": {
+      "label": "Cidade Pequena",
+      "icone": "./images/cidade_pequena.svg",
+      "visivel_padrao": true
+    },
     "fortificacao": {
       "label": "Fortificação",
       "icone": "./images/fortificacao.svg",
@@ -47,13 +52,6 @@
       "espessura": 5,
       "tracejado": true,
       "tracejado_valor": "10 6",
-      "visivel_padrao": true
-    },
-    "rio": {
-      "label": "Rio",
-      "cor": "#22B8F0",
-      "espessura": 6,
-      "tracejado": false,
       "visivel_padrao": true
     }
   },

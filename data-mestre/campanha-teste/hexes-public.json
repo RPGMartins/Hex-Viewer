@@ -145,6 +145,7 @@
       "perigo": "inseguro",
       "exploracao": "desconhecido",
       "features": {
+        "estrada": true,
         "rio": true
       }
     },
@@ -194,9 +195,12 @@
       "resumo": "Cidade principal",
       "terreno": "costa",
       "perigo": "seguro",
-      "exploracao": "desconhecido",
+      "exploracao": "explorado",
       "features": {
-        "rio": true
+        "estrada": true
+      },
+      "ponto_interesse": {
+        "tipo": "cidade_pequena"
       }
     },
     {
