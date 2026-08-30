@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Campanhas/Campanha1/Hexes/A1.md",
+                "file": "_Leia-me/Fluxo de uso.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "A1"
+              "title": "Fluxo de uso"
             }
           }
         ]
@@ -189,9 +189,12 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "4122bdb8eaa1d7c6",
+  "active": "cdae0488b8b8902a",
   "lastOpenFiles": [
-    "Hex Viewer - Painel.md",
+    "_Leia-me/README-CATALOGOS.md",
+    "Campanhas/Campanha1/Hexes/A1.md",
+    "_Leia-me",
+    "_Leia-me/Fluxo de uso.md",
     "Campanhas/Vale dos Sinos/Hexes/A3.md",
     "Campanhas/Campanha1/Hexes/E1.md",
     "Templates/Abrir Exportador Hex Viewer.md",
@@ -222,10 +225,7 @@
     "Exportado/data-mestre/_backups/20260830-000249/campanha-teste/hex-config.json",
     "Exportado/data-mestre/_backups/20260830-000249/campanha-teste",
     "Exportado/data-mestre/_backups/20260830-000249/campaigns.json",
-    "Exportado/data-mestre/_backups/20260830-000249",
     "Campanhas/Campanha1/Hexes/D1.md",
-    "Campanhas/Campanha1/Hexes/E4.md",
-    "Campanhas/Campanha1/Hexes/E5.md",
-    "Campanhas/Campanha1/Hexes/E3.md"
+    "Campanhas/Campanha1/Hexes/E4.md"
   ]
 }
