@@ -101,8 +101,6 @@ faccao_controle: ""
 faccao_relacao: ""
 ---
 
-# ${hexId}
-
 ## Resumo
 
 `;

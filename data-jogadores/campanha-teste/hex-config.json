@@ -1,19 +1,12 @@
 {
   "terrenos": {
-    "pradaria": {
-      "label": "Pradaria",
-      "cor": "#A8C66C",
+    "costa": {
+      "label": "Costa",
+      "cor": "#D6C58A",
       "visivel_padrao": true
     }
   },
   "perigos": {
-    "inseguro": {
-      "label": "Inseguro",
-      "cor": "#D8B339",
-      "caveiras": 1,
-      "tracejado": true,
-      "visivel_padrao": true
-    },
     "seguro": {
       "label": "Seguro",
       "cor": "#4CAF50",
@@ -31,14 +24,6 @@
       "cor_texto": "#FFFFFF",
       "visivel_padrao": true
     },
-    "explorado": {
-      "label": "Explorado",
-      "simbolo": "✓",
-      "cor": "#2E7D50",
-      "cor_borda": "#111111",
-      "cor_texto": "#FFFFFF",
-      "visivel_padrao": true
-    },
     "visitado": {
       "label": "Visitado",
       "simbolo": "•",
@@ -49,9 +34,9 @@
     }
   },
   "pontos_interesse": {
-    "vilarejo": {
-      "label": "Vilarejo",
-      "icone": "./images/vilarejo.svg",
+    "fortificacao": {
+      "label": "Fortificação",
+      "icone": "./images/fortificacao.svg",
       "visivel_padrao": true
     }
   },
@@ -70,32 +55,16 @@
       "espessura": 6,
       "tracejado": false,
       "visivel_padrao": true
-    },
-    "trilha": {
-      "label": "Trilha",
-      "cor": "#B98B5A",
-      "espessura": 4,
-      "tracejado": true,
-      "tracejado_valor": "4 6",
-      "visivel_padrao": true
     }
   },
   "estados_ponto_interesse": {
-    "ativo": {
-      "label": "Ativo"
+    "abandonado": {
+      "label": "Abandonado"
     }
   },
   "faccoes": {
-    "controles": {
-      "controla": {
-        "label": "Controla"
-      }
-    },
-    "relacoes": {
-      "amistosa": {
-        "label": "Amistosa"
-      }
-    }
+    "controles": {},
+    "relacoes": {}
   },
   "fallback": {
     "cor_terreno": "#B8B8B8",

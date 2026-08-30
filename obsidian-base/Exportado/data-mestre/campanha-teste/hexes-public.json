@@ -1,0 +1,238 @@
+{
+  "mapa": {
+    "id": "campanha-teste",
+    "versao": 1,
+    "largura": 5,
+    "altura": 5,
+    "coluna_inicial": "A",
+    "linha_inicial": 1,
+    "largura_hex": 150,
+    "altura_hex": 136,
+    "nome": "Campanha Teste",
+    "descricao": "Teste de exploração hexcrawl",
+    "sistema": "Shadowdark",
+    "escala_hex": "6 milhas / aproximadamente 10 km",
+    "hex_inicial": "E1",
+    "rumor_principal": "Há rumores de que algo antigo desperta a leste da vila."
+  },
+  "hexes": [
+    {
+      "hex": "A1",
+      "terreno": "costa",
+      "perigo": "seguro",
+      "exploracao": "visitado",
+      "features": {
+        "estrada": true
+      },
+      "ponto_interesse": {
+        "tipo": "fortificacao",
+        "estado": "abandonado"
+      }
+    },
+    {
+      "hex": "A2",
+      "terreno": "oceano",
+      "perigo": "arriscado",
+      "exploracao": "desconhecido",
+      "features": {
+        "estrada": true
+      },
+      "ponto_interesse": {
+        "tipo": "marco_natural",
+        "estado": "protegido",
+        "descricao": "os moradores locais protegem esse ponto"
+      },
+      "faccao": {
+        "controle": "controla",
+        "relacao": "neutra"
+      }
+    },
+    {
+      "hex": "A3",
+      "terreno": "montanha",
+      "perigo": "inseguro",
+      "exploracao": "desconhecido"
+    },
+    {
+      "hex": "A4",
+      "terreno": "montanha",
+      "perigo": "inseguro",
+      "exploracao": "desconhecido"
+    },
+    {
+      "hex": "A5",
+      "terreno": "montanha",
+      "perigo": "seguro",
+      "exploracao": "desconhecido"
+    },
+    {
+      "hex": "B1",
+      "terreno": "oceano",
+      "perigo": "mortal",
+      "exploracao": "desconhecido"
+    },
+    {
+      "hex": "B2",
+      "terreno": "deserto",
+      "perigo": "arriscado",
+      "exploracao": "desconhecido",
+      "features": {
+        "estrada": true
+      }
+    },
+    {
+      "hex": "B3",
+      "terreno": "montanha",
+      "perigo": "inseguro",
+      "exploracao": "desconhecido"
+    },
+    {
+      "hex": "B4",
+      "terreno": "montanha",
+      "perigo": "inseguro",
+      "exploracao": "desconhecido",
+      "ponto_interesse": {
+        "tipo": "vilarejo",
+        "estado": "em_quarentena"
+      }
+    },
+    {
+      "hex": "B5",
+      "terreno": "montanha",
+      "perigo": "seguro",
+      "exploracao": "desconhecido"
+    },
+    {
+      "hex": "C1",
+      "terreno": "oceano",
+      "perigo": "arriscado",
+      "exploracao": "desconhecido"
+    },
+    {
+      "hex": "C2",
+      "terreno": "deserto",
+      "perigo": "inseguro",
+      "exploracao": "desconhecido",
+      "features": {
+        "estrada": true
+      },
+      "ponto_interesse": {
+        "tipo": "formacao_caverna",
+        "estado": "em_cerco"
+      }
+    },
+    {
+      "hex": "C3",
+      "terreno": "deserto",
+      "perigo": "mortal",
+      "exploracao": "desconhecido"
+    },
+    {
+      "hex": "C4",
+      "terreno": "pantano",
+      "perigo": "arriscado",
+      "exploracao": "desconhecido"
+    },
+    {
+      "hex": "C5",
+      "terreno": "montanha",
+      "perigo": "mortal",
+      "exploracao": "desconhecido"
+    },
+    {
+      "hex": "D1",
+      "terreno": "rio",
+      "perigo": "inseguro",
+      "exploracao": "desconhecido",
+      "features": {
+        "rio": true
+      }
+    },
+    {
+      "hex": "D2",
+      "terreno": "rio",
+      "perigo": "inseguro",
+      "exploracao": "desconhecido",
+      "features": {
+        "rio": true
+      }
+    },
+    {
+      "hex": "D3",
+      "terreno": "rio",
+      "perigo": "arriscado",
+      "exploracao": "desconhecido",
+      "features": {
+        "rio": true
+      }
+    },
+    {
+      "hex": "D4",
+      "terreno": "rio",
+      "perigo": "arriscado",
+      "exploracao": "desconhecido",
+      "features": {
+        "rio": true
+      },
+      "ponto_interesse": {
+        "tipo": "cidade_pequena",
+        "estado": "abandonado"
+      }
+    },
+    {
+      "hex": "D5",
+      "terreno": "rio",
+      "perigo": "arriscado",
+      "exploracao": "desconhecido",
+      "features": {
+        "rio": true
+      }
+    },
+    {
+      "hex": "E1",
+      "nome": "Brah'Tokr",
+      "resumo": "Cidade principal",
+      "terreno": "costa",
+      "perigo": "seguro",
+      "exploracao": "desconhecido",
+      "features": {
+        "rio": true
+      }
+    },
+    {
+      "hex": "E2",
+      "terreno": "rio",
+      "perigo": "arriscado",
+      "exploracao": "desconhecido",
+      "features": {
+        "rio": true
+      }
+    },
+    {
+      "hex": "E3",
+      "resumo": "Marco natural sendo atacada por invasor",
+      "terreno": "montanha",
+      "perigo": "mortal",
+      "exploracao": "desconhecido",
+      "ponto_interesse": {
+        "tipo": "marco_natural",
+        "estado": "em_cerco"
+      }
+    },
+    {
+      "hex": "E4",
+      "terreno": "pantano",
+      "perigo": "inseguro",
+      "exploracao": "desconhecido"
+    },
+    {
+      "hex": "E5",
+      "terreno": "rio",
+      "perigo": "arriscado",
+      "exploracao": "desconhecido",
+      "features": {
+        "rio": true
+      }
+    }
+  ]
+}

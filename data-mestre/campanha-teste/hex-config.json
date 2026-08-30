@@ -1,0 +1,159 @@
+{
+  "terrenos": {
+    "costa": {
+      "label": "Costa",
+      "cor": "#D6C58A",
+      "visivel_padrao": true
+    },
+    "deserto": {
+      "label": "Deserto",
+      "cor": "#D9C27A",
+      "visivel_padrao": true
+    },
+    "montanha": {
+      "label": "Montanha",
+      "cor": "#954535",
+      "visivel_padrao": true
+    },
+    "oceano": {
+      "label": "Oceano",
+      "cor": "#286090",
+      "visivel_padrao": true
+    },
+    "pantano": {
+      "label": "Pântano",
+      "cor": "#65734B",
+      "visivel_padrao": true
+    },
+    "rio": {
+      "label": "Rio",
+      "cor": "#4A90C2",
+      "visivel_padrao": true
+    }
+  },
+  "perigos": {
+    "arriscado": {
+      "label": "Arriscado",
+      "cor": "#D87939",
+      "caveiras": 2,
+      "tracejado": true,
+      "visivel_padrao": true
+    },
+    "inseguro": {
+      "label": "Inseguro",
+      "cor": "#D8B339",
+      "caveiras": 1,
+      "tracejado": true,
+      "visivel_padrao": true
+    },
+    "mortal": {
+      "label": "Mortal",
+      "cor": "#C0392B",
+      "caveiras": 3,
+      "tracejado": true,
+      "visivel_padrao": true
+    },
+    "seguro": {
+      "label": "Seguro",
+      "cor": "#4CAF50",
+      "caveiras": 0,
+      "tracejado": false,
+      "visivel_padrao": true
+    }
+  },
+  "exploracoes": {
+    "desconhecido": {
+      "label": "Desconhecido",
+      "simbolo": "?",
+      "cor": "#5D6570",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    },
+    "visitado": {
+      "label": "Visitado",
+      "simbolo": "•",
+      "cor": "#5E7D3A",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    }
+  },
+  "pontos_interesse": {
+    "cidade_pequena": {
+      "label": "Cidade Pequena",
+      "icone": "./images/cidade_pequena.svg",
+      "visivel_padrao": true
+    },
+    "formacao_caverna": {
+      "label": "Caverna",
+      "icone": "./images/formacao_caverna.svg",
+      "visivel_padrao": true
+    },
+    "fortificacao": {
+      "label": "Fortificação",
+      "icone": "./images/fortificacao.svg",
+      "visivel_padrao": true
+    },
+    "marco_natural": {
+      "label": "Marco Natural",
+      "icone": "./images/marco_natural.svg",
+      "visivel_padrao": true
+    },
+    "vilarejo": {
+      "label": "Vilarejo",
+      "icone": "./images/vilarejo.svg",
+      "visivel_padrao": true
+    }
+  },
+  "conexoes": {
+    "estrada": {
+      "label": "Estrada",
+      "cor": "#F5D742",
+      "espessura": 5,
+      "tracejado": true,
+      "tracejado_valor": "10 6",
+      "visivel_padrao": true
+    },
+    "rio": {
+      "label": "Rio",
+      "cor": "#22B8F0",
+      "espessura": 6,
+      "tracejado": false,
+      "visivel_padrao": true
+    }
+  },
+  "estados_ponto_interesse": {
+    "abandonado": {
+      "label": "Abandonado"
+    },
+    "em_cerco": {
+      "label": "Em Cerco"
+    },
+    "em_quarentena": {
+      "label": "Em Quarentena"
+    },
+    "protegido": {
+      "label": "Protegido"
+    }
+  },
+  "faccoes": {
+    "controles": {
+      "controla": {
+        "label": "Controla"
+      }
+    },
+    "relacoes": {
+      "neutra": {
+        "label": "Neutra"
+      }
+    }
+  },
+  "fallback": {
+    "cor_terreno": "#B8B8B8",
+    "cor_terreno_oculto": "#767676",
+    "cor_borda": "#555555",
+    "cor_borda_hex": "#222222",
+    "icone_ponto_interesse": "./images/default.svg"
+  }
+}

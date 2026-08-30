@@ -209,8 +209,6 @@ faccao_controle: ""
 faccao_relacao: ""
 ---
 
-# {hex_id}
-
 ## Resumo
 
 """.format(hex_id=hex_id)

@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "6da385d402a76f3a",
+        "id": "9372c4e7cb2fd0e3",
         "type": "tabs",
         "children": [
           {
-            "id": "f98f8619523211dc",
+            "id": "4122bdb8eaa1d7c6",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Campanhas/Campanha1/Hexes/E4.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "Nova aba"
+              "title": "E4"
             }
           }
         ]
@@ -185,43 +189,43 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "f98f8619523211dc",
+  "active": "4122bdb8eaa1d7c6",
   "lastOpenFiles": [
-    "Campanhas/Vale dos Sinos/Hexes/B2.md",
-    "Campanhas/Vale dos Sinos/Hexes/B5.md",
-    "Campanhas/Vale dos Sinos/Hexes/D1.md",
-    "Campanhas/Vale dos Sinos/Hexes/C2.md",
-    "Campanhas/Vale dos Sinos/Hexes/B4.md",
+    "Exportado/data-jogadores/_backups/20260829-235451/vale-dos-sinos/hexes-public.json",
+    "Exportado/data-jogadores/_backups/20260829-235451/vale-dos-sinos/hex-config.json",
+    "Exportado/data-jogadores/_backups/20260829-235451/campanha-teste/hexes-public.json",
+    "Exportado/data-jogadores/_backups/20260829-235451/campanha-teste/hex-config.json",
+    "Exportado/data-jogadores/_backups/20260829-235451/vale-dos-sinos",
+    "Exportado/data-jogadores/_backups/20260829-235451/campanha-teste",
+    "Exportado/data-jogadores/_backups/20260829-235451/campaigns.json",
+    "Exportado/data-jogadores/_backups/20260829-235451",
+    "Exportado/data-mestre/_backups/20260829-235427/campanha-teste/hexes-public.json",
+    "Exportado/data-mestre/_backups/20260829-235427/campanha-teste/hex-config.json",
+    "Exportado/data-mestre/_backups/20260829-235427/campanha-teste",
     "Campanhas/Campanha1/Hexes/E5.md",
-    "Campanhas/Vale dos Sinos/Hexes/E5.md",
-    "Campanhas/Vale dos Sinos/Hexes/E4.md",
-    "Campanhas/Vale dos Sinos/Hexes/E3.md",
-    "Campanhas/Vale dos Sinos/Hexes/E2.md",
-    "Campanhas/Vale dos Sinos/Hexes/E1.md",
-    "Campanhas/Vale dos Sinos/Hexes/D5.md",
-    "Campanhas/Vale dos Sinos/Hexes/D4.md",
-    "Campanhas/Vale dos Sinos/Hexes/D3.md",
-    "Campanhas/Vale dos Sinos/Hexes/D2.md",
-    "Campanhas/Vale dos Sinos/Hexes/C5.md",
-    "Campanhas/Vale dos Sinos/Hexes/C4.md",
-    "Campanhas/Vale dos Sinos/Hexes/C3.md",
-    "Campanhas/Vale dos Sinos/Hexes/C1.md",
-    "Campanhas/Vale dos Sinos/Hexes/B1.md",
-    "Campanhas/Vale dos Sinos/Hexes/A5.md",
-    "Campanhas/Vale dos Sinos/Hexes/A4.md",
-    "Campanhas/Vale dos Sinos/Hexes/A2.md",
-    "Campanhas/Vale dos Sinos/Hexes/A1.md",
-    "Campanhas/Campanha1/Hexes/A1.md",
+    "Campanhas/Campanha1/Hexes/E4.md",
+    "Campanhas/Campanha1/Hexes/E3.md",
+    "Campanhas/Campanha1/Hexes/E2.md",
+    "Campanhas/Campanha1/Hexes/E1.md",
+    "Campanhas/Campanha1/Hexes/D5.md",
+    "Campanhas/Campanha1/Hexes/D4.md",
+    "Campanhas/Campanha1/Hexes/D3.md",
+    "Campanhas/Campanha1/Hexes/D2.md",
+    "Campanhas/Campanha1/Hexes/D1.md",
+    "Campanhas/Campanha1/Hexes/C5.md",
+    "Campanhas/Campanha1/Hexes/C4.md",
+    "Campanhas/Campanha1/Hexes/C3.md",
+    "Campanhas/Campanha1/Hexes/C2.md",
+    "Campanhas/Campanha1/Hexes/C1.md",
+    "Campanhas/Campanha1/Hexes/B5.md",
+    "Campanhas/Campanha1/Hexes/B4.md",
+    "Campanhas/Campanha1/Hexes/B3.md",
+    "Campanhas/Campanha1/Hexes/B2.md",
+    "Campanhas/Campanha1/Hexes/B1.md",
+    "Campanhas/Campanha1/Hexes/A5.md",
+    "Campanhas/Campanha1/Hexes/A3.md",
+    "Campanhas/Campanha1/Hexes/A4.md",
     "Campanhas/Campanha1/Hexes/A2.md",
-    "null/Hexes",
-    "null",
-    "Tabelas/estados_poi_novos.json",
-    "Tabelas/pontos_interesse_novos.json",
-    "Tabelas/estados_poi_novos.csv",
-    "Tabelas/pontos_interesse_novos.csv",
-    "Tabelas",
-    "Campanhas/Campanha1/Hexes",
-    "Campanhas/Campanha1",
-    "Exportado/data-mestre/campaigns.json"
+    "Campanhas/Campanha1/Hexes/A1.md"
   ]
 }

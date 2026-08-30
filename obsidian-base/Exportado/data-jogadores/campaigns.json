@@ -2,12 +2,12 @@
   "versao": 1,
   "campanhas": [
     {
-      "id": "vale-dos-sinos",
-      "nome": "Vale dos Sinos",
-      "descricao": "Mapa inicial da campanha, agora usando catálogos do Obsidian.",
+      "id": "campanha-teste",
+      "nome": "Campanha Teste",
+      "descricao": "Teste de exploração hexcrawl",
       "tipo": "jogadores",
-      "hexes": "./data-jogadores/vale-dos-sinos/hexes-public.json",
-      "config": "./data-jogadores/vale-dos-sinos/hex-config.json"
+      "hexes": "./data-jogadores/campanha-teste/hexes-public.json",
+      "config": "./data-jogadores/campanha-teste/hex-config.json"
     }
   ]
 }
