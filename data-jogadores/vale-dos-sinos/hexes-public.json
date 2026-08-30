@@ -1,0 +1,44 @@
+{
+  "mapa": {
+    "id": "vale-dos-sinos",
+    "versao": 1,
+    "largura": 5,
+    "altura": 5,
+    "coluna_inicial": "A",
+    "linha_inicial": 1,
+    "largura_hex": 150,
+    "altura_hex": 136,
+    "nome": "Vale dos Sinos",
+    "descricao": "Mapa inicial da campanha, agora usando catálogos do Obsidian.",
+    "sistema": "Shadowdark",
+    "escala_hex": "6 milhas / aproximadamente 10 km",
+    "hex_inicial": "A3",
+    "rumor_principal": "Há rumores de que algo antigo desperta a leste da vila."
+  },
+  "hexes": [
+    {
+      "hex": "A3",
+      "nome": "Última Vigília",
+      "resumo": "Base segura da expedição e último assentamento confiável antes das terras selvagens.",
+      "terreno": "pradaria",
+      "perigo": "seguro",
+      "exploracao": "explorado",
+      "features": {
+        "estrada": true,
+        "trilha": true
+      },
+      "ponto_interesse": {
+        "tipo": "vilarejo",
+        "nome": "Última Vigília",
+        "estado": "ativo",
+        "descricao": "Um vilarejo parcialmente reconstruído sobre ruínas antigas."
+      },
+      "faccao": {
+        "id": "moradores_ultima_vigilia",
+        "nome": "Moradores de Última Vigília",
+        "controle": "controla",
+        "relacao": "amistosa"
+      }
+    }
+  ]
+}

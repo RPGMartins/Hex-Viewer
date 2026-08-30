@@ -1,0 +1,85 @@
+{
+  "terrenos": {
+    "pradaria": {
+      "label": "Pradaria",
+      "cor": "#A8C66C",
+      "visivel_padrao": true
+    }
+  },
+  "perigos": {
+    "seguro": {
+      "label": "Seguro",
+      "cor": "#4CAF50",
+      "caveiras": 0,
+      "tracejado": false,
+      "visivel_padrao": true
+    }
+  },
+  "exploracoes": {
+    "desconhecido": {
+      "label": "Desconhecido",
+      "simbolo": "?",
+      "cor": "#5D6570",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    },
+    "explorado": {
+      "label": "Explorado",
+      "simbolo": "✓",
+      "cor": "#2E7D50",
+      "cor_borda": "#111111",
+      "cor_texto": "#FFFFFF",
+      "visivel_padrao": true
+    }
+  },
+  "pontos_interesse": {
+    "vilarejo": {
+      "label": "Vilarejo",
+      "icone": "./images/vilarejo.svg",
+      "visivel_padrao": true
+    }
+  },
+  "conexoes": {
+    "estrada": {
+      "label": "Estrada",
+      "cor": "#F5D742",
+      "espessura": 5,
+      "tracejado": true,
+      "tracejado_valor": "10 6",
+      "visivel_padrao": true
+    },
+    "trilha": {
+      "label": "Trilha",
+      "cor": "#B98B5A",
+      "espessura": 4,
+      "tracejado": true,
+      "tracejado_valor": "4 6",
+      "visivel_padrao": true
+    }
+  },
+  "estados_ponto_interesse": {
+    "ativo": {
+      "label": "Ativo"
+    }
+  },
+  "faccoes": {
+    "controles": {
+      "controla": {
+        "label": "Controla"
+      }
+    },
+    "relacoes": {
+      "amistosa": {
+        "label": "Amistosa"
+      }
+    }
+  },
+  "fallback": {
+    "cor_terreno": "#B8B8B8",
+    "cor_terreno_oculto": "#767676",
+    "cor_borda": "#555555",
+    "cor_borda_hex": "#222222",
+    "icone_ponto_interesse": "./images/default.svg"
+  }
+}

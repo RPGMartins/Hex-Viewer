@@ -1,0 +1,13 @@
+{
+  "versao": 1,
+  "campanhas": [
+    {
+      "id": "vale-dos-sinos",
+      "nome": "Vale dos Sinos",
+      "descricao": "Mapa inicial da campanha, agora usando catálogos do Obsidian.",
+      "tipo": "jogadores",
+      "hexes": "./data-jogadores/vale-dos-sinos/hexes-public.json",
+      "config": "./data-jogadores/vale-dos-sinos/hex-config.json"
+    }
+  ]
+}
