@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "e76e91e53b0dfd61",
+        "id": "6da385d402a76f3a",
         "type": "tabs",
         "children": [
           {
-            "id": "824d65e54a90d020",
+            "id": "f98f8619523211dc",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Campanhas/Vale dos Sinos/Hexes/A3.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "A3"
+              "title": "Nova aba"
             }
           }
         ]
@@ -189,23 +185,43 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "cdae0488b8b8902a",
+  "active": "f98f8619523211dc",
   "lastOpenFiles": [
-    "Exportado/data-mestre/campaigns.json",
-    "Exportado/data-mestre/vale-dos-sinos/hexes-public.json",
-    "Exportado/data-mestre/vale-dos-sinos/hex-config.json",
-    "Exportado/data-mestre/vale-dos-sinos",
-    "Exportado/data-mestre",
-    "Exportado/Nova pasta",
-    "Exportado/data-jogadores/campaigns.json",
-    "Exportado/data-jogadores/vale-dos-sinos/hexes-public.json",
-    "Exportado/data-jogadores/vale-dos-sinos/hex-config.json",
-    "Exportado/data-jogadores/vale-dos-sinos",
-    "Exportado/data-jogadores",
-    "Campanhas/Vale dos Sinos/Hexes/B3.md",
-    "Campanhas/Vale dos Sinos/Hexes/A3.md",
-    "Catalogos/Terrenos/Pradaria.md",
-    "Catalogos/Terrenos/Pantano.md",
-    "README-CATALOGOS.md"
+    "Campanhas/Vale dos Sinos/Hexes/B2.md",
+    "Campanhas/Vale dos Sinos/Hexes/B5.md",
+    "Campanhas/Vale dos Sinos/Hexes/D1.md",
+    "Campanhas/Vale dos Sinos/Hexes/C2.md",
+    "Campanhas/Vale dos Sinos/Hexes/B4.md",
+    "Campanhas/Campanha1/Hexes/E5.md",
+    "Campanhas/Vale dos Sinos/Hexes/E5.md",
+    "Campanhas/Vale dos Sinos/Hexes/E4.md",
+    "Campanhas/Vale dos Sinos/Hexes/E3.md",
+    "Campanhas/Vale dos Sinos/Hexes/E2.md",
+    "Campanhas/Vale dos Sinos/Hexes/E1.md",
+    "Campanhas/Vale dos Sinos/Hexes/D5.md",
+    "Campanhas/Vale dos Sinos/Hexes/D4.md",
+    "Campanhas/Vale dos Sinos/Hexes/D3.md",
+    "Campanhas/Vale dos Sinos/Hexes/D2.md",
+    "Campanhas/Vale dos Sinos/Hexes/C5.md",
+    "Campanhas/Vale dos Sinos/Hexes/C4.md",
+    "Campanhas/Vale dos Sinos/Hexes/C3.md",
+    "Campanhas/Vale dos Sinos/Hexes/C1.md",
+    "Campanhas/Vale dos Sinos/Hexes/B1.md",
+    "Campanhas/Vale dos Sinos/Hexes/A5.md",
+    "Campanhas/Vale dos Sinos/Hexes/A4.md",
+    "Campanhas/Vale dos Sinos/Hexes/A2.md",
+    "Campanhas/Vale dos Sinos/Hexes/A1.md",
+    "Campanhas/Campanha1/Hexes/A1.md",
+    "Campanhas/Campanha1/Hexes/A2.md",
+    "null/Hexes",
+    "null",
+    "Tabelas/estados_poi_novos.json",
+    "Tabelas/pontos_interesse_novos.json",
+    "Tabelas/estados_poi_novos.csv",
+    "Tabelas/pontos_interesse_novos.csv",
+    "Tabelas",
+    "Campanhas/Campanha1/Hexes",
+    "Campanhas/Campanha1",
+    "Exportado/data-mestre/campaigns.json"
   ]
 }

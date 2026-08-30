@@ -1,0 +1,194 @@
+[
+  {
+    "id": "alagado",
+    "label": "Alagado",
+    "descricao": "Água tomou o local; travessias ficam lentas, escondem buracos e podem revelar passagens submersas.",
+    "uso_comum": "Ruínas baixas, porões, pontes, vilarejos ribeirinhos e cavernas."
+  },
+  {
+    "id": "amaldicoado",
+    "label": "Amaldiçoado",
+    "descricao": "Uma maldição local altera sorte, sonhos, colheitas, nascimentos, memória ou descanso.",
+    "uso_comum": "Templos, tumbas, casas nobres, campos de batalha e círculos de pedra."
+  },
+  {
+    "id": "assombrado",
+    "label": "Assombrado",
+    "descricao": "Presenças, vozes, ecos ou aparições repetem eventos antigos ou protegem algo esquecido.",
+    "uso_comum": "Ruínas, estradas antigas, pousadas, torres, cemitérios e campos de batalha."
+  },
+  {
+    "id": "contaminado",
+    "label": "Contaminado",
+    "descricao": "Ar, água, solo ou alimento estão corrompidos por doença, alquimia, veneno ou magia.",
+    "uso_comum": "Pântanos, minas, laboratórios, poços e assentamentos isolados."
+  },
+  {
+    "id": "consagrado",
+    "label": "Consagrado",
+    "descricao": "O local foi santificado por culto, juramento, sacrifício ou milagre antigo.",
+    "uso_comum": "Santuários, fontes, bosques, templos e marcos de peregrinação."
+  },
+  {
+    "id": "congelado",
+    "label": "Congelado",
+    "descricao": "Gelo, geada ou frio sobrenatural paralisou parte do local.",
+    "uso_comum": "Pontes, lagos, cavernas, torres e ruínas em regiões frias."
+  },
+  {
+    "id": "tomado_pela_natureza",
+    "label": "Tomado pela Natureza",
+    "descricao": "Raízes, cipós, fungos, animais ou árvores retomaram o espaço.",
+    "uso_comum": "Cidades antigas, estradas, templos, fortalezas e observatórios."
+  },
+  {
+    "id": "em_cerco",
+    "label": "Em Cerco",
+    "descricao": "O local está cercado ou pressionado por inimigos, monstros, dívida, fome ou facção rival.",
+    "uso_comum": "Aldeias, torres, fortalezas, minas e acampamentos."
+  },
+  {
+    "id": "em_quarentena",
+    "label": "Em Quarentena",
+    "descricao": "Ninguém entra ou sai sem risco, autorização ou violência.",
+    "uso_comum": "Vilarejos, mosteiros, navios encalhados e fortalezas."
+  },
+  {
+    "id": "em_reforma",
+    "label": "Em Reforma",
+    "descricao": "Construtores, artesãos ou servos tentam recuperar o local enquanto ele ainda funciona mal.",
+    "uso_comum": "Pontes, templos, estalagens, postos e torres."
+  },
+  {
+    "id": "em_reconstrucao",
+    "label": "Em Reconstrução",
+    "descricao": "O local foi destruído ou abandonado e agora está sendo erguido outra vez.",
+    "uso_comum": "Aldeias, muralhas, fortalezas, mercados e portos."
+  },
+  {
+    "id": "incendiado",
+    "label": "Incendiado",
+    "descricao": "Queimadas recentes deixaram fumaça, cinzas, brasas e estruturas frágeis.",
+    "uso_comum": "Florestas, acampamentos, vilas, armazéns e torres."
+  },
+  {
+    "id": "infestado",
+    "label": "Infestado",
+    "descricao": "Pragas, vermes, insetos, ratos, fungos ou criaturas pequenas dominam passagens e depósitos.",
+    "uso_comum": "Minas, celeiros, ruínas, esgotos e cavernas."
+  },
+  {
+    "id": "instavel",
+    "label": "Instável",
+    "descricao": "O terreno ou estrutura pode ceder, desabar, mudar de lugar ou reagir a sons e peso.",
+    "uso_comum": "Pontes, minas, falésias, ruínas, túneis e torres."
+  },
+  {
+    "id": "interditado",
+    "label": "Interditado",
+    "descricao": "Autoridade local, tabu religioso ou perigo visível proíbe a entrada.",
+    "uso_comum": "Templos, arquivos, pontes, portos, minas e zonas contaminadas."
+  },
+  {
+    "id": "lacrado",
+    "label": "Lacrado",
+    "descricao": "Portas, portões, selos ou barreiras impedem acesso normal.",
+    "uso_comum": "Tumbas, cofres, templos, portais, torres e fortalezas."
+  },
+  {
+    "id": "patrulhado",
+    "label": "Patrulhado",
+    "descricao": "Guardas, caçadores, batedores, espíritos ou monstros percorrem rotas regulares.",
+    "uso_comum": "Estradas, fronteiras, fortalezas, minas e bosques sagrados."
+  },
+  {
+    "id": "profanado",
+    "label": "Profanado",
+    "descricao": "Símbolos foram violados, túmulos abertos ou rituais corrompidos.",
+    "uso_comum": "Templos, cemitérios, santuários e marcos sagrados."
+  },
+  {
+    "id": "saqueado",
+    "label": "Saqueado",
+    "descricao": "Alguém chegou antes; resta bagunça, rastros, armadilhas deixadas para trás e talvez algo esquecido.",
+    "uso_comum": "Caravanas, tumbas, ruínas, armazéns e casas nobres."
+  },
+  {
+    "id": "selado",
+    "label": "Selado",
+    "descricao": "O local foi fechado para conter algo, preservar algo ou esconder uma verdade.",
+    "uso_comum": "Portais, poços, ruínas arcanas, prisões e criptas."
+  },
+  {
+    "id": "soterrado",
+    "label": "Soterrado",
+    "descricao": "Terra, neve, areia, cinzas ou pedras cobrem parte do ponto de interesse.",
+    "uso_comum": "Estradas, ruínas, entradas de caverna, tumbas e torres derrubadas."
+  },
+  {
+    "id": "submerso",
+    "label": "Submerso",
+    "descricao": "O local está parcial ou totalmente abaixo d’água.",
+    "uso_comum": "Templos antigos, ruínas costeiras, pontes, vilas afundadas e cavernas."
+  },
+  {
+    "id": "em_festival",
+    "label": "Em Festival",
+    "descricao": "Música, mercado, peregrinos, comida, apostas ou ritos públicos enchem o local.",
+    "uso_comum": "Aldeias, feiras, santuários, tavernas e praças."
+  },
+  {
+    "id": "em_ritual",
+    "label": "Em Ritual",
+    "descricao": "Um rito está em andamento, prestes a começar ou acabou de terminar.",
+    "uso_comum": "Altares, círculos de pedra, templos, poços e clareiras."
+  },
+  {
+    "id": "evacuado",
+    "label": "Evacuado",
+    "descricao": "Os moradores saíram às pressas; ferramentas, comida e sinais de pânico ficaram para trás.",
+    "uso_comum": "Aldeias, minas, postos, portos e fazendas."
+  },
+  {
+    "id": "silencioso",
+    "label": "Silencioso",
+    "descricao": "Sons parecem morrer no local; isso pode ser natural, mágico ou sinal de predador.",
+    "uso_comum": "Bosques, ruínas, torres, campos de batalha e cavernas."
+  },
+  {
+    "id": "distorcido",
+    "label": "Distorcido",
+    "descricao": "Distâncias, sombras, ecos ou direções não se comportam direito.",
+    "uso_comum": "Lugares feéricos, mágicos, caóticos ou ligados a sonhos."
+  },
+  {
+    "id": "em_colapso",
+    "label": "Em Colapso",
+    "descricao": "A estrutura está cedendo agora ou pode ruir durante exploração.",
+    "uso_comum": "Pontes, minas, torres, muralhas, templos e cavernas."
+  },
+  {
+    "id": "ocupacao_recente",
+    "label": "Ocupação Recente",
+    "descricao": "Alguém acabou de ocupar o local e ainda está montando defesas, rotinas e estoque.",
+    "uso_comum": "Ruínas, fortes, cavernas, torres e vilas abandonadas."
+  },
+  {
+    "id": "reivindicado",
+    "label": "Reivindicado",
+    "descricao": "Uma facção marcou posse por bandeiras, inscrições, totens, tributos ou patrulhas.",
+    "uso_comum": "Qualquer POI com valor estratégico."
+  },
+  {
+    "id": "sem_luz",
+    "label": "Sem Luz",
+    "descricao": "Escuridão natural ou sobrenatural domina o lugar, mesmo em pleno dia.",
+    "uso_comum": "Cavernas, bosques, templos, torres e ruínas arcanas."
+  },
+  {
+    "id": "vigiado_a_distancia",
+    "label": "Vigiado à Distância",
+    "descricao": "O local parece vazio, mas alguém observa de longe por batedores, magia ou animais treinados.",
+    "uso_comum": "Fronteiras, ruínas, caminhos, pontes e covis."
+  }
+]

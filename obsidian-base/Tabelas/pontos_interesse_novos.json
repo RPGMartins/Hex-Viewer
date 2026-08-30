@@ -1,0 +1,499 @@
+[
+  {
+    "id": "aldeia_isolada",
+    "label": "Aldeia Isolada",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Ativo, Em Quarentena, Evacuado, Em Festival, Em Cerco",
+    "descricao": "Pequena comunidade fora das rotas principais, dependente de uma fonte, colheita, culto ou pacto local."
+  },
+  {
+    "id": "acampamento_de_caravanas",
+    "label": "Acampamento de Caravanas",
+    "categoria": "estrada",
+    "estados_sugeridos": "Ativo, Saqueado, Patrulhado, Ocupação Recente",
+    "descricao": "Clareira ou pátio usado por viajantes, com marcas de rodas, fogueiras antigas e rumores frescos."
+  },
+  {
+    "id": "acampamento_de_cacadores",
+    "label": "Acampamento de Cacadores",
+    "categoria": "natureza",
+    "estados_sugeridos": "Ativo, Abandonado, Patrulhado, Assombrado",
+    "descricao": "Abrigo simples de caçadores, batedores ou mateiros, cheio de rastros, peles e mapas rústicos."
+  },
+  {
+    "id": "acampamento_de_mercenarios",
+    "label": "Acampamento de Mercenarios",
+    "categoria": "militar",
+    "estados_sugeridos": "Ativo, Em Cerco, Ocupação Recente, Saqueado",
+    "descricao": "Tendas disciplinadas, estacas defensivas e gente armada esperando pagamento ou contrato."
+  },
+  {
+    "id": "aqueduto_quebrado",
+    "label": "Aqueduto Quebrado",
+    "categoria": "ruina",
+    "estados_sugeridos": "Arruinado, Alagado, Tomado pela Natureza, Instável",
+    "descricao": "Obra antiga conduzindo água de lugar nenhum para lugar nenhum, ainda útil como ponte ou esconderijo."
+  },
+  {
+    "id": "arena_antiga",
+    "label": "Arena Antiga",
+    "categoria": "ruina",
+    "estados_sugeridos": "Arruinado, Assombrado, Ocupado, Em Festival",
+    "descricao": "Anfiteatro de pedra onde lutas, julgamentos ou sacrifícios aconteciam diante de multidões."
+  },
+  {
+    "id": "arvore_sagrada",
+    "label": "Arvore Sagrada",
+    "categoria": "natureza",
+    "estados_sugeridos": "Consagrado, Profanado, Guardado, Amaldiçoado",
+    "descricao": "Árvore colossal ligada a juramentos, curas, espíritos locais ou fronteiras invisíveis."
+  },
+  {
+    "id": "arquivo_soterrado",
+    "label": "Arquivo Soterrado",
+    "categoria": "ruina",
+    "estados_sugeridos": "Soterrado, Lacrado, Saqueado, Sem Luz",
+    "descricao": "Salas de pedra cobertas por terra ou cinza, guardando registros, mapas, dívidas e nomes esquecidos."
+  },
+  {
+    "id": "barragem_antiga",
+    "label": "Barragem Antiga",
+    "categoria": "estrutura",
+    "estados_sugeridos": "Instável, Alagado, Patrulhado, Em Reforma",
+    "descricao": "Muralha hidráulica que controla um rio, lago ou inundação que alguém prefere manter presa."
+  },
+  {
+    "id": "barricada_de_estrada",
+    "label": "Barricada de Estrada",
+    "categoria": "estrada",
+    "estados_sugeridos": "Ativo, Patrulhado, Abandonado, Em Cerco",
+    "descricao": "Bloqueio improvisado com troncos, carroças, pedras e gente querendo cobrar, fugir ou impedir passagem."
+  },
+  {
+    "id": "biblioteca_queimada",
+    "label": "Biblioteca Queimada",
+    "categoria": "ruina",
+    "estados_sugeridos": "Incendiado, Arruinado, Saqueado, Assombrado",
+    "descricao": "Restos de um arquivo consumido por fogo, com páginas negras e salas onde uma verdade escapou por pouco."
+  },
+  {
+    "id": "bosque_de_pedras",
+    "label": "Bosque de Pedras",
+    "categoria": "natureza",
+    "estados_sugeridos": "Distorcido, Consagrado, Assombrado, Sem Luz",
+    "descricao": "Campo de menires naturais ou petrificados, formando corredores, ecos e alinhamentos estranhos."
+  },
+  {
+    "id": "casa_de_pedagio",
+    "label": "Casa de Pedagio",
+    "categoria": "estrada",
+    "estados_sugeridos": "Ativo, Saqueado, Ocupado, Reivindicado",
+    "descricao": "Posto estreito em ponte, estrada ou desfiladeiro, feito para cobrar passagem e registrar viajantes."
+  },
+  {
+    "id": "casa_de_eremita",
+    "label": "Casa de Eremita",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Ativo, Abandonado, Oculto, Amaldiçoado",
+    "descricao": "Cabana fora do mundo, onde alguém vive por fé, culpa, estudo, exílio ou medo."
+  },
+  {
+    "id": "casa_que_anda",
+    "label": "Casa que Anda",
+    "categoria": "sobrenatural",
+    "estados_sugeridos": "Distorcido, Assombrado, Oculto, Amaldiçoado",
+    "descricao": "Moradia que nunca está exatamente no mesmo lugar e parece seguir regras próprias."
+  },
+  {
+    "id": "cemiterio_esquecido",
+    "label": "Cemiterio Esquecido",
+    "categoria": "funerario",
+    "estados_sugeridos": "Assombrado, Profanado, Tomado pela Natureza, Consagrado",
+    "descricao": "Sepulturas cobertas de mato, nomes gastos e oferendas deixadas por quem ainda lembra."
+  },
+  {
+    "id": "circulo_de_pedras",
+    "label": "Circulo de Pedras",
+    "categoria": "sobrenatural",
+    "estados_sugeridos": "Em Ritual, Consagrado, Distorcido, Guardado",
+    "descricao": "Pedras erguidas em padrão antigo, úteis para ritos, mapas celestes ou passagens sazonais."
+  },
+  {
+    "id": "clareira_das_bruxas",
+    "label": "Clareira das Bruxas",
+    "categoria": "sobrenatural",
+    "estados_sugeridos": "Em Ritual, Amaldiçoado, Oculto, Sem Luz",
+    "descricao": "Clareira onde ervas, ossos, máscaras e árvores marcadas denunciam práticas proibidas."
+  },
+  {
+    "id": "covil_de_bandidos",
+    "label": "Covil de Bandidos",
+    "categoria": "perigo",
+    "estados_sugeridos": "Ativo, Ocupado, Patrulhado, Saqueado",
+    "descricao": "Abrigo de criminosos com vigias, reféns, mercadorias roubadas e rotas de fuga."
+  },
+  {
+    "id": "covil_de_fera",
+    "label": "Covil de Fera",
+    "categoria": "perigo",
+    "estados_sugeridos": "Ativo, Infestado, Soterrado, Sem Luz",
+    "descricao": "Ninho, toca ou antro de uma criatura dominante, cercado por ossos, cheiro e território marcado."
+  },
+  {
+    "id": "cratera_recente",
+    "label": "Cratera Recente",
+    "categoria": "natureza",
+    "estados_sugeridos": "Instável, Contaminado, Sem Luz, Guardado",
+    "descricao": "Buraco aberto por meteoro, explosão, queda divina ou experimento; algo ainda pode estar quente no fundo."
+  },
+  {
+    "id": "cruzamento_de_ossos",
+    "label": "Cruzamento de Ossos",
+    "categoria": "estrada",
+    "estados_sugeridos": "Assombrado, Amaldiçoado, Vigiado à Distância, Saqueado",
+    "descricao": "Encontro de trilhas marcado por ossos, totens, avisos e escolhas ruins."
+  },
+  {
+    "id": "docas_fluviais",
+    "label": "Docas Fluviais",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Ativo, Alagado, Saqueado, Em Quarentena",
+    "descricao": "Pequeno cais de rio usado para carga, pesca, contrabando e notícias vindas de longe."
+  },
+  {
+    "id": "entrada_de_submundo",
+    "label": "Entrada de Submundo",
+    "categoria": "sobrenatural",
+    "estados_sugeridos": "Lacrado, Sem Luz, Guardado, Profanado",
+    "descricao": "Fenda, escadaria ou portão que desce para camadas antigas e perigosas do mundo."
+  },
+  {
+    "id": "estacao_de_mensageiros",
+    "label": "Estacao de Mensageiros",
+    "categoria": "estrada",
+    "estados_sugeridos": "Ativo, Evacuado, Saqueado, Patrulhado",
+    "descricao": "Posto com cavalos, pombos, sinos ou placas de rota para transmitir notícias rápidas."
+  },
+  {
+    "id": "estalagem_de_estrada",
+    "label": "Estalagem de Estrada",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Ativo, Ocupado, Saqueado, Em Festival",
+    "descricao": "Pouso entre perigos, bom para rumores, dívidas, emboscadas, refeições quentes e desaparecimentos."
+  },
+  {
+    "id": "estatua_colossal",
+    "label": "Estatua Colossal",
+    "categoria": "ruina",
+    "estados_sugeridos": "Arruinado, Consagrado, Profanado, Distorcido",
+    "descricao": "Figura gigante caída ou parcialmente enterrada, visível a quilômetros e coberta de marcas antigas."
+  },
+  {
+    "id": "fazenda_fortificada",
+    "label": "Fazenda Fortificada",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Ativo, Em Cerco, Evacuado, Reivindicado",
+    "descricao": "Propriedade rural com paliçada, celeiros e moradores acostumados a se defender."
+  },
+  {
+    "id": "feira_itinerante",
+    "label": "Feira Itinerante",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Em Festival, Ativo, Ocupação Recente, Vigiado à Distância",
+    "descricao": "Tendas, carroças e vendedores que surgem por poucos dias, levando mercadorias e problemas."
+  },
+  {
+    "id": "fenda_fumegante",
+    "label": "Fenda Fumegante",
+    "categoria": "natureza",
+    "estados_sugeridos": "Contaminado, Instável, Sem Luz, Consagrado",
+    "descricao": "Rachadura quente no solo, soltando vapor, cheiro mineral e talvez vozes de baixo."
+  },
+  {
+    "id": "forja_abandonada",
+    "label": "Forja Abandonada",
+    "categoria": "estrutura",
+    "estados_sugeridos": "Abandonado, Saqueado, Incendiado, Assombrado",
+    "descricao": "Oficina fria com bigornas, moldes e metal incompleto deixado por ferreiros desaparecidos."
+  },
+  {
+    "id": "fonte_de_aguas_negras",
+    "label": "Fonte de Aguas Negras",
+    "categoria": "natureza",
+    "estados_sugeridos": "Contaminado, Amaldiçoado, Consagrado, Guardado",
+    "descricao": "Nascente escura que cura, envenena, mostra memórias ou cobra preço por cada gole."
+  },
+  {
+    "id": "granja_de_corvos",
+    "label": "Granja de Corvos",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Ativo, Assombrado, Ocupado, Silencioso",
+    "descricao": "Lugar onde corvos são criados, alimentados ou venerados; alguns parecem entender demais."
+  },
+  {
+    "id": "jardim_petrificado",
+    "label": "Jardim Petrificado",
+    "categoria": "ruina",
+    "estados_sugeridos": "Distorcido, Amaldiçoado, Consagrado, Tomado pela Natureza",
+    "descricao": "Jardim onde plantas, animais ou pessoas foram transformados em pedra."
+  },
+  {
+    "id": "laboratorio_alquimico",
+    "label": "Laboratorio Alquimico",
+    "categoria": "sobrenatural",
+    "estados_sugeridos": "Contaminado, Saqueado, Instável, Em Reforma",
+    "descricao": "Bancadas, frascos, odores fortes e resultados que ninguém deveria misturar de novo."
+  },
+  {
+    "id": "lago_negro",
+    "label": "Lago Negro",
+    "categoria": "natureza",
+    "estados_sugeridos": "Submerso, Amaldiçoado, Sem Luz, Guardado",
+    "descricao": "Água escura e parada, refletindo coisas que não estão no céu."
+  },
+  {
+    "id": "marco_de_fronteira",
+    "label": "Marco de Fronteira",
+    "categoria": "estrada",
+    "estados_sugeridos": "Reivindicado, Profanado, Patrulhado, Distorcido",
+    "descricao": "Pedra, torre baixa ou árvore marcada dividindo terras, leis e perigos."
+  },
+  {
+    "id": "mercado_feerico",
+    "label": "Mercado Feerico",
+    "categoria": "sobrenatural",
+    "estados_sugeridos": "Em Festival, Distorcido, Oculto, Vigiado à Distância",
+    "descricao": "Bancas impossíveis onde promessas, memórias, nomes e favores podem valer mais que ouro."
+  },
+  {
+    "id": "mina_ativa",
+    "label": "Mina Ativa",
+    "categoria": "estrutura",
+    "estados_sugeridos": "Ativo, Patrulhado, Contaminado, Em Cerco",
+    "descricao": "Escavação produtiva, cheia de trabalhadores, guardas, conflito de propriedade e riscos subterrâneos."
+  },
+  {
+    "id": "mina_exaurida",
+    "label": "Mina Exaurida",
+    "categoria": "estrutura",
+    "estados_sugeridos": "Abandonado, Soterrado, Infestado, Sem Luz",
+    "descricao": "Galerias sem minério útil, mas com túneis, ecos e gente que ainda procura algo."
+  },
+  {
+    "id": "moinho_de_agua",
+    "label": "Moinho de Agua",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Ativo, Alagado, Saqueado, Tomado pela Natureza",
+    "descricao": "Moinho em rio ou canal, essencial para uma vila e vulnerável a sabotagem."
+  },
+  {
+    "id": "moinho_de_vento",
+    "label": "Moinho de Vento",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Ativo, Instável, Abandonado, Assombrado",
+    "descricao": "Estrutura alta que range ao vento e serve como marco, moradia ou sinal."
+  },
+  {
+    "id": "monolito_rachado",
+    "label": "Monolito Rachado",
+    "categoria": "sobrenatural",
+    "estados_sugeridos": "Distorcido, Consagrado, Profanado, Selado",
+    "descricao": "Pedra vertical partida, gravada com sinais que mudam com estação, lua ou sangue."
+  },
+  {
+    "id": "mosteiro_remoto",
+    "label": "Mosteiro Remoto",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Consagrado, Em Quarentena, Em Ritual, Saqueado",
+    "descricao": "Comunidade religiosa isolada, guardando votos, livros, relíquias ou pecados."
+  },
+  {
+    "id": "muralha_ciclopica",
+    "label": "Muralha Ciclopica",
+    "categoria": "ruina",
+    "estados_sugeridos": "Arruinado, Reivindicado, Patrulhado, Instável",
+    "descricao": "Trecho de muralha enorme demais para mãos humanas comuns, hoje quebrado e disputado."
+  },
+  {
+    "id": "nascente_termal",
+    "label": "Nascente Termal",
+    "categoria": "natureza",
+    "estados_sugeridos": "Ativo, Consagrado, Contaminado, Em Festival",
+    "descricao": "Fonte quente usada para cura, descanso, culto ou extração mineral."
+  },
+  {
+    "id": "navio_encalhado",
+    "label": "Navio Encalhado",
+    "categoria": "estrutura",
+    "estados_sugeridos": "Saqueado, Submerso, Assombrado, Em Quarentena",
+    "descricao": "Casco preso em rio, costa, pântano ou até terra seca por eventos antigos."
+  },
+  {
+    "id": "ninho_colossal",
+    "label": "Ninho Colossal",
+    "categoria": "natureza",
+    "estados_sugeridos": "Ativo, Guardado, Abandonado, Infestado",
+    "descricao": "Ninho grande o bastante para ser visto de longe, com ovos, restos ou dono ciumento."
+  },
+  {
+    "id": "observatorio_arruinado",
+    "label": "Observatorio Arruinado",
+    "categoria": "ruina",
+    "estados_sugeridos": "Arruinado, Distorcido, Tomado pela Natureza, Vigiado à Distância",
+    "descricao": "Cúpula quebrada e instrumentos celestes apontados para algo que talvez esteja voltando."
+  },
+  {
+    "id": "olaria",
+    "label": "Olaria",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Ativo, Incendiado, Abandonado, Ocupação Recente",
+    "descricao": "Fornos de barro, tijolos, telhas e marcas de trabalho que podem abastecer uma vila inteira."
+  },
+  {
+    "id": "ossario",
+    "label": "Ossario",
+    "categoria": "funerario",
+    "estados_sugeridos": "Profanado, Consagrado, Assombrado, Lacrado",
+    "descricao": "Depósito de ossos organizado por rito, família, guerra ou necessidade."
+  },
+  {
+    "id": "pedreira",
+    "label": "Pedreira",
+    "categoria": "estrutura",
+    "estados_sugeridos": "Ativo, Instável, Soterrado, Ocupado",
+    "descricao": "Corte aberto na rocha, cheio de rampas, poeira, ferramentas e disputas por material."
+  },
+  {
+    "id": "ponte_coberta",
+    "label": "Ponte Coberta",
+    "categoria": "estrada",
+    "estados_sugeridos": "Ativo, Instável, Patrulhado, Amaldiçoado",
+    "descricao": "Ponte de madeira fechada, ótima para pedágios, encontros secretos e emboscadas."
+  },
+  {
+    "id": "ponte_rompida",
+    "label": "Ponte Rompida",
+    "categoria": "estrada",
+    "estados_sugeridos": "Arruinado, Alagado, Em Reforma, Instável",
+    "descricao": "Travessia quebrada que força desvio, improviso ou negociação com quem controla a passagem."
+  },
+  {
+    "id": "porto_de_balsa",
+    "label": "Porto de Balsa",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Ativo, Saqueado, Em Quarentena, Alagado",
+    "descricao": "Ponto de travessia com barqueiros, correntes, cabos e cobrança."
+  },
+  {
+    "id": "portal_rachado",
+    "label": "Portal Rachado",
+    "categoria": "sobrenatural",
+    "estados_sugeridos": "Selado, Distorcido, Guardado, Em Ritual",
+    "descricao": "Arco ou círculo incompleto que às vezes mostra outro lugar em vez do outro lado."
+  },
+  {
+    "id": "posto_de_vigia",
+    "label": "Posto de Vigia",
+    "categoria": "militar",
+    "estados_sugeridos": "Ativo, Abandonado, Patrulhado, Vigiado à Distância",
+    "descricao": "Torre ou plataforma pequena usada para observar estrada, vale, rio ou fronteira."
+  },
+  {
+    "id": "poco_sem_fundo",
+    "label": "Poco Sem Fundo",
+    "categoria": "sobrenatural",
+    "estados_sugeridos": "Lacrado, Sem Luz, Assombrado, Contaminado",
+    "descricao": "Poço que devolve ecos longos demais e aceita coisas que nunca voltam."
+  },
+  {
+    "id": "queda_d_agua_escondida",
+    "label": "Queda d'Agua Escondida",
+    "categoria": "natureza",
+    "estados_sugeridos": "Oculto, Consagrado, Alagado, Guardado",
+    "descricao": "Cachoeira fora da trilha, escondendo caverna, altar, passagem ou recurso raro."
+  },
+  {
+    "id": "relogio_solar_impossivel",
+    "label": "Relogio Solar Impossivel",
+    "categoria": "sobrenatural",
+    "estados_sugeridos": "Distorcido, Consagrado, Lacrado, Vigiado à Distância",
+    "descricao": "Relógio que marca horas que não existem, eclipses antigos ou dias futuros."
+  },
+  {
+    "id": "refugio_de_contrabandistas",
+    "label": "Refugio de Contrabandistas",
+    "categoria": "perigo",
+    "estados_sugeridos": "Oculto, Ativo, Saqueado, Ocupação Recente",
+    "descricao": "Depósito escondido para carga ilegal, rotas de fuga e acordos em voz baixa."
+  },
+  {
+    "id": "serraria",
+    "label": "Serraria",
+    "categoria": "civilizacao",
+    "estados_sugeridos": "Ativo, Tomado pela Natureza, Saqueado, Incendiado",
+    "descricao": "Instalação de corte de madeira, útil para construção, comércio e desmatamento perigoso."
+  },
+  {
+    "id": "torre_de_sinal",
+    "label": "Torre de Sinal",
+    "categoria": "militar",
+    "estados_sugeridos": "Ativo, Abandonado, Em Reforma, Patrulhado",
+    "descricao": "Torre com fogueira, sino, espelhos ou bandeiras para alertar assentamentos distantes."
+  },
+  {
+    "id": "torre_de_bruxo",
+    "label": "Torre de Bruxo",
+    "categoria": "sobrenatural",
+    "estados_sugeridos": "Ocupado, Distorcido, Lacrado, Assombrado",
+    "descricao": "Construção estreita cheia de marcas arcanas, experimentos, servos e janelas fora do lugar."
+  },
+  {
+    "id": "trincheiras_antigas",
+    "label": "Trincheiras Antigas",
+    "categoria": "ruina",
+    "estados_sugeridos": "Arruinado, Assombrado, Soterrado, Infestado",
+    "descricao": "Linhas de guerra cobertas por terra, armas velhas e histórias que ninguém venceu."
+  },
+  {
+    "id": "tumba_de_santo",
+    "label": "Tumba de Santo",
+    "categoria": "funerario",
+    "estados_sugeridos": "Consagrado, Profanado, Guardado, Em Festival",
+    "descricao": "Sepultura venerada por peregrinos, curandeiros, ladrões de relíquias e fanáticos."
+  },
+  {
+    "id": "tumba_real",
+    "label": "Tumba Real",
+    "categoria": "funerario",
+    "estados_sugeridos": "Lacrado, Saqueado, Assombrado, Guardado",
+    "descricao": "Sepultura de linhagem importante, com símbolos de poder e dívidas de sangue."
+  },
+  {
+    "id": "tunel_de_fuga",
+    "label": "Tunel de Fuga",
+    "categoria": "estrutura",
+    "estados_sugeridos": "Oculto, Soterrado, Patrulhado, Sem Luz",
+    "descricao": "Passagem secreta entre lugares importantes, hoje esquecida, ocupada ou parcialmente caída."
+  },
+  {
+    "id": "vale_dos_ecos",
+    "label": "Vale dos Ecos",
+    "categoria": "natureza",
+    "estados_sugeridos": "Distorcido, Silencioso, Assombrado, Vigiado à Distância",
+    "descricao": "Vale onde vozes viajam longe demais ou voltam com palavras que ninguém disse."
+  },
+  {
+    "id": "viveiro_de_monstros",
+    "label": "Viveiro de Monstros",
+    "categoria": "perigo",
+    "estados_sugeridos": "Ativo, Infestado, Contaminado, Ocupado",
+    "descricao": "Cercado, caverna ou laboratório usado para criar, prender ou cruzar criaturas."
+  },
+  {
+    "id": "zona_de_naufragios",
+    "label": "Zona de Naufragios",
+    "categoria": "natureza",
+    "estados_sugeridos": "Submerso, Saqueado, Assombrado, Contaminado",
+    "descricao": "Trecho de costa, rio ou pântano onde embarcações se perdem com frequência suspeita."
+  }
+]
