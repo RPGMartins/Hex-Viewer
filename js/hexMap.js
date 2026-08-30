@@ -19,13 +19,19 @@ export class hexMap
 
         this.colunaInicial = colunaInicial;
         this.linhaInicial = linhaInicial;
-
         this.larguraHex = larguraHex;
         this.alturaHex = alturaHex;
 
         this.hexData = hexData ?? [];
         this.config = config ?? {};
         this.onHexSelecionado = onHexSelecionado;
+
+        this.margemRotulos = {
+            topo: 34,
+            esquerda: 42,
+            direita: 12,
+            baixo: 12
+        };
 
         this.hexes = new Map();
         this.element = this.criarElemento();
@@ -46,16 +52,20 @@ export class hexMap
         this.hexLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
         this.connectionLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
         this.iconLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        this.coordinateLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
         this.hexLayer.setAttribute("id", "hex-layer");
         this.connectionLayer.setAttribute("id", "connection-layer");
         this.iconLayer.setAttribute("id", "icon-layer");
+        this.coordinateLayer.setAttribute("id", "coordinate-layer");
 
         this.iconLayer.setAttribute("pointer-events", "none");
+        this.coordinateLayer.setAttribute("pointer-events", "none");
 
         svg.appendChild(this.hexLayer);
         svg.appendChild(this.connectionLayer);
         svg.appendChild(this.iconLayer);
+        svg.appendChild(this.coordinateLayer);
 
         return svg;
     }
@@ -64,6 +74,7 @@ export class hexMap
     {
         const espacamentoX = this.larguraHex * 0.75;
         const espacamentoY = this.alturaHex;
+        const colunaInicialNumero = this.converterLetrasParaNumero(this.colunaInicial);
 
         const hexDataPorId = new Map(
             (hexData ?? [])
@@ -75,12 +86,11 @@ export class hexMap
         {
             for (let coluna = 0; coluna < this.quantidadeColunas; coluna++)
             {
-                const letraColuna = String.fromCharCode(this.colunaInicial.charCodeAt(0) + coluna);
+                const letraColuna = this.converterNumeroParaLetras(colunaInicialNumero + coluna);
                 const numeroLinha = this.linhaInicial + linha;
                 const id = `${letraColuna}${numeroLinha}`;
 
                 const tempHex = new hex(id, this.larguraHex, this.alturaHex);
-
                 const x = coluna * espacamentoX;
                 const y = linha * espacamentoY + (coluna % 2) * (this.alturaHex * 0.5);
 
@@ -91,7 +101,6 @@ export class hexMap
                 tempHex.receberData(dadosHex, x, y, onClick, this.config);
 
                 this.hexLayer.appendChild(tempHex.element);
-
                 if (tempHex.iconElement != null)
                 {
                     this.iconLayer.appendChild(tempHex.iconElement);
@@ -99,17 +108,76 @@ export class hexMap
             }
         }
 
-        const larguraMapa = this.larguraHex + (this.quantidadeColunas - 1) * espacamentoX;
-        const alturaMapa = this.alturaHex * this.quantidadeLinhas + this.alturaHex * 0.5;
+        const larguraMapaSemRotulos = this.larguraHex + (this.quantidadeColunas - 1) * espacamentoX;
+        const alturaMapaSemRotulos = this.alturaHex * this.quantidadeLinhas + this.alturaHex * 0.5;
 
-        this.larguraMapa = larguraMapa;
-        this.alturaMapa = alturaMapa;
+        this.larguraMapaSemRotulos = larguraMapaSemRotulos;
+        this.alturaMapaSemRotulos = alturaMapaSemRotulos;
 
-        this.element.setAttribute("width", larguraMapa);
-        this.element.setAttribute("height", alturaMapa);
-        this.element.setAttribute("viewBox", `0 0 ${larguraMapa} ${alturaMapa}`);
+        this.larguraMapa = larguraMapaSemRotulos + this.margemRotulos.esquerda + this.margemRotulos.direita;
+        this.alturaMapa = alturaMapaSemRotulos + this.margemRotulos.topo + this.margemRotulos.baixo;
+
+        this.element.setAttribute("width", this.larguraMapa);
+        this.element.setAttribute("height", this.alturaMapa);
+        this.element.setAttribute(
+            "viewBox",
+            `${-this.margemRotulos.esquerda} ${-this.margemRotulos.topo} ${this.larguraMapa} ${this.alturaMapa}`
+        );
         this.element.setAttribute("preserveAspectRatio", "xMidYMid meet");
         this.element.classList.add("hex-map-svg");
+
+        this.desenharRotulosCoordenadas(espacamentoX, espacamentoY);
+    }
+
+    desenharRotulosCoordenadas(espacamentoX, espacamentoY)
+    {
+        this.coordinateLayer.innerHTML = "";
+
+        const colunaInicialNumero = this.converterLetrasParaNumero(this.colunaInicial);
+        const tamanhoFonte = Math.max(14, Math.round(Math.min(this.larguraHex, this.alturaHex) * 0.12));
+
+        for (let coluna = 0; coluna < this.quantidadeColunas; coluna++)
+        {
+            const letraColuna = this.converterNumeroParaLetras(colunaInicialNumero + coluna);
+            const x = coluna * espacamentoX + this.larguraHex * 0.5;
+            const y = -this.margemRotulos.topo * 0.48;
+
+            this.coordinateLayer.appendChild(
+                this.criarRotuloCoordenada(letraColuna, x, y, tamanhoFonte)
+            );
+        }
+
+        for (let linha = 0; linha < this.quantidadeLinhas; linha++)
+        {
+            const numeroLinha = this.linhaInicial + linha;
+            const x = -this.margemRotulos.esquerda * 0.48;
+            const y = linha * espacamentoY + this.alturaHex * 0.5;
+
+            this.coordinateLayer.appendChild(
+                this.criarRotuloCoordenada(String(numeroLinha), x, y, tamanhoFonte)
+            );
+        }
+    }
+
+    criarRotuloCoordenada(texto, x, y, tamanhoFonte)
+    {
+        const rotulo = document.createElementNS("http://www.w3.org/2000/svg", "text");
+
+        rotulo.textContent = texto;
+        rotulo.setAttribute("x", x);
+        rotulo.setAttribute("y", y);
+        rotulo.setAttribute("text-anchor", "middle");
+        rotulo.setAttribute("dominant-baseline", "middle");
+        rotulo.setAttribute("font-family", "Arial, sans-serif");
+        rotulo.setAttribute("font-size", tamanhoFonte);
+        rotulo.setAttribute("font-weight", "700");
+        rotulo.setAttribute("fill", "#f0d78c");
+        rotulo.setAttribute("stroke", "#000000");
+        rotulo.setAttribute("stroke-width", "4");
+        rotulo.setAttribute("paint-order", "stroke");
+        rotulo.classList.add("coordinate-label");
+
+        return rotulo;
     }
 
     criarDadosHexDesconhecido(id)
@@ -140,7 +208,6 @@ export class hexMap
         if (this.hexSelecionado != null)
         {
             this.hexSelecionado.desselecionar();
-
             if (this.visualizacaoAtual != null)
             {
                 this.hexSelecionado.aplicarVisualizacao(this.visualizacaoAtual);
@@ -176,7 +243,6 @@ export class hexMap
         }
 
         this.hexSelecionado = null;
-
         if (this.onHexSelecionado != null)
         {
             this.onHexSelecionado(null, null);
@@ -213,33 +279,46 @@ export class hexMap
 
         const letra = partes[1];
         const numero = Number(partes[2]);
-        const indiceColuna = letra.charCodeAt(0) - this.colunaInicial.charCodeAt(0);
+        const colunaAbsoluta = this.converterLetrasParaNumero(letra);
+        const colunaInicialAbsoluta = this.converterLetrasParaNumero(this.colunaInicial);
+        const indiceColuna = colunaAbsoluta - colunaInicialAbsoluta;
 
-        const letraAnterior = String.fromCharCode(letra.charCodeAt(0) - 1);
-        const letraProxima = String.fromCharCode(letra.charCodeAt(0) + 1);
+        const letraAnterior = colunaAbsoluta > 0
+            ? this.converterNumeroParaLetras(colunaAbsoluta - 1)
+            : null;
+
+        const letraProxima = this.converterNumeroParaLetras(colunaAbsoluta + 1);
+
+        const idDaColuna = (coluna, linha) =>
+        {
+            if (coluna == null)
+            {
+                return null;
+            }
+
+            return `${coluna}${linha}`;
+        };
 
         const colunaPar = indiceColuna % 2 === 0;
-
-        if (colunaPar)
-        {
-            return [
-                `${letraAnterior}${numero - 1}`,
-                `${letraAnterior}${numero}`,
+        const ids = colunaPar
+            ? [
+                idDaColuna(letraAnterior, numero - 1),
+                idDaColuna(letraAnterior, numero),
                 `${letra}${numero - 1}`,
                 `${letra}${numero + 1}`,
-                `${letraProxima}${numero - 1}`,
-                `${letraProxima}${numero}`
+                idDaColuna(letraProxima, numero - 1),
+                idDaColuna(letraProxima, numero)
+            ]
+            : [
+                idDaColuna(letraAnterior, numero),
+                idDaColuna(letraAnterior, numero + 1),
+                `${letra}${numero - 1}`,
+                `${letra}${numero + 1}`,
+                idDaColuna(letraProxima, numero),
+                idDaColuna(letraProxima, numero + 1)
             ];
-        }
 
-        return [
-            `${letraAnterior}${numero}`,
-            `${letraAnterior}${numero + 1}`,
-            `${letra}${numero - 1}`,
-            `${letra}${numero + 1}`,
-            `${letraProxima}${numero}`,
-            `${letraProxima}${numero + 1}`
-        ];
+        return ids.filter(item => item != null);
     }
 
     desenharTodasConexoes()
@@ -340,7 +419,6 @@ export class hexMap
         const configConexao = this.config?.conexoes?.[tipo];
 
         const linha = document.createElementNS("http://www.w3.org/2000/svg", "line");
-
         linha.setAttribute("x1", hexA.centroX);
         linha.setAttribute("y1", hexA.centroY);
         linha.setAttribute("x2", hexB.centroX);
@@ -350,7 +428,6 @@ export class hexMap
         linha.setAttribute("stroke-width", configConexao?.espessura ?? 4);
         linha.setAttribute("stroke-linecap", "round");
         linha.setAttribute("pointer-events", "none");
-
         linha.dataset.feature = tipo;
         linha.classList.add("connection-line");
         linha.classList.add(`connection-${tipo}`);
@@ -407,14 +484,37 @@ export class hexMap
     converterLetrasParaNumero(letras)
     {
         let numero = 0;
+        const texto = String(letras ?? "").toUpperCase();
 
-        for (let i = 0; i < letras.length; i++)
+        for (let i = 0; i < texto.length; i++)
         {
+            const codigo = texto.charCodeAt(i);
+
+            if (codigo < 65 || codigo > 90)
+            {
+                continue;
+            }
+
             numero *= 26;
-            numero += letras.charCodeAt(i) - 64;
+            numero += codigo - 64;
         }
 
-        return numero - 1;
+        return Math.max(numero - 1, 0);
+    }
+
+    converterNumeroParaLetras(numero)
+    {
+        let valor = Number(numero) + 1;
+        let letras = "";
+
+        while (valor > 0)
+        {
+            valor--;
+            letras = String.fromCharCode(65 + (valor % 26)) + letras;
+            valor = Math.floor(valor / 26);
+        }
+
+        return letras || "A";
     }
 
     encontrarRaiz(pais, id)
