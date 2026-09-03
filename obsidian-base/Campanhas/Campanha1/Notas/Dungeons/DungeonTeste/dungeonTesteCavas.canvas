@@ -1,0 +1,9 @@
+{
+	"nodes":[
+		{"id":"6010c78e64677310","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Entrada.md","x":-321,"y":-133,"width":181,"height":113},
+		{"id":"c3ee479158cfaf90","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Saida.md","x":-640,"y":40,"width":140,"height":80}
+	],
+	"edges":[
+		{"id":"17095515c4fd3acd","fromNode":"c3ee479158cfaf90","fromSide":"right","toNode":"6010c78e64677310","toSide":"left"}
+	]
+}

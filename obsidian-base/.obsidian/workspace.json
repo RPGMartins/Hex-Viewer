@@ -11,14 +11,17 @@
             "id": "4122bdb8eaa1d7c6",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "_Leia-me/Fluxo de uso.md",
-                "mode": "source",
-                "source": false
+                "file": "Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/dungeonTesteCavas.canvas",
+                "viewState": {
+                  "x": -230.5,
+                  "y": -76.5,
+                  "zoom": 0
+                }
               },
-              "icon": "lucide-file",
-              "title": "Fluxo de uso"
+              "icon": "lucide-layout-dashboard",
+              "title": "dungeonTesteCavas"
             }
           }
         ]
@@ -189,43 +192,44 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "cdae0488b8b8902a",
+  "active": "4122bdb8eaa1d7c6",
   "lastOpenFiles": [
-    "_Leia-me/README-CATALOGOS.md",
+    "Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Saida.md",
+    "Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/dungeonTesteCavas.canvas",
+    "Campanhas/Campanha1/Notas/Dungeons/DungeonTeste",
+    "Campanhas/Campanha1/Notas/Dungeons",
+    "Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Entrada.md",
+    "Campanhas/Campanha1/Notas/Sem título.canvas",
+    "Catalogos/Terrenos/Cerrado.md",
+    "Campanhas/Campanha1/Notas",
+    "Campanhas/Campanha1/Hexes/E3.md",
+    "Campanhas/Vale dos Sinos/Hexes/A1.md",
+    "Campanhas/Campanha1/Hexes/E5.md",
+    "Catalogos/Perigos/Arriscado.md",
+    "Campanhas/Campanha1/Hexes/E4.md",
+    "Campanhas/Campanha1/_campaign.md",
+    "Campanhas/Campanha1/Hexes/A3.md",
+    "Templates/Novo Perigo.md",
+    "Templates/Novo Estado de POI.md",
+    "Templates/Novo Controle de Faccao.md",
+    "Templates/Nova Relacao de Faccao.md",
+    "Templates/Nova Exploracao.md",
+    "Templates/Campanha.md",
+    "Templates/Abrir Exportador Hex Viewer.md",
+    "Classes/Hex.md",
+    "Campanhas/Campanha1/Hexes/A2.md",
     "Campanhas/Campanha1/Hexes/A1.md",
-    "_Leia-me",
+    "Campanhas/Campanha1/Hexes/A4.md",
     "_Leia-me/Fluxo de uso.md",
+    "_Leia-me/README-CATALOGOS.md",
+    "_Leia-me",
     "Campanhas/Vale dos Sinos/Hexes/A3.md",
     "Campanhas/Campanha1/Hexes/E1.md",
-    "Templates/Abrir Exportador Hex Viewer.md",
-    "Templates/Rodar Gerador Python de Hexes Vazios.md",
     "Exportado/data-mestre/_backups/20260830-000608/campanha-teste/hexes-public.json",
     "Exportado/data-mestre/_backups/20260830-000608/campanha-teste/hex-config.json",
     "Exportado/data-mestre/_backups/20260830-000608/campanha-teste",
     "Exportado/data-mestre/_backups/20260830-000608/campaigns.json",
     "Exportado/data-mestre/_backups/20260830-000608",
-    "Catalogos/Pontos de Interesse/Viveiro de Monstros.md",
-    "Catalogos/Pontos de Interesse/Trincheiras Antigas.md",
-    "Catalogos/Pontos de Interesse/Torre de Bruxo.md",
-    "Catalogos/Pontos de Interesse/Refugio de Contrabandistas.md",
-    "Catalogos/Pontos de Interesse/Posto de Vigia.md",
-    "Catalogos/Pontos de Interesse/Porto de Balsa.md",
-    "Catalogos/Pontos de Interesse/Pedreira.md",
-    "Catalogos/Pontos de Interesse/Granja de Corvos.md",
-    "Catalogos/Pontos de Interesse/Fonte de Aguas Negras.md",
-    "Catalogos/Pontos de Interesse/Fenda Fumegante.md",
-    "Catalogos/Pontos de Interesse/Feira Itinerante.md",
-    "Catalogos/Pontos de Interesse/Cruzamento de Ossos.md",
-    "Catalogos/Pontos de Interesse/Clareira das Bruxas.md",
-    "Catalogos/Pontos de Interesse/Casa de Eremita.md",
-    "Catalogos/Pontos de Interesse/Arena Antiga.md",
-    "Catalogos/Pontos de Interesse/Acampamento de Caravanas.md",
-    "Catalogos/Exploracoes/Desconhecido.md",
-    "Exportado/data-mestre/_backups/20260830-000249/campanha-teste/hexes-public.json",
-    "Exportado/data-mestre/_backups/20260830-000249/campanha-teste/hex-config.json",
-    "Exportado/data-mestre/_backups/20260830-000249/campanha-teste",
-    "Exportado/data-mestre/_backups/20260830-000249/campaigns.json",
-    "Campanhas/Campanha1/Hexes/D1.md",
-    "Campanhas/Campanha1/Hexes/E4.md"
+    "Exportado/data-mestre/_backups/20260830-000249/campanha-teste/hexes-public.json"
   ]
 }
