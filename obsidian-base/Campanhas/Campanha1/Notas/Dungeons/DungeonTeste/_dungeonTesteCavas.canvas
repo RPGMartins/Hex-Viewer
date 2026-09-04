@@ -1,0 +1,24 @@
+{
+	"nodes":[
+		{"id":"8cd8350dfd247739","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Saida Zona Anti-Magia.md","x":-1060,"y":-720,"width":400,"height":400},
+		{"id":"c935a7378afa15ae","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/NPC room.md","x":-2020,"y":800,"width":400,"height":400},
+		{"id":"0d1ce8d62ac87720","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Boss room.md","x":-2560,"y":100,"width":400,"height":400},
+		{"id":"1dbbba10ec30999c","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Fosso.md","x":-1200,"y":340,"width":400,"height":400},
+		{"id":"79dc978418a4c3ce","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Covil Grupo de monstros/Grupo De Monstros.md","x":-40,"y":340,"width":400,"height":400},
+		{"id":"612b2cbc4974aaea","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Armadilha toxica.md","x":-600,"y":-160,"width":400,"height":400}
+	],
+	"edges":[
+		{"id":"6ac492e961dc8e98","fromNode":"0d1ce8d62ac87720","fromSide":"right","toNode":"c935a7378afa15ae","toSide":"left"},
+		{"id":"3ec41fca3c8ea8dc","fromNode":"c935a7378afa15ae","fromSide":"right","toNode":"1dbbba10ec30999c","toSide":"left"},
+		{"id":"6e82c7aaa326ad50","fromNode":"1dbbba10ec30999c","fromSide":"right","toNode":"612b2cbc4974aaea","toSide":"left"},
+		{"id":"2aaddb355721ea96","fromNode":"1dbbba10ec30999c","fromSide":"right","toNode":"79dc978418a4c3ce","toSide":"left"},
+		{"id":"bb34ebd34cb4feb8","fromNode":"79dc978418a4c3ce","fromSide":"top","toNode":"612b2cbc4974aaea","toSide":"right"},
+		{"id":"e869bf54ee3d6a47","fromNode":"8cd8350dfd247739","fromSide":"right","toNode":"612b2cbc4974aaea","toSide":"top"},
+		{"id":"6f16a9b46af78a61","fromNode":"612b2cbc4974aaea","fromSide":"top","toNode":"8cd8350dfd247739","toSide":"right"},
+		{"id":"3f26f2ed30b2a4ec","fromNode":"612b2cbc4974aaea","fromSide":"left","toNode":"1dbbba10ec30999c","toSide":"right"},
+		{"id":"3594abe889a37b68","fromNode":"79dc978418a4c3ce","fromSide":"left","toNode":"1dbbba10ec30999c","toSide":"right"},
+		{"id":"1173d1c1bbcf1d15","fromNode":"612b2cbc4974aaea","fromSide":"right","toNode":"79dc978418a4c3ce","toSide":"top"},
+		{"id":"3a9dab47c356fac4","fromNode":"1dbbba10ec30999c","fromSide":"left","toNode":"c935a7378afa15ae","toSide":"right"},
+		{"id":"adfaa2ece47f300b","fromNode":"c935a7378afa15ae","fromSide":"left","toNode":"0d1ce8d62ac87720","toSide":"right"}
+	]
+}
