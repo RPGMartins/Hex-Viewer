@@ -1,0 +1,1 @@
+tem um rampa que leva de volta para o [[Fosso]], mas não é possivel de entender isso

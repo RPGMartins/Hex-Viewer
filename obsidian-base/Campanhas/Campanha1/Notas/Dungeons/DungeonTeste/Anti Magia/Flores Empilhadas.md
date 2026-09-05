@@ -1,0 +1,1 @@
+varias flores do [[Flor gigante]] empilhadas, elas emitem umas particulas no ar dessa sala, essa sala é anti-magia

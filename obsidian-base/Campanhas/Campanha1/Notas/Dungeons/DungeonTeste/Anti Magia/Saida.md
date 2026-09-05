@@ -1,0 +1,1 @@
+Um portão trancado com um cadeado top, se forem tentar destrancar leva 3 turnos e um teste de dificuldade 18

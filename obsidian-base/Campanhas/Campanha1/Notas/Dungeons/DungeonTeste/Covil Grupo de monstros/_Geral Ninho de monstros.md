@@ -1,0 +1,5 @@
+![[_Drawing 2026-09-04 19.46.59.excalidraw]]
+[[Grupo de vermes]]
+[[Ninho de Vermes]] 
+[[Pilha de escombros]]
+[[Escada trancada para a rua]]

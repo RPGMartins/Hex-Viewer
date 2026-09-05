@@ -1,0 +1,1 @@
+um andaime de madeira que pode se quebrar se sofrer um forte impacto ou algo similiar, o caminho ate o [[Covil de Fera]]

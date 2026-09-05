@@ -1,0 +1,1 @@
+uma tabua ligando o [[Andaime]] ao [[Covil]], ela está bem fragil, se o jogador estiver mais de 13 slots ocupados deve fazer um um teste 12 CD FOR para não quebrar ela , caso quebre teste CD 12 para saltar

@@ -1,0 +1,1 @@
+caso a correnteza esteja alta sao os unicos pontos que o jogador possa ficar na altura mais baixa
