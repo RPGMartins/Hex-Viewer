@@ -1,11 +1,11 @@
 {
 	"nodes":[
 		{"id":"8cd8350dfd247739","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Anti Magia/Saida Zona Anti-Magia.md","x":-1060,"y":-720,"width":400,"height":560},
-		{"id":"c935a7378afa15ae","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/NPC ROOM/_NPC room.md","x":-2020,"y":800,"width":400,"height":400},
-		{"id":"0d1ce8d62ac87720","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Boss room/Boss room.md","x":-2560,"y":100,"width":400,"height":540},
+		{"id":"c935a7378afa15ae","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/NPC ROOM/_NPC room.md","x":-2020,"y":800,"width":480,"height":560},
+		{"id":"0d1ce8d62ac87720","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Boss room/Boss room.md","x":-2740,"y":100,"width":580,"height":900},
 		{"id":"612b2cbc4974aaea","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Armadilha/Armadilha toxica.md","x":-600,"y":-160,"width":400,"height":460},
 		{"id":"79dc978418a4c3ce","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Covil Grupo de monstros/_Geral Ninho de monstros.md","x":160,"y":-160,"width":640,"height":660},
-		{"id":"1dbbba10ec30999c","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Fosso/Fosso.md","x":-1000,"y":640,"width":400,"height":480},
+		{"id":"1dbbba10ec30999c","type":"file","file":"Campanhas/Campanha1/Notas/Dungeons/DungeonTeste/Fosso/Fosso.md","x":-1140,"y":640,"width":540,"height":700},
 		{"id":"364ccf9c929d377e","type":"text","text":"1d4\n1,2,3 - agua muda de altura, calcanhar ou cintura\n4 - 1d4 - Vermes (rato gigante)\n![[Pasted image 20260905003748.png]]\n","x":-325,"y":985,"width":705,"height":355}
 	],
 	"edges":[
